@@ -1,25 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router";
 
 import { TProps } from "../types";
-import useMinusItem from "../hooks/useMinusItem";
-import usePlusItem from "../hooks/usePlusItem";
 import useRemoveItem from "../hooks/useRemoveItem";
-import { TCartItem } from "types/CartTypes";
-import { useState } from "react";
+import ChangeCountButtton from "buttons/components/ChangeCountButton";
 
 export default function CartItem({ product }: TProps) {
-  const plusItem = usePlusItem();
-  const minusItem = useMinusItem();
+  const [stock, setStock] = useState(false);
+
   const removeItem = useRemoveItem();
-  const [isLoading, setLoading] = useState(false);
-
-  const changeItem = (func: (product: TCartItem) => void) => {
-    setLoading(true);
-    func(product);
-    setLoading(false);
-  };
-
-  if(isLoading) return <p>Loading</p>
   return (
     <section className="cartItem w-134 h-35 pt-4 px-2 pb-8 border-b-1 border-b-stone-400">
       <div className="flex justify-between items-center">
@@ -34,29 +23,18 @@ export default function CartItem({ product }: TProps) {
           </section>
         </Link>
         <section className="flex justify-between items-center gap-6">
-          <div className="flex gap-2 items-center">
-            <button
-              className="text-2xl cursor-pointer"
-              onClick={() => changeItem(minusItem)}
-            >
-              -
-            </button>
-            <span className="py-2 px-4 text-center text-base leading-4 rounded-[4px] border-1 border-stone-300 w-14">
-              {product.count}
-            </span>
-            <button
-              className="text-2xl  cursor-pointer"
-              onClick={() => changeItem(plusItem)}
-            >
-              +
-            </button>
-          </div>
+          <ChangeCountButtton
+            product={product}
+            stock={stock}
+            setStock={setStock}
+            color={"white"}
+          />
           <p className="price text-base leading-4 w-14 text-center">
             ${product.total}
           </p>
           <button
             className="remove text-base leading-4  cursor-pointer"
-            onClick={() => changeItem(removeItem)}
+            onClick={() => removeItem(product)}
           >
             X
           </button>

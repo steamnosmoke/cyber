@@ -3,18 +3,16 @@ import { Link } from "react-router";
 
 import { useProductStore } from "store/productsStore";
 import useGetItems from "hooks/useGetItems";
-import useAddToCart from "hooks/cart/useAddToCart";
 import useAddToWishlist from "hooks/wishlist/addToWishlist";
 import { TProduct } from "types/ProductTypes";
-import { TCartItem } from "types/CartTypes";
 
 import Wishlist from "./images/components/Wishlist";
 import WishlistAdded from "./images/components/WishlistAdded";
-import BlackButton from "buttons/components/BlackButton";
+import Button from "./components/Button";
 
 export default function Card({ product }: { product: TProduct }) {
+
   const setProduct = useProductStore((state) => state.setProduct);
-  const addToCart = useAddToCart();
 
   const { items: products } = useGetItems<TProduct>("wishlist");
   const isLiked = products?.some((item) => item.objectId === product.objectId);
@@ -25,11 +23,6 @@ export default function Card({ product }: { product: TProduct }) {
 
     window.scrollTo(0, 0);
   }, [setProduct, product]);
-
-  const { items: cart } = useGetItems<TCartItem>("cart");
-  const cartItem = cart?.find((el) => el.objectId === product.objectId);
-  const currentCount = cartItem?.count ?? 0;
-  const isOutOfStock = product.stock <= currentCount;
 
   return (
     <>
@@ -66,16 +59,7 @@ export default function Card({ product }: { product: TProduct }) {
             {product.price - product.discount}$
           </p>
         </Link>
-        <BlackButton
-          onClick={() => addToCart(product)}
-          children={isOutOfStock ? "Out of stock" : "Add to Cart"}
-          twclass={
-            isOutOfStock
-              ? "!cursor-not-allowed !text-stone-500 !bg-stone-100 !border-stone-300 hover:!bg-stone-100 hover:!text-stone-500 hover:!scale-100"
-              : ""
-          }
-          disabled={isOutOfStock}
-        />
+        <Button product={product} />
       </section>
     </>
   );

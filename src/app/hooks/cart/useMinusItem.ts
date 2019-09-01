@@ -1,8 +1,8 @@
 import { useAuthStore } from "store/authStore";
 import { TCartItem } from "types/CartTypes";
 
-import useMinusGuestItem from "./guest/useMinusGuestItem";
-import useMinusUserItem from "./user/useMinusUserItem";
+import useMinusGuestItem from "./useMinusGuestItem";
+import useMinusUserItem from "./useMinusUserItem";
 
 export default function useMinusItem() {
   const userId = useAuthStore.getState().user.firebaseId;

@@ -1,8 +1,8 @@
 import { useAuthStore } from "store/authStore";
 import { TCartItem } from "types/CartTypes";
 
-import usePlusUserItem from "./user/usePlusUserItem";
-import usePlusGuestItem from "./guest/usePlusGuestItem";
+import usePlusUserItem from "./usePlusUserItem";
+import usePlusGuestItem from "./usePlusGuestItem";
 
 export default function usePlusItem() {
   const userId = useAuthStore.getState().user.firebaseId;
@@ -15,4 +15,3 @@ export default function usePlusItem() {
     plusUserItem(product);
   };
 }
-
