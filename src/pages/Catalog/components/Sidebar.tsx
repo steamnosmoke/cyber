@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
+
+import { useProductStore } from "store/productsStore";
+
 import { useFilters } from "../hooks/useFilter";
 import { useFilterStore } from "../store/filter";
 
 import BlackButton from "buttons/components/BlackButton";
 import Filter from "./Filter";
-import { useProductStore } from "store/productsStore";
-import { useEffect, useState } from "react";
 
 export default function CatalogAside() {
   const category = useProductStore((state) => state.category);
@@ -17,19 +19,18 @@ export default function CatalogAside() {
 
   const { filters, status } = useFilters(category);
 
-useEffect(() => {
-  if (isFilterOpened) {
-    setIsOpened(true);
-    return;
-  }
+  useEffect(() => {
+    if (isFilterOpened) {
+      setIsOpened(true);
+      return;
+    }
 
-  const timer = setTimeout(() => {
-    setIsOpened(false);
-  }, 500);
+    const timer = setTimeout(() => {
+      setIsOpened(false);
+    }, 500);
 
-  return () => clearTimeout(timer);
-}, [isFilterOpened]);
-
+    return () => clearTimeout(timer);
+  }, [isFilterOpened]);
 
   if (status === "success")
     return (
@@ -56,12 +57,12 @@ useEffect(() => {
             }`}
           >
             <BlackButton
-              twclass={`${isFilterOpened ? "aside_open" : "aside_close"}`}
+              twclass={`${isFilterOpened ? "" : "!p-0"}`}
               children={"Confirm"}
               onClick={setConfirmedFilters}
             />
             <BlackButton
-              twclass={`${isFilterOpened ? "aside_open" : "aside_close"}`}
+              twclass={`${isFilterOpened ? "" : "!p-0"}`}
               children={"Clear"}
               onClick={clearFilters}
             />

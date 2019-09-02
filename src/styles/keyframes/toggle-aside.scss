@@ -1,27 +1,30 @@
 @keyframes open-aside {
-  from {
+  0% {
     transform: translateX(-200px);
     opacity: 0;
     max-width: 0;
   }
-  to {
+  100% {
     transform: translateX(0);
-    opacity: 1;
     max-width: 400px;
+    opacity: 1;
   }
 }
 
 .aside_open {
-  animation: open-aside .5s forwards;
+  animation: open-aside 0.5s forwards;
 }
 
 @keyframes close-aside {
-  from {
+  0% {
     transform: translateX(0);
     opacity: 1;
     max-width: 400px;
   }
-  to {
+  50% {
+    opacity: 0;
+  }
+  100% {
     transform: translateX(-200px);
     opacity: 0;
     max-width: 0;
@@ -29,5 +32,5 @@
 }
 
 .aside_close {
-  animation: close-aside .5s forwards;
+  animation: close-aside 0.5s forwards;
 }

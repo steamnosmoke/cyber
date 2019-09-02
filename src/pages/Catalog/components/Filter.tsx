@@ -32,7 +32,7 @@ export default function Filter({ filter }: TFilterProps) {
         />
       </div>
       <ul
-        className={`list px-5 flex flex-col items-start justify-center gap-1 shadow-[0_5px_10px_-7px_#a5a5a59a] transition-all duration-200 ease overflow-y-hidden ${isOpened ? "max-h-100 py-5" : "max-h-0 py-0"}`}
+        className={`list px-5 flex flex-col items-start justify-center gap-1 shadow-[0_5px_10px_-7px_#a5a5a59a] transition-all duration-200 ease overflow-y-hidden ${isOpened ? "max-h-100 py-5" : "max-h-0 py-0 text-nowrap"}`}
       >
         {Object.values(filter.values).map((el, elIndex) => (
           <li
@@ -55,7 +55,7 @@ export default function Filter({ filter }: TFilterProps) {
                   : "bg-white "
               }`}
             ></div>
-            <p className="text-base text-center font-semibold">
+            <p className="text-base text-center font-semibold text-nowrap">
               {JSON.stringify(el)}
             </p>
           </li>
