@@ -10,9 +10,9 @@ export default function Products({ products, status }: Props) {
         className="
     grid 
     gap-x-20 gap-y-8
-    justify-center 
-    content-start
-    grid-cols-[repeat(4,minmax(220px,1fr))]
+    justify-items-center 
+    content-center
+    grid-cols-[repeat(auto-fit,minmax(280px,1fr))]
     transition-all duration-300
   "
       >

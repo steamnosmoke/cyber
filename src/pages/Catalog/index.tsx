@@ -41,7 +41,7 @@ export default function Catalog() {
           <>
             <div className="container relative flex min-h-[72vh] transition-all duration-500 ease-in-out ">
               <CatalogAside />
-              <div className="catalog-inner w-full max-w-[10000px] transition-[width] duration-500 ease-in-out ml-5">
+              <div className="catalog-inner w-full max-w-[1536px] transition-[width] duration-500 ease-in-out ml-5">
                 <Products products={filteredProducts} status={status} />
               </div>
             </div>
