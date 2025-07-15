@@ -1,0 +1,65 @@
+.dote {
+  width: 100px !important;
+  height: 100px;
+}
+
+.images {
+  display: flex;
+  align-items: start;
+  gap: 48px;
+}
+
+.img_item {
+  width: 100px !important;
+  height: 100px !important;
+  &::before{
+    content: "" !important;
+  }
+}
+
+.slick-slide,
+.big_img {
+  height: 480px !important;
+  width: 400px !important;
+}
+
+.slick-slider {
+  width: 536px;
+  display: flex !important;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+  gap: 48px;
+}
+
+.slick-dots {
+  position: static !important;
+  bottom: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 83px !important;
+  list-style: none !important;
+  
+
+  li{
+    height: 100px !important;
+    width: 100px !important;
+    transition: all .1s ease-in-out;
+
+    opacity: 0.5;
+
+    &:hover{
+      transform: scale(1.15);
+    }
+  }
+  li.slick-active{
+    transition: all .1s ease-in-out;
+    opacity: 1;
+  }
+}
+
+.slick-list{
+  width: 400px;
+}

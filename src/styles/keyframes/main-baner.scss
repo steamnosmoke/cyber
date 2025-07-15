@@ -1,0 +1,15 @@
+@keyframes iphone_up {
+  from {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.iphone {
+  animation-name: iphone_up;
+  animation-duration: 1000ms;
+}
