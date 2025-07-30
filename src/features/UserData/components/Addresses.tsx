@@ -1,21 +1,43 @@
-import { useAuthStore } from "store/authStore";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import { TAddress } from "types/AuthTypes";
+
+import { useChangeDefaultAddress, useGetAddresses } from "../hooks/useUserData";
 import { useChangeData } from "../store/userData";
-import { useEffect, useRef, useState } from "react";
+
 import NewAddress from "./NewAddress";
 
 export default function Addresses() {
-  const user = useAuthStore((state) => state.user);
   const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
   const defaultAddress = useChangeData((state) => state.defaultAddress);
+  const { data: addresses } = useGetAddresses();
+  const { mutate: changeDefaultAddress } = useChangeDefaultAddress();
 
   const [isAddressesOpened, setIsAddressesOpened] = useState(false);
   const [isNewAddressOpened, setIsNewAddressOpened] = useState(false);
   const ref = useRef(null);
 
-  const openAdding = () => {
+  const openAdding = useCallback(() => {
     setIsNewAddressOpened(true);
-    document.getElementsByTagName("body")[0].style.overflowY = "hidden";
+    document.body.style.overflowY = "hidden";
     setIsAddressesOpened(false);
+  }, []);
+
+  const onClickAddress = useCallback(
+    (address: TAddress) => {
+      changeDefaultAddress(address);
+      setDefaultAddress(address);
+      setIsAddressesOpened(false);
+    },
+    [
+      setDefaultAddress,
+      changeDefaultAddress,
+    ]
+  );
+
+
+  const formatAddress = (address: TAddress) => {
+    return `${address.country}, ${address.city}, ${address.street}, ${address.zip}`;
   };
 
   useEffect(() => {
@@ -27,7 +49,10 @@ export default function Addresses() {
 
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
-  }, [ref, setIsAddressesOpened, setIsNewAddressOpened]);
+  }, []);
+
+  // useEffect(() => {
+  // }, [defaultAddress, addresses]);
 
   return (
     <section
@@ -42,7 +67,9 @@ export default function Addresses() {
           Default address
         </p>
         <p className={!defaultAddress ? "text-stone-500" : ""}>
-          {defaultAddress ? defaultAddress : "Add new address"}
+          {defaultAddress
+            ? formatAddress(defaultAddress)
+            : "Add new address"}
         </p>
       </div>
 
@@ -54,27 +81,24 @@ export default function Addresses() {
             : "opacity-0 top-14 pointer-events-none z-[-1]"
         }`}
       >
-        {user.addresses?.length > 0 ? (
-          user.addresses.map((address, i) => (
+        {addresses &&
+          Object.values(addresses).map((address, i) => (
             <li
               key={i}
               role="option"
-              onClick={() => {
-                setDefaultAddress(JSON.stringify(address));
-                setIsAddressesOpened(false);
-              }}
+              onClick={() => onClickAddress(address)}
               className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200"
             >
-              <p className="truncate">{JSON.stringify(address)}</p>
+              <p className="truncate">
+                {formatAddress(address)}
+              </p>
             </li>
-          ))
-        ) : (
-          <li className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200">
-            <p className="w-full" onClick={() => openAdding()}>
-              + Add new address
-            </p>
-          </li>
-        )}
+          ))}
+        <li className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200">
+          <p className="w-full" onClick={openAdding}>
+            + Add new address
+          </p>
+        </li>
       </ul>
       {isNewAddressOpened && <NewAddress setIsOpened={setIsNewAddressOpened} />}
     </section>

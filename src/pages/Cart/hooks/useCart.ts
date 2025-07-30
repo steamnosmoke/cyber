@@ -11,9 +11,6 @@ const getCart = async () => {
     `${DB_URL}/users/${userId}/cart.json`
   );
   const data = res.data;
-  console.log(data)
-  console.log(res)
-  console.log(userId)
   return { data: data ? Object.entries(data) : [], userId };
 };
 

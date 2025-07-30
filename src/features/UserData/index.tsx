@@ -1,22 +1,50 @@
 import { useCallback, useMemo } from "react";
+
 import { useAuthStore } from "store/authStore";
-import { TUserData } from "./types";
+import { TUser } from "types/AuthTypes";
+
+import {
+  useGetAddresses,
+  useSaveData,
+} from "./hooks/useUserData";
 import { useChangeData } from "./store/userData";
-import BlackButton from "components/buttons/components/BlackButton";
+import { TUserData } from "./types";
+
+import BlackButton from "buttons/components/BlackButton";
+
 import Addresses from "./components/Addresses";
 
 export default function UserData() {
   const user = useAuthStore((state) => state.user);
+
+  const email = useChangeData((state) => state.email);
+  const name = useChangeData((state) => state.name);
+  const phone = useChangeData((state) => state.phone);
+  const birthday = useChangeData((state) => state.birthday);
 
   const setEmail = useChangeData((state) => state.setEmail);
   const setName = useChangeData((state) => state.setName);
   const setPhone = useChangeData((state) => state.setPhone);
   const setBirthday = useChangeData((state) => state.setBirthday);
 
-  const email = useChangeData((state) => state.email);
-  const name = useChangeData((state) => state.name);
-  const phone = useChangeData((state) => state.phone);
-  const birthday = useChangeData((state) => state.birthday);
+  const setUser = useAuthStore(state=>state.setUser)
+
+  const { data: addresses } = useGetAddresses();
+
+  const { mutate: saveData } = useSaveData();
+
+  const onClickSave = useCallback(() => {
+    const updatedUser: TUser = {
+      email,
+      name,
+      phone,
+      birthday,
+      addresses: addresses,
+    };
+    saveData(updatedUser);
+    setUser({...user, ...updatedUser})
+
+  }, [email, name, phone, birthday, saveData]);
 
   const userData = useMemo<TUserData[]>(
     () => [
@@ -83,7 +111,11 @@ export default function UserData() {
           <Addresses />
         </li>
       </ul>
-      <BlackButton children="Save changes" twclass="mt-4 !max-w-150 !w-full" />
+      <BlackButton
+        children="Save changes"
+        twclass="mt-4 !max-w-150 !w-full"
+        onClick={() => onClickSave()}
+      />
     </section>
   );
 }

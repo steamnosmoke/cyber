@@ -34,7 +34,7 @@ export default function Profile() {
                 twclass="!px-8"
                 onClick={() => setIsData(!isData)}
               />
-              <BlackButton children="Log out" onClick={() => logOut} />
+              <BlackButton children="Log out" onClick={logOut} />
             </div>
           </div>
           {isData && <UserData />}
@@ -43,14 +43,5 @@ export default function Profile() {
       )}
     </section>
 
-    // <section className="profile">
-    //   <div className="container">
-    //     <div className="flex items-center justify-between py-10 px-0 border-b-1 border-b-stone-300">
-    //       <h1 className="hello text-3xl leading-9">
-    //         Hello, {user.name ? user.name : user.email}!
-    //       </h1>
-    //     </div>
-    //   </div>
-    // </section>
   );
 }

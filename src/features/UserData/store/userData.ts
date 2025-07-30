@@ -1,23 +1,43 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-import { TDataStore } from "../types";
 import user from "constants/user";
 
-const address = user.addresses ? JSON.stringify(
-  user.addresses.find((el) => el.isDefault === true)
-) : "";
+import { TDataStore } from "../types";
 
-export const useChangeData = create<TDataStore>()((set) => ({
-  email: user.email,
-  name: user.name,
-  phone: user.phone,
-  birthday: user.birthday,
-  addresses: user.addresses,
-  defaultAddress: address,
-  setEmail: (email) => set({ email }),
-  setName: (name) => set({ name }),
-  setPhone: (phone) => set({ phone }),
-  setBirthday: (birthday) => set({ birthday }),
-  setDefaultAddress: (defaultAddress) => set({ defaultAddress }),
-  setAddresses: (state) => set({}),
-}));
+const address = Object.values(user.addresses)
+  ? Object.values(user.addresses).find((el) => el.isDefault === true)
+  : undefined;
+
+export const useChangeData = create<TDataStore>()(
+  persist(
+    (set) => ({
+      email: user.email,
+      name: user.name,
+      phone: user.phone,
+      birthday: user.birthday,
+      addresses: [],
+      defaultAddress: address,
+      setEmail: (email) => set({ email }),
+      setName: (name) => set({ name }),
+      setPhone: (phone) => set({ phone }),
+      setBirthday: (birthday) => set({ birthday }),
+      setDefaultAddress: (defaultAddress) => set({ defaultAddress }),
+      setAddresses: (address) =>
+        set((state) => ({
+          addresses: [...state.addresses, address],
+        })),
+    }),
+    {
+      name: "user-storage",
+      partialize: (state) => ({
+        email: state.email,
+        name: state.name,
+        phone: state.phone,
+        birthday: state.birthday,
+        defaultAddress: state.defaultAddress,
+        addresses: state.addresses,
+      }),
+    }
+  )
+);

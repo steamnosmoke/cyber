@@ -1,4 +1,4 @@
-import { TAdress } from "@/src/app/types/AuthTypes";
+import { TAddress, TUser } from "types/AuthTypes";
 
 export type TUserData = {
   label: string;
@@ -7,28 +7,21 @@ export type TUserData = {
   func: (input: string) => void;
 };
 
-export type TDataStore = {
-  email: string;
-  name: string;
-  phone: string;
-  birthday?: string;
-  defaultAddress: string;
-  addresses: TAdress[];
+export type TDataStore = TUser & {
   setEmail: (email: string) => void;
   setName: (name: string) => void;
   setPhone: (phone: string) => void;
   setBirthday: (birthday: string) => void;
-  setDefaultAddress: (defaultAddress: string) => void;
-  setAddresses: (addresses: TAdress[]) => void;
+  setDefaultAddress: (defaultAddress: TAddress | undefined) => void;
+  setAddresses: (address: TAddress) => void;
 };
 
-export type TAddressStore = {
-  city: string;
-  country: string;
-  zip: string;
-  street: string;
+
+
+export type TAddressStore = TAddress & {
   setCity: (city: string) => void;
   setCountry: (country: string) => void;
   setStreet: (street: string) => void;
   setZip: (zip: string) => void;
+  clearAll: ()=> void
 };

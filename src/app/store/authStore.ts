@@ -18,10 +18,6 @@ export const useAuthStore = create<TAuthStore>()(
       logOut: () =>
         set({
           user: null,
-          email: "",
-          password: "",
-          confirm: "",
-          error: "",
         }),
       setUser: (user) => set({ user }),
       setError: (error) => set({ error }),

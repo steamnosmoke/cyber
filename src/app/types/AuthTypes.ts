@@ -2,9 +2,23 @@ import { TCartItem } from "./CartTypes";
 import { TOrder } from "./OrderTypes";
 import { TProduct } from "./ProductTypes";
 
-export type TUser = {
+export type TAddress = {
+  id?: string;
+  country: string;
+  city: string;
+  street: string;
+  zip: string;
+  isDefault?: boolean;
+};
+
+export type TLogin = {
   email: string;
-  passwordHash: string;
+  password: string;
+};
+
+export type TUser = {
+  email?: string;
+  passwordHash?: string;
   name?: string;
   role?: string;
   wishlist?: TProduct[];
@@ -12,24 +26,11 @@ export type TUser = {
   orders?: TOrder[];
   permissions?: string[];
   phone?: string;
-  addresses?: TAdress[];
+  addresses?: TAddress[];
   firebaseId?: string;
   birthday?: string;
+  defaultAddress?: TAddress;
 };
-
-export type TAdress = {
-  city: string;
-  country: string;
-  street: string;
-  zip: string;
-  isDefault: boolean;
-}
-
-export type TLogin = {
-  email: string;
-  password: string;
-};
-
 
 export type TAuthStore = {
   user: TUser | null;

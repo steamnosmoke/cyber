@@ -26,9 +26,6 @@ export default function Card({ product }: { product: TProduct }) {
 
   const onClickCard = useCallback(() => {
     setProduct(product);
-    console.log(product.productId);
-    console.log(product.variantId);
-    console.log(product.objectId);
 
     window.scrollTo(0, 0);
   }, [setProduct, product]);
@@ -40,6 +37,7 @@ export default function Card({ product }: { product: TProduct }) {
         count: 1,
         totalDiscount: product.discount,
         totalPrice: product.price - product.discount,
+        total: product.price - product.discount,
         subTotal: product.price,
       };
       addToCart.mutate(item);

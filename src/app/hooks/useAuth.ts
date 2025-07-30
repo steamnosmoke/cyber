@@ -1,9 +1,16 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
 import { TUser, TLogin } from "types/AuthTypes";
 import DB_URL from "constants/DB_URL";
+
+async function getUser(user: TUser): Promise<TUser> {
+  const {data} = await axios.get<TUser>(
+    `${DB_URL}users/${user.firebaseId}.json`
+  );
+  return data;
+}
 
 async function loginUser({ email, password }: TLogin) {
   const url: string = `${DB_URL}users.json?orderBy="email"&equalTo="${email}"`;
@@ -39,7 +46,10 @@ async function registerUser({ email, password }: TLogin) {
     passwordHash,
   };
 
-  const response = await axios.post<{ name: string }>(`${DB_URL}users.json`, newUser);
+  const response = await axios.post<{ name: string }>(
+    `${DB_URL}users.json`,
+    newUser
+  );
 
   return { firebaseId: response.data.name, ...newUser };
 }
@@ -50,9 +60,13 @@ export function useLogin() {
     mutationKey: ["user"],
   });
 }
+
 export function useRegister() {
   return useMutation({
     mutationFn: registerUser,
     mutationKey: ["user"],
   });
+}
+export function useGetUserById(user:TUser) {
+  return useQuery({ queryFn: ()=>getUser(user), queryKey: ["user", user.firebaseId] });
 }

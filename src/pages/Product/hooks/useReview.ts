@@ -11,7 +11,6 @@ export function useGetReviews(productId: number) {
       const response = await axios.get<Record<string, TReview>>(
         `${DB_URL}products/${productId}/reviews.json`
       );
-      console.log(`${DB_URL}/products/${productId}/reviews.json`);
       const rawData = response.data;
 
       if (!rawData) {

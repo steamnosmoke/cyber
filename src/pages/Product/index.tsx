@@ -10,7 +10,6 @@ import Reviews from "./components/Reviews";
 
 export default function Product() {
   const product = useProductsStore((state) => state.product);
-  // console.log(product.productId);
 
   const setActivePage = useNavigationStore((state) => state.setActivePage);
 
