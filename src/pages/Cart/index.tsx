@@ -37,12 +37,12 @@ export default function Cart() {
   }, [calcNumbers, products]);
 
   return (
-    <section className="cart py-10 px-0 flex-grow">
+    <section className="cart py-4 px-0 flex-grow">
       <div className="container">
-        <h1 className="mb-5 text-[32px] font-medium">Shopping Cart</h1>
+        <h1 className="mb-4 text-[32px] text-center font-medium">Shopping Cart</h1>
         {status === "success" ? (
           count ? (
-            <div className="flex justify-between items-start">
+            <div className="flex justify-center gap-25 items-start">
               <>
                 <section className="left flex flex-col items-start justify-center gap-10">
                   <ul className="list flex flex-col items-start justify-center gap-10">
@@ -51,7 +51,7 @@ export default function Cart() {
                     ))}
                   </ul>
                 </section>
-                <section className="right border-1 border-stone-300 rounded-[10px] py-14 px-16 w-134 flex flex-col items-start justify-center gap-10 sticky top-25">
+                <section className="right border-1 border-stone-300 rounded-[10px] py-14 px-16 w-134 flex flex-col items-start justify-center gap-10 sticky top-40">
                   <h2 className="text-[20px] font-bold">Order Summary</h2>
                   <ul className="numbers flex flex-col gap-4 items-start justify-center w-full">
                     {numbers.map((number, index) => (

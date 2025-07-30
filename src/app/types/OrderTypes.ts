@@ -1,3 +1,4 @@
+import { TAddress } from "./AuthTypes";
 import { TCartItem } from "./CartTypes";
 
 export type TOrder = {
@@ -8,4 +9,6 @@ export type TOrder = {
   totalPriceWithDiscount: number;
   totalPriceWithoutDiscount: number;
   value: number;
+  id: string;
+  address?: TAddress;
 };

@@ -26,8 +26,8 @@
       "assets/*": ["src/shared/assets/*"],
       "constants/*": ["src/shared/constants/*"],
       "components/*": ["src/shared/components/*"],
-      
-      "buttons/*": ["src/shared/components/buttons/*"],
+
+      "buttons/*": ["src/shared/components/buttons/*"]
     }
   },
   "include": ["src"]
