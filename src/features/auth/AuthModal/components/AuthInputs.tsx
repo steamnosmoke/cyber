@@ -1,0 +1,54 @@
+import { useMemo } from "react";
+import { useAuthStore } from "store/authStore";
+import { TInputs } from "../../types";
+
+export default function AuthInputs() {
+  const setEmail = useAuthStore((s) => s.setEmail);
+  const setPassword = useAuthStore((s) => s.setPassword);
+  const email = useAuthStore((s) => s.email);
+  const password = useAuthStore((s) => s.password);
+
+  const inputs = useMemo<TInputs[]>(
+    () => [
+      {
+        type: "email",
+        label: "email",
+        value: email,
+        placeholder: "example@cyber.com",
+        func: setEmail,
+      },
+      {
+        type: "password",
+        label: "Password",
+        value: password,
+        placeholder: "Password123!",
+        func: setPassword,
+      },
+    ],
+    [email, password]
+  );
+
+  return (
+    <ul className="list flex flex-col gap-4 max-w-150 w-full">
+      {inputs.map((el) => (
+        <li key={el.label} className="relative">
+          <label
+            htmlFor={el.label}
+            className="capitalize absolute left-4 top-2 text-[14px] cursor-text"
+          >
+            {el.label}
+          </label>
+          <input
+            className="pt-8 px-4 pb-2 border-1 border-stone-300 rounded-lg max-w-150 w-full placeholder:text-stone-500 transition-all duration-200 hover:border-black"
+            type={el.type}
+            name={el.label}
+            placeholder={el.placeholder}
+            id={el.label}
+            value={el.value}
+            onChange={(e) => el.func(e.target.value)}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
