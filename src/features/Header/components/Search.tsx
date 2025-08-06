@@ -1,7 +1,7 @@
 import { useSearchStore } from "../store/searchStore";
 
-import SearchIcon from "./SearchIcon";
-import ClearIcon from "./ClearIcon";
+import SearchIcon from "../images/components/SearchIcon";
+import ClearIcon from "../images/components/ClearIcon";
 
 export default function Search() {
   const inputValue = useSearchStore((state) => state.value);

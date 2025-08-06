@@ -1,7 +1,8 @@
 import Search from "./components/Search";
-import Logo from "./components/Logo";
 import Navigation from "./components/Navigation";
 import PageButtons from "./components/PageButtons";
+
+import Logo from "./images/components/Logo";
 
 export default function Header() {
   return (

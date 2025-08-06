@@ -5,9 +5,9 @@ import { useAuthStore } from "store/authStore";
 import { useNavigateActions } from "../hooks/useNavigateActions";
 import { TButton } from "../types";
 
-import WishlistIcon from "./WishlistIcon";
-import CartIcon from "./CartIcon";
-import ProfileIcon from "./ProfileIcon";
+import WishlistIcon from "../images/components/WishlistIcon";
+import CartIcon from "../images/components/CartIcon";
+import ProfileIcon from "../images/components/ProfileIcon";
 
 export default function PageButtons() {
   const { onClickButton, onClickProfile } = useNavigateActions();

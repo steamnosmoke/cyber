@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 
-import { useNavigateActions } from "../hooks/useNavigateActions";
+import { useNavigateActions } from "../../hooks/useNavigateActions";
 
 import logo from "assets/images/Logo-black.svg";
 
