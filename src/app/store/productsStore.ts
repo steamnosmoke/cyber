@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { TProductStore } from "types/ProductStoreTypes";
+import { TProductStore } from "types/ProductTypes";
 
-export const useProductsStore = create<TProductStore>()(
+export const useProductStore = create<TProductStore>()(
   persist(
     (set) => ({
       category: "Phones",
