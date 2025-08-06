@@ -2,11 +2,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
-import user from "constants/user";
+
+import { useAuthStore } from "store/authStore";
 import { TCartItem } from "types/CartTypes";
 
 const getCart = async () => {
-  const userId: string = user?.firebaseId;
+  const userId: string = useAuthStore.getState().user.firebaseId;
   const res = await axios.get<Record<string, TCartItem>>(
     `${DB_URL}/users/${userId}/cart.json`
   );

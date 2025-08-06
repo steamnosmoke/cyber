@@ -2,13 +2,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
-import user from "constants/user";
 
+import { useAuthStore } from "store/authStore";
 import { TCartItem } from "types/CartTypes";
 import { TOrder } from "types/OrderTypes";
 
 async function makeOrder(cart: TCartItem[]) {
-  const userId: string = user?.firebaseId;
+  const userId: string = useAuthStore.getState().user.firebaseId;
   const url = `${DB_URL}/users/${userId}/orders.json`;
   const now = new Date();
   const year = now.getFullYear();
@@ -30,8 +30,8 @@ async function makeOrder(cart: TCartItem[]) {
     newOrder.totalDiscount += el.totalDiscount;
     newOrder.value += el.count;
   });
-  await axios.post<Record<string, TOrder>>(url, newOrder);
-  return newOrder;
+  const { data } = await axios.post<{ name: string }>(url, newOrder);
+  return { ...newOrder, id: data.name };
 }
 
 export function useMakeOrder() {
