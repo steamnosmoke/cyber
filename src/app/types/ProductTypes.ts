@@ -1,6 +1,8 @@
+import { TFilter, TSortingParams } from "./CategoryTypes";
+
 export type TProduct = {
   id: number;
-  productId: number;
+  productId: string;
   category: string;
   brand: string;
   name: string;
@@ -105,4 +107,25 @@ export type TSpecs = {
   os?: string;
   launchYear?: number;
   guarantee?: string;
+};
+
+export type TProductStore = {
+  product?: TProduct | null;
+  category?: string;
+  filters?: TFilter[];
+  confirmedFilters?: TFilter[];
+  filteredProducts?: TProduct[];
+  isFilterOpened?: boolean;
+  comment?: string;
+  sortingParams?: TSortingParams;
+
+  setProduct?: (product?: TProduct) => void;
+  setComment?: (comment?: string) => void;
+  setFilters?: (filter?: { title?: string; value?: string }) => void;
+  clearFilters?: () => void;
+  setConfirmedFilters?: () => void;
+  setFilterOpened?: () => void;
+  setCategory?: (category?: string) => void;
+  setFilteredProducts?: (products?: TProduct[]) => void;
+  setSortingParams?: (params?: TSortingParams) => void;
 };

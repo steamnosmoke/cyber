@@ -14,6 +14,7 @@ export type TAddress = {
 export type TLogin = {
   email: string;
   password: string;
+  confirm?: string;
 };
 
 export type TUser = {

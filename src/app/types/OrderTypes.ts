@@ -9,6 +9,6 @@ export type TOrder = {
   totalPriceWithDiscount: number;
   totalPriceWithoutDiscount: number;
   value: number;
-  id: string;
+  id?: string;
   address?: TAddress;
 };
