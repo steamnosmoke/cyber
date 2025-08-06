@@ -11,9 +11,9 @@ export default function Search() {
   return (
     <>
       <div className="search-wrapper relative w-100 h-14 rounded-2xl group">
-        <SearchIcon  />
+        <SearchIcon />
         <input
-          className="searh-input hover-target w-80 bg-stone-100 p-4 pl-12 rounded-2xl absolute transition-all placeholder:transition-colors border-1 border-transparent duration-150 focus:w-100 focus:border-stone-500 hover:w-100 hover:border-stone-500 hover:placeholder:text-stone-700 focus:placeholder:text-stone-700 "
+          className={`searh-input hover-target w-80 bg-stone-100 p-4 pl-12 rounded-2xl absolute transition-all placeholder:transition-colors border-1 border-transparent duration-150 focus:w-100 focus:border-stone-500 hover:w-100 hover:border-stone-500 hover:placeholder:text-stone-700 focus:placeholder:text-stone-700 ${inputValue ? "w-100" : ""}`}
           type="text"
           placeholder="Search"
           value={inputValue}

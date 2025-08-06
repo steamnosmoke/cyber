@@ -1,7 +1,7 @@
 export type TButton = {
   path: string;
-  action: () => void;
   src: React.ReactNode;
+  action: () => void;
 };
 
 export type TNavigate = {
@@ -15,3 +15,4 @@ export type TSearchStore = {
   Searching: (value: string) => void;
   ClearValue: () => void;
 };
+
