@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { useProductsStore } from "store/productsStore";
+import { useProductStore } from "store/productsStore";
 import { useNavigationStore } from "store/navigationStroe";
-import { useProducts } from "hooks/useProducts";
+import useGetProducts from "hooks/useGetProducts";
 import { useFilterStore } from "./store/filter";
 
 import Products from "components/Products";
@@ -10,7 +10,7 @@ import CatalogAside from "./components/Sidebar";
 import CatalogHeader from "./components/Header";
 
 export default function Catalog() {
-  const category = useProductsStore((state) => state.category);
+  const category = useProductStore((state) => state.category);
 
   const setActivePage = useNavigationStore((state) => state.setActivePage);
 
@@ -23,7 +23,7 @@ export default function Catalog() {
     (state) => state.setFilteredProducts
   );
 
-  const { products, status } = useProducts(category);
+  const { products, status } = useGetProducts(category);
 
   useEffect(() => {
     setFilteredProducts(products);
@@ -35,20 +35,20 @@ export default function Catalog() {
 
   return (
     <main className="main flex-grow">
-      <CatalogHeader count={filteredProducts.length} category={category} />
+      <CatalogHeader />
       <section className="catalog">
-        <div className="container relative flex">
-          {category === "Phones" ? (
-            <>
-              <CatalogAside category={category} />
-              <div className="catalog-inner flex flex-row items-start justify-center gap-3 max-w-405 relative">
+        {products ? (
+          <>
+            <div className="container relative flex min-h-[72vh] transition-all duration-500 ease-in-out ">
+              <CatalogAside />
+              <div className="catalog-inner w-full max-w-[10000px] transition-[width] duration-500 ease-in-out ml-5">
                 <Products products={filteredProducts} status={status} />
               </div>
-            </>
-          ) : (
-            <h1 className="empty text-5xl text-center w-full">No products</h1>
-          )}
-        </div>
+            </div>
+          </>
+        ) : (
+          <h1 className="empty text-5xl text-center w-full">No products</h1>
+        )}
       </section>
     </main>
   );

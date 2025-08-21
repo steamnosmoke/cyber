@@ -1,8 +1,8 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState} from "react";
 
-import { TOption} from "../types";
 import { useFilterStore } from "../store/filter";
 import { TSortingParams } from "types/CategoryTypes";
+import sortOptions from "../config/sortOptions";
 
 export default function Sorting() {
   const [opened, setOpened] = useState(false);
@@ -11,20 +11,8 @@ export default function Sorting() {
   const mod = useFilterStore((state) => state.sortingParams.mod);
   const setSortingParams = useFilterStore((state) => state.setSortingParams);
 
-  const handleSetParams = useCallback(
-    ({ param, mod }: TSortingParams) => setSortingParams({ param, mod }),
-    [setSortingParams]
-  );
-
-  const sortOptions: TOption[] = useMemo(
-    () => [
-      { label: "rating ↓", param: "rating", mod: "desc" },
-      { label: "rating ↑", param: "rating", mod: "asc" },
-      { label: "price ↓", param: "price", mod: "desc" },
-      { label: "price ↑", param: "price", mod: "asc" },
-    ],
-    [param, mod]
-  );
+  const handleSetParams = ({ param, mod }: TSortingParams) =>
+    setSortingParams({ param, mod });
 
   return (
     <div className="sorting cursor-pointer" onClick={() => setOpened(!opened)}>

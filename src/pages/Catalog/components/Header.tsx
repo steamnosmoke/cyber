@@ -1,15 +1,20 @@
 import { Link } from "react-router";
 
+import { useProductStore } from "store/productsStore";
+
 import { useFilterStore } from "../store/filter";
-import { THeaderProps } from "../types";
 import { useNavigationStore } from "store/navigationStroe";
 
 import Sorting from "./Sorting";
 import arrow from "../images/arrow.svg";
 
-export default function CatalogHeader({ count, category }: THeaderProps) {
+export default function CatalogHeader() {
+  const category = useProductStore((state) => state.category);
   const isFilterOpened = useFilterStore((state) => state.isFilterOpened);
   const setFilterOpened = useFilterStore((state) => state.setFilterOpened);
+
+  const filteredProducts = useFilterStore((state) => state.filteredProducts);
+
   const setActivePage = useNavigationStore((state) => state.setActivePage);
   return (
     <header className="catalog-header py-5 sticky top-22 bg-white z-1000 mb-10 shadow-[0_7px_20px_-5px_rgb(223,223,223)]">
@@ -57,7 +62,7 @@ export default function CatalogHeader({ count, category }: THeaderProps) {
                 <span className="descr text-stone-500 text-base font-medium">
                   Selected Products:{" "}
                 </span>
-                {count}
+                {filteredProducts.length}
               </span>
               <Sorting />
             </div>

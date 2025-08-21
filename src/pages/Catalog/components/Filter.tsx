@@ -1,10 +1,10 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
+import { TfilterItem } from "types/CategoryTypes";
 import { TFilterProps } from "../types";
 import { useFilterStore } from "../store/filter";
 
 import arrow from "../images/arrow.svg";
-import { TfilterItem } from "types/CategoryTypes";
 
 export default function Filter({ filter }: TFilterProps) {
   const [isOpened, setOpened] = useState(true);
@@ -12,15 +12,11 @@ export default function Filter({ filter }: TFilterProps) {
   const filters = useFilterStore((state) => state.filters);
   const setFilters = useFilterStore((state) => state.setFilters);
 
-  const onClickFilter = useCallback(
-    ({ title, value }: TfilterItem) => {
-      setFilters({ title, value });
-    },
-    [setFilters]
-  );
+  const onClickFilter = ({ title, value }: TfilterItem) => {
+    setFilters({ title, value });
+  };
 
   return (
-    <>
       <li className="item text-xl mb-2">
         <div
           className="filter flex items-center justify-between pt-3 px-6 cursor-pointer"
@@ -66,6 +62,5 @@ export default function Filter({ filter }: TFilterProps) {
           </ul>
         )}
       </li>
-    </>
   );
 }
