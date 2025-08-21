@@ -1,0 +1,21 @@
+@keyframes open_modal_overlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes close_modal_overlay {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.modal-overlay {
+  animation-name: open_modal_overlay;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}
+
+.modal-overlay.close {
+  animation-name: close_modal_overlay;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}

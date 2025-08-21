@@ -1,0 +1,33 @@
+@keyframes open-aside {
+  from {
+    transform: translateX(-200px);
+    opacity: 0;
+    max-width: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    max-width: 400px;
+  }
+}
+
+.aside_open {
+  animation: open-aside .5s forwards;
+}
+
+@keyframes close-aside {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+    max-width: 400px;
+  }
+  to {
+    transform: translateX(-200px);
+    opacity: 0;
+    max-width: 0;
+  }
+}
+
+.aside_close {
+  animation: close-aside .5s forwards;
+}

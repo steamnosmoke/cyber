@@ -1,0 +1,32 @@
+@keyframes scrollButton-visible {
+  from {
+    bottom: -10px;
+  }
+  to {
+    bottom: 24px;
+  }
+}
+
+@keyframes scrollButton-invisible {
+  from {
+    bottom: 24px;
+  }
+  to {
+    bottom: -10px;
+  }
+}
+
+.scrollButton.visible {
+  animation-name: scrollButton-visible;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+
+}
+
+
+.scrollButton.invisible {
+  animation-name: scrollButton-invisible;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+
+}
