@@ -4,9 +4,22 @@ import tailwindcss from "@tailwindcss/vite";
 import svgr from "vite-plugin-svgr";
 import path from "path";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), svgr()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+
+          state: ["zustand", "@tanstack/react-query"],
+
+          vendor: ["axios"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
   resolve: {
     alias: {
       store: path.resolve(__dirname, "src/app/store"),
