@@ -1,4 +1,4 @@
-import { useGetProducts } from "hooks/useGetProducts";
+import useGetProducts from "hooks/useGetProducts";
 import { useProductStore } from "store/productsStore";
 
 import Products from "components/Products";

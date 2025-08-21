@@ -5,7 +5,7 @@ import { useNavigationStore } from "store/navigationStroe";
 import Banner from "./components/Banner";
 import Tablets from "./components/Tablets";
 import Categories from "./components/Categories";
-import ProductsSection from "./components/ProdductsSection";
+import ProductsSection from "./components/ProductsSection";
 
 export default function Home() {
   const setActivePage = useNavigationStore((state) => state.setActivePage);
