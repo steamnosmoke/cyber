@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
-import { useAuthStore } from "../store/authStore";
+
+import { useAuthStore } from "store/authStore";
 
 async function getItems<T>(
   page: string,
@@ -16,9 +17,8 @@ async function getItems<T>(
   return response.data || {};
 }
 
-export function useGetItems<T>(page: string) {
-  const user = useAuthStore((state) => state.user);
-  const userId = user ? user.firebaseId : "guest";
+export default function useGetItems <T>(page: string) {
+  const userId = useAuthStore.getState().user.firebaseId;
   const { data = {}, status } = useQuery<Record<string, T>>({
     queryKey: [page, userId],
     queryFn: () => getItems<T>(page, userId),

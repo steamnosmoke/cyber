@@ -34,7 +34,7 @@ async function makeOrder(cart: TCartItem[]) {
   return { ...newOrder, id: data.name };
 }
 
-export function useMakeOrder() {
+export default function useMakeOrder() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: makeOrder,

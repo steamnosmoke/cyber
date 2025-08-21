@@ -29,12 +29,14 @@ async function getProducts(category: string): Promise<TProduct[]> {
   return products;
 }
 
-export function useGetProducts(category: string) {
+export default function useGetProducts(category: string) {
   const { data, status, error } = useQuery<TProduct[]>({
     queryKey: ["products", category],
     queryFn: () => getProducts(category),
     placeholderData: (prev) => prev,
   });
+
+  console.log(status)
 
   return {
     products: data || [],
