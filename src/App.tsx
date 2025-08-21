@@ -2,11 +2,12 @@ import { useModalStore } from "store/modalStore";
 
 import Header from "./features/Header";
 import Footer from "./features/Footer";
-import RegisterModal from "./features/modals/RegisterModal";
-import AuthModal from "./features/modals/AuthModal";
+import RegisterModal from "./features/auth/RegisterModal";
+import AuthModal from "./features/auth/AuthModal";
 import RoutesComponent from "./app/router";
+import ScrollTopButton from "./features/scrollButton";
 
-function App() {
+export default function App() {
   const openAuthModal = useModalStore((state) => state.openAuthModal);
   const openRegisterModal = useModalStore((state) => state.openRegisterModal);
   const closeModals = useModalStore((state) => state.closeModals);
@@ -19,6 +20,8 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <RoutesComponent />
+
+      <Footer />
 
       {isAuthModalOpen && (
         <AuthModal
@@ -33,9 +36,9 @@ function App() {
         />
       )}
 
-      <Footer />
+      {!isAuthModalOpen && !isRegisterModalOpen && (
+        <ScrollTopButton />
+      )}
     </div>
   );
 }
-
-export default App;

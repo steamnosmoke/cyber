@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "./styles/keyframes/main-baner.scss";
+@import "./styles/keyframes/open-modal.scss";
+@import "./styles/keyframes/scroll-top.scss";
+@import "./styles/keyframes/toggle-aside.scss";
 
 * {
   font-family: "Inter", sans-serif;
@@ -7,14 +10,6 @@
 
 .container {
   @apply mx-auto px-8;
-}
-.modal-input {
-  display: block;
-  padding: 12px;
-  border: 1px solid #000;
-  border-radius: 6px;
-  background-color: #fff;
-  color: #000;
 }
 .filters-list {
   &::-webkit-scrollbar {
@@ -27,6 +22,7 @@
   &::-webkit-scrollbar-thumb {
     background-color: #000;
     border-radius: 5px;
+    cursor: pointer;
   }
   &::-webkit-scrollbar-thumb:hover {
     background-color: #000000a9;

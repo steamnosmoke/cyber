@@ -12,11 +12,13 @@ export default defineConfig({
       store: path.resolve(__dirname, "src/app/store"),
       hooks: path.resolve(__dirname, "src/app/hooks"),
       types: path.resolve(__dirname, "src/app/types"),
+      utils: path.resolve(__dirname, "src/app/utils"),
 
       features: path.resolve(__dirname, "src/features"),
       pages: path.resolve(__dirname, "src/pages"),
 
       assets: path.resolve(__dirname, "src/shared/assets"),
+      images: path.resolve(__dirname, "src/shared/assets/images"),
       constants: path.resolve(__dirname, "src/shared/constants"),
       components: path.resolve(__dirname, "src/shared/components"),
 

@@ -19,11 +19,13 @@
       "store/*": ["src/app/store/*"],
       "hooks/*": ["src/app/hooks/*"],
       "types/*": ["src/app/types/*"],
+      "utils/*": ["src/app/utils/*"],
 
       "pages/*": ["src/pages/*"],
       "features/*": ["src/features/*"],
 
       "assets/*": ["src/shared/assets/*"],
+      "images/*": ["src/shared/assets/images/*"],
       "constants/*": ["src/shared/constants/*"],
       "components/*": ["src/shared/components/*"],
 
