@@ -1,37 +1,12 @@
-import { TProduct } from "@/src/app/types/ProductTypes";
-
-export type TCharacter = {
-  label: string;
-  img: string;
-  value: string;
-};
-export type TTablet = {
-  label: string;
-  img: string;
-  value: string;
-};
-
-export type TProps = {
-  product: TProduct;
-};
-
-export type TGallaryProps = {
-  images: string[];
-};
-
-export type THeaderProps = {
-  name: string;
-};
-
-export type TReviewStore = {
-  comment: string;
-  setComment: (comment: string) => void;
-};
-
 export type TArrowProps = {
-    check: boolean;
-}
+  check: boolean;
+};
 
 export type TStarsProps = {
   rating: number;
-}
+};
+
+export type TButtonProps = {
+  flag: boolean;
+  setFlag: (flag: boolean) => void;
+};

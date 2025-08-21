@@ -1,4 +1,4 @@
-import { TStarsProps } from "../types";
+import { TStarsProps } from "../../types";
 
 export default function Stars({ rating }: TStarsProps) {
   return (

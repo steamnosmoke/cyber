@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useProductsStore } from "store/productsStore";
+import { useProductStore } from "store/productsStore";
 import { useNavigationStore } from "store/navigationStroe";
 
 import Header from "./components/Header";
@@ -9,11 +9,11 @@ import Details from "./components/Details";
 import Reviews from "./components/Reviews";
 
 export default function Product() {
-  const product = useProductsStore((state) => state.product);
+  const product = useProductStore((state) => state.product);
 
   const setActivePage = useNavigationStore((state) => state.setActivePage);
 
-  if (Object.values(product).length === 0) {
+  if (!product) {
     return <>loading...</>;
   }
 
@@ -25,10 +25,10 @@ export default function Product() {
     <>
       <main className="main flex-grow">
         <div className="container">
-          <Header name={product.name} />
+          <Header/>
           <ProductParams />
-          <Details product={product} />
-          <Reviews product={product} />
+          <Details/>
+          <Reviews/>
         </div>
       </main>
     </>

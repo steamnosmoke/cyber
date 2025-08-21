@@ -1,16 +1,17 @@
 import { useEffect, useRef } from "react";
 import Slider from "react-slick";
 
-import { TGallaryProps } from "../types";
+import { useProductStore } from "store/productsStore";
+
 import MyLoader from "./Loader";
 
 import "../styles/swiper.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function ProductGallery({ images }: TGallaryProps) {
+export default function ProductGallery() {
   const sliderRef = useRef(null);
-
+  const images = useProductStore.getState().product.images;
   const settings = {
     customPaging: function (i: number) {
       return (
@@ -24,7 +25,7 @@ export default function ProductGallery({ images }: TGallaryProps) {
       );
     },
     dots: true,
-    dotsClass: "slick-dots ",
+    dotsClass: "slick-dots",
     infinite: true,
     speed: 500,
     slidesToShow: 1,

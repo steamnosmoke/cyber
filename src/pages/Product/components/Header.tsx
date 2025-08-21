@@ -1,15 +1,14 @@
 import { Link, useParams } from "react-router";
 
-import { THeaderProps } from "../types";
 import { useNavigationStore } from "store/navigationStroe";
-import { useProductsStore } from "store/productsStore";
+import { useProductStore } from "store/productsStore";
 
-export default function Header({ name }: THeaderProps) {
+export default function Header() {
   const { id } = useParams();
   const setActivePage = useNavigationStore((state) => state.setActivePage);
-
-  const category = useProductsStore((state) => state.category);
-  const setCategory = useProductsStore((state) => state.setCategory);
+  const product = useProductStore((state) => state.product);
+  const category = useProductStore((state) => state.category);
+  const setCategory = useProductStore((state) => state.setCategory);
 
   return (
     <header className="py-11 flex gap-3">
@@ -40,7 +39,7 @@ export default function Header({ name }: THeaderProps) {
         to={`/catalog/${id}`}
         className="transition-all duration-200 hover:font-semibold"
       >
-        {name}
+        {product.name}
       </Link>
     </header>
   );
