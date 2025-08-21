@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 
-import { usePage } from "hooks/usePage";
-import { useMakeOrder } from "hooks/useOrder";
+import useGetItems from "hooks/useGetItems";
+import useMakeOrder from "hooks/useMakeOrder";
 import { TCartItem } from "types/CartTypes";
 import { useCartStore } from "./store/cartStore";
 import { TNum } from "./types";
@@ -11,14 +11,14 @@ import CartItem from "./components/CartItem";
 import EmptyCart from "./components/EmptyCart";
 
 export default function Cart() {
-  const { items: products, status } = usePage<TCartItem>("cart");
+  const { items: products, status } = useGetItems <TCartItem>("cart");
   const calcNumbers = useCartStore((state) => state.calcNumbers);
   const subtotal = useCartStore((state) => state.subtotal);
   const discount = useCartStore((state) => state.discount);
   const total = useCartStore((state) => state.total);
   const count = useCartStore((state) => state.count);
 
-  const makeOrder = useMakeOrder();
+  const {mutate: makeOrder} = useMakeOrder();
 
   const numbers = useMemo<TNum[]>(
     () => [
@@ -34,7 +34,7 @@ export default function Cart() {
 
   useEffect(() => {
     calcNumbers(products);
-  }, [calcNumbers, products]);
+  }, [calcNumbers, products, numbers]);
 
   return (
     <section className="cart py-4 px-0 flex-grow">
@@ -76,7 +76,7 @@ export default function Cart() {
                   </ul>
                   <BlackButton
                     children={"Checkout"}
-                    onClick={() => makeOrder.mutate(products)}
+                    onClick={() => makeOrder(products)}
                     twclass={"w-full"}
                   />
                 </section>

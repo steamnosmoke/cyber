@@ -12,7 +12,7 @@ export const useCartStore = create<TCartStore>()(
       count: 0,
       calcNumbers: (cart) => {
         const subtotal = cart.reduce((sum, item) => sum + item.subTotal, 0);
-        const discount = cart.reduce((sum, item) => sum + item.discount, 0);
+        const discount = cart.reduce((sum, item) => sum + item.totalDiscount, 0);
         const total = cart.reduce((sum, item) => sum + item.total, 0);
         const count = cart.reduce((sum, item) => sum + item.count, 0);
 
