@@ -1,7 +1,7 @@
 import { TFilter, TSortingParams } from "./CategoryTypes";
 
 export type TProduct = {
-  id: number;
+  id: string;
   productId: string;
   category: string;
   brand: string;
