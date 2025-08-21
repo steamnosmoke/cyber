@@ -1,4 +1,4 @@
-import { TProduct } from "@/src/app/types/ProductTypes";
+import { TProduct } from "types/ProductTypes";
 
 export type Props = {
   products: TProduct[];
