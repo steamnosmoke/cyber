@@ -4,7 +4,8 @@ import Order from "./components/Order";
 import { TOrder } from "types/OrderTypes";
 
 export default function Orders() {
-  const { items: orders, status } = useGetItems<TOrder>("orders");
+  const { items, status } = useGetItems<TOrder>("orders");
+  const orders = items.slice().reverse();
   return (
     <>
       <h2 className="text-[32px] font-semibold leading-12 text-center pt-8">

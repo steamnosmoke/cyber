@@ -9,16 +9,30 @@ import { TNum } from "./types";
 import BlackButton from "buttons/components/BlackButton";
 import CartItem from "./components/CartItem";
 import EmptyCart from "./components/EmptyCart";
+import useClearCart from "./hooks/useClearCart";
+import useUpdateStock from "./hooks/useUpdateStock";
+import { useNavigate } from "react-router";
 
 export default function Cart() {
-  const { items: products, status } = useGetItems <TCartItem>("cart");
+  const { items: products, status } = useGetItems<TCartItem>("cart");
   const calcNumbers = useCartStore((state) => state.calcNumbers);
   const subtotal = useCartStore((state) => state.subtotal);
   const discount = useCartStore((state) => state.discount);
   const total = useCartStore((state) => state.total);
   const count = useCartStore((state) => state.count);
 
-  const {mutate: makeOrder} = useMakeOrder();
+  const { mutate: makeOrder } = useMakeOrder();
+  const { mutate: clearCart } = useClearCart();
+  const { mutate: updateStock } = useUpdateStock();
+
+  const navigate = useNavigate();
+
+  const onMakeOrder = () => {
+    updateStock(products);
+    clearCart();
+    makeOrder(products);
+    navigate("/profile");
+  };
 
   const numbers = useMemo<TNum[]>(
     () => [
@@ -39,7 +53,9 @@ export default function Cart() {
   return (
     <section className="cart py-4 px-0 flex-grow">
       <div className="container">
-        <h1 className="mb-4 text-[32px] text-center font-medium">Shopping Cart</h1>
+        <h1 className="mb-4 text-[32px] text-center font-medium">
+          Shopping Cart
+        </h1>
         {status === "success" ? (
           count ? (
             <div className="flex justify-center gap-25 items-start">
@@ -76,7 +92,7 @@ export default function Cart() {
                   </ul>
                   <BlackButton
                     children={"Checkout"}
-                    onClick={() => makeOrder(products)}
+                    onClick={onMakeOrder}
                     twclass={"w-full"}
                   />
                 </section>

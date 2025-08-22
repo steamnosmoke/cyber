@@ -4,11 +4,22 @@ import { TProps } from "../types";
 import useMinusItem from "../hooks/useMinusItem";
 import usePlusItem from "../hooks/usePlusItem";
 import useRemoveItem from "../hooks/useRemoveItem";
+import { TCartItem } from "types/CartTypes";
+import { useState } from "react";
 
 export default function CartItem({ product }: TProps) {
   const plusItem = usePlusItem();
   const minusItem = useMinusItem();
   const removeItem = useRemoveItem();
+  const [isLoading, setLoading] = useState(false);
+
+  const changeItem = (func: (product: TCartItem) => void) => {
+    setLoading(true);
+    func(product);
+    setLoading(false);
+  };
+
+  if(isLoading) return <p>Loading</p>
   return (
     <section className="cartItem w-134 h-35 pt-4 px-2 pb-8 border-b-1 border-b-stone-400">
       <div className="flex justify-between items-center">
@@ -26,7 +37,7 @@ export default function CartItem({ product }: TProps) {
           <div className="flex gap-2 items-center">
             <button
               className="text-2xl cursor-pointer"
-              onClick={() => minusItem(product)}
+              onClick={() => changeItem(minusItem)}
             >
               -
             </button>
@@ -35,7 +46,7 @@ export default function CartItem({ product }: TProps) {
             </span>
             <button
               className="text-2xl  cursor-pointer"
-              onClick={() => plusItem(product)}
+              onClick={() => changeItem(plusItem)}
             >
               +
             </button>
@@ -45,7 +56,7 @@ export default function CartItem({ product }: TProps) {
           </p>
           <button
             className="remove text-base leading-4  cursor-pointer"
-            onClick={() => removeItem(product)}
+            onClick={() => changeItem(removeItem)}
           >
             X
           </button>

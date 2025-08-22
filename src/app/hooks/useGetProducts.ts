@@ -36,8 +36,6 @@ export default function useGetProducts(category: string) {
     placeholderData: (prev) => prev,
   });
 
-  console.log(status)
-
   return {
     products: data || [],
     status,

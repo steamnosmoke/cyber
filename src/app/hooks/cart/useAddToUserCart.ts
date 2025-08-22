@@ -13,7 +13,6 @@ async function addToUserCart(
   userId: string
 ): Promise<TCartItem> {
   const data = await getUserCart(userId);
-  console.log(data);
   const existingEntry = data.find(
     (item) =>
       item.productId === product.productId &&
