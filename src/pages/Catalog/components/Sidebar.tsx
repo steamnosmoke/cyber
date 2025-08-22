@@ -42,7 +42,7 @@ useEffect(() => {
           className={`aside sticky top-61 flex flex-col items-center gap-5`}
         >
           <ul
-            className={`filters-list relative flex flex-col w-full h-[55vh] overflow-y-auto ${
+            className={`filters-list relative flex flex-col w-full max-h-[55vh] overflow-y-auto ${
               isFilterOpened ? "aside_open" : "aside_close"
             }`}
           >

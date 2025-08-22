@@ -36,7 +36,7 @@ export default function Profile() {
                 <BlackButton children="Log out" onClick={onLogOut} />
               </div>
             </div>
-            {isData && <UserData />}
+            <UserData flag={isData} />
             <Orders />
           </div>
         )}
