@@ -50,9 +50,8 @@ export default function AuthModal({
 
   useEffect(() => {
     setClosing(false);
+    useOpenModal();
   }, []);
-
-  useOpenModal();
 
   return (
     <div

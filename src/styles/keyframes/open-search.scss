@@ -1,0 +1,32 @@
+@keyframes open-search {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 96px;
+    opacity: 1;
+  }
+}
+
+.aria-open {
+  animation: open-search 0.5s;
+}
+
+@keyframes close-search {
+  0% {
+    top: 96px;
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.6;
+  }
+  100% {
+    top: -600px;
+    opacity: 0;
+  }
+}
+
+.aria-close {
+  animation: close-search 0.5s;
+}

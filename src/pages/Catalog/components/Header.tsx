@@ -45,10 +45,10 @@ export default function CatalogHeader() {
         {category === "Phones" && (
           <div className="bottom flex justify-between">
             <div
-              className="filter flex gap-2 items-center"
+              className="filter flex gap-2 items-center cursor-pointer"
               onClick={() => setFilterOpened()}
             >
-              <h2 className="title text-2xl cursor-pointer">Filters</h2>
+              <h2 className="title text-2xl">Filters</h2>
               <img
                 className={`transition-all duration-200 ease-in-out ${
                   isFilterOpened ? "rotate-x-180" : ""
