@@ -6,6 +6,9 @@ import RegisterModal from "./features/auth/RegisterModal";
 import AuthModal from "./features/auth/AuthModal";
 import RoutesComponent from "./app/router";
 import ScrollTopButton from "./features/scrollButton";
+import SearchAria from "./features/SearchAria";
+import { useSearchStore } from "./features/Header/store/searchStore";
+import { useEffect } from "react";
 
 export default function App() {
   const openAuthModal = useModalStore((state) => state.openAuthModal);
@@ -16,9 +19,26 @@ export default function App() {
     (state) => state.isRegisterModalOpen
   );
 
+  const ariaOpened = useSearchStore((state) => state.ariaOpened);
+
+  useEffect(() => {
+    if (ariaOpened) {
+      document.body.classList.add("overflow-y-hidden");
+      document.body.classList.add("bg-transparent");
+      document.body.classList.add("pr-5");
+    } else {
+      document.body.classList.remove("overflow-y-hidden");
+      document.body.classList.remove("bg-transparent");
+      document.body.classList.remove("pr-5");
+    }
+    
+  });
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
+
+      {ariaOpened && <SearchAria />}
       <RoutesComponent />
 
       <Footer />
@@ -36,9 +56,8 @@ export default function App() {
         />
       )}
 
-      {!isAuthModalOpen && !isRegisterModalOpen && (
-        <ScrollTopButton />
-      )}
+      {!isAuthModalOpen && !isRegisterModalOpen && <ScrollTopButton />}
+
     </div>
   );
 }
