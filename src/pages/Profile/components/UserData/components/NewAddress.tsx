@@ -1,8 +1,8 @@
 import { TAddress } from "types/AuthTypes";
 
-import { useAddAddress } from "../hooks/useAddAddress";
+import { useAddAddress } from "../hooks/query/useAddAddress";
 import { useNewAddress } from "../store/useAddress";
-import { useChangeData } from "../store/userData";
+import { useChangeData } from "../store/useChageData";
 
 import BlackButton from "buttons/components/BlackButton";
 import close from "images/clear.svg";
@@ -42,12 +42,17 @@ export default function NewAddress() {
     setIsNewAddressOpened(false);
   };
 
+const onCloseModal = () => {
+  setIsNewAddressOpened(false);
+  document.body.style.overflow = 'auto';
+}
+
   return (
     <>
-      <section className="userdata mt-4 mx-auto justify-items-center w-full border-1 border-stone-300 py-8 z-100 absolute top-[-370px] bg-white px-8 rounded-2xl">
+      <section className="userdata mt-4 mx-auto justify-items-center w-full border-1 border-stone-300 py-8 z-1000 absolute top-[-370px] bg-white px-12 rounded-2xl">
         <div
           className="close absolute right-8 top-8"
-          onClick={() => setIsNewAddressOpened(false)}
+          onClick={onCloseModal}
         >
           <img
             className="w-3 h-3 cursor-pointer transition-all duration-100 hover:opacity-60"
@@ -79,13 +84,13 @@ export default function NewAddress() {
         </ul>
         <BlackButton
           children="Add address"
-          twclass="mt-4 !max-w-150 !w-full"
+          twclass="mt-8 !max-w-150 !w-full"
           onClick={onClickAdd}
         />
       </section>
       <div
         className="bg w-[100vw] h-[100vh] fixed left-0 top-0 bg-black opacity-30 z-1"
-        onClick={() => setIsNewAddressOpened(false)}
+        onClick={onCloseModal}
       ></div>
     </>
   );

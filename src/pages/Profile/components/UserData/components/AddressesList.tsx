@@ -1,17 +1,21 @@
 import { TAddress } from "types/AuthTypes";
+import { useAuthStore } from "store/authStore";
 
-import { useGetAddresses } from "../hooks/useGetAddresses";
-import { useChangeDefaultAddress } from "../hooks/useChangeDefaultAddress";
+import { useGetAddresses } from "../hooks/query/useGetAddresses";
+import { useChangeDefaultAddress } from "../hooks/query/useChangeDefaultAddress";
 
 import { useNewAddress } from "../store/useAddress";
-import { useChangeData } from "../store/userData";
+import { useChangeData } from "../store/useChageData";
 
 import formatAddress from "../utils/formatAddress";
 
 export default function AddressesList() {
-  const { data: addresses } = useGetAddresses();
+    const user = useAuthStore((state) => state.user);
+  
+  const { data: addresses } = useGetAddresses(user.firebaseId);
 
   const { mutate: changeDefaultAddress } = useChangeDefaultAddress();
+
   const isAddressesOpened = useNewAddress((state) => state.isAddressesOpened);
   const setIsAddressesOpened = useNewAddress(
     (state) => state.setIsAddressesOpened
@@ -19,6 +23,7 @@ export default function AddressesList() {
   const setIsNewAddressOpened = useNewAddress(
     (state) => state.setIsNewAddressOpened
   );
+
   const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
 
   const onClickAddress = (address: TAddress) => {

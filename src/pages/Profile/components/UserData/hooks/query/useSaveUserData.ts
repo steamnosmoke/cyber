@@ -20,7 +20,7 @@ export function useSaveUserData() {
     mutationFn: saveData,
     mutationKey: ["user"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user", "addresses"] });
+      queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
 }

@@ -1,24 +1,23 @@
 import { useEffect, useRef } from "react";
 
-import { useChangeData } from "../store/userData";
+import { useChangeData } from "../store/useChageData";
 import { useNewAddress } from "../store/useAddress";
 
 import formatAddress from "../utils/formatAddress";
 
 import NewAddress from "./NewAddress";
 import AddressesList from "./AddressesList";
+import { useInitDefaultAddress } from "../hooks/useInitDefaultAddress";
 
 export default function Addresses() {
+  useInitDefaultAddress();
   const defaultAddress = useChangeData((state) => state.defaultAddress);
-
   const isAddressesOpened = useNewAddress((state) => state.isAddressesOpened);
   const isNewAddressOpened = useNewAddress((state) => state.isNewAddressOpened);
   const setIsAddressesOpened = useNewAddress(
     (state) => state.setIsAddressesOpened
   );
-  const setIsNewAddressOpened = useNewAddress(
-    (state) => state.setIsNewAddressOpened
-  );
+
   const ref = useRef(null);
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function Addresses() {
 
   return (
     <section
-      className="addresses relative rounded-lg max-w-150 w-full"
+      className="addresses relative rounded-lg max-w-150 w-full "
       ref={ref}
     >
       <div

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { useAuthStore } from "store/authStore";
@@ -7,19 +7,28 @@ import Orders from "./components/Orders";
 import BlackButton from "buttons/components/BlackButton";
 import BlackLineButton from "buttons/components/BlackLineButton";
 import UserData from "./components/UserData";
+import { useChangeData } from "./components/UserData/store/useChageData";
+import { syncUserData } from "utils/syncUserData";
 
 export default function Profile() {
   const [isData, setIsData] = useState(false);
   const navigate = useNavigate();
   const user = useAuthStore((state) => state.user);
   const logOut = useAuthStore((state) => state.logOut);
+  const clearData = useChangeData((state) => state.clearData);
+
+  useEffect(() => {
+    syncUserData();
+  }, [user]);
 
   const onLogOut = () => {
-    logOut()
-    navigate("/")
-  }
+    logOut();
+    clearData();
+    navigate("/");
+  };
 
-  if (user) return (
+  if (user)
+    return (
       <section className="flex-grow">
         {user && (
           <div className="container">

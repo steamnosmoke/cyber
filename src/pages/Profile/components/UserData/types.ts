@@ -15,13 +15,17 @@ export type TAddressData = {
   func: (input: string) => void;
 };
 
-export type TDataStore = TUser & {
+export type TDataStore = {
+  user: TUser;
+  defaultAddress: TAddress | undefined;
+  setUser: (user: TUser) => void;
   setEmail: (email: string) => void;
   setName: (name: string) => void;
   setPhone: (phone: string) => void;
   setBirthday: (birthday: string) => void;
   setDefaultAddress: (defaultAddress: TAddress | undefined) => void;
   setAddresses: (address: TAddress) => void;
+  clearData: () => void;
 };
 
 export type TAddressStore = TAddress & {
