@@ -1,4 +1,4 @@
-import { useCallback} from "react";
+import { useCallback } from "react";
 import { Link } from "react-router";
 
 import { useProductStore } from "store/productsStore";
@@ -9,9 +9,9 @@ import { TProduct } from "types/ProductTypes";
 import Wishlist from "./images/components/Wishlist";
 import WishlistAdded from "./images/components/WishlistAdded";
 import Button from "./components/Button";
+import CardByCategory from "./components/CardByCategory";
 
 export default function Card({ product }: { product: TProduct }) {
-
   const setProduct = useProductStore((state) => state.setProduct);
 
   const { items: products } = useGetItems<TProduct>("wishlist");
@@ -33,32 +33,7 @@ export default function Card({ product }: { product: TProduct }) {
         >
           {isLiked ? <WishlistAdded /> : <Wishlist />}
         </button>
-        <Link
-          to={`/catalog/${product.category}/${product.name} ${product.color} ${
-            product.memory
-          }${Number(product.memory) === 1 ? "TB" : "GB"}`
-            .split(" ")
-            .join("_")}
-          onClick={() => onClickCard()}
-          className="grid grid-cols-1 grid-rows-[auto_80px_20px] items-center gap-10 cursor-pointer relative"
-        >
-          <div className="w-full h-75">
-            <img
-              className="w-55 h-[90%] mx-auto"
-              src={product.images[0]}
-              alt={product.name}
-            />
-          </div>
-          <h3 className="text-center text-xl">
-            {product.name}, {product.color} <br />{" "}
-            {Number(product.memory) === 1
-              ? `${product.memory}TB`
-              : `${product.memory}GB`}
-          </h3>
-          <p className="text-2xl font-semibold text-center">
-            {product.price - product.discount}$
-          </p>
-        </Link>
+        <CardByCategory product={product} onClickCard={onClickCard} />
         <Button product={product} />
       </section>
     </>
