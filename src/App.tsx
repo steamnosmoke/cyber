@@ -1,14 +1,16 @@
+import { useEffect } from "react";
+
 import { useModalStore } from "store/modalStore";
+import RoutesComponent from "./app/router";
+
+import { useSearchStore } from "./features/Header/store/searchStore";
 
 import Header from "./features/Header";
 import Footer from "./features/Footer";
 import RegisterModal from "./features/auth/RegisterModal";
 import AuthModal from "./features/auth/AuthModal";
-import RoutesComponent from "./app/router";
 import ScrollTopButton from "./features/scrollButton";
 import SearchAria from "./features/SearchAria";
-import { useSearchStore } from "./features/Header/store/searchStore";
-import { useEffect } from "react";
 
 export default function App() {
   const openAuthModal = useModalStore((state) => state.openAuthModal);
@@ -31,8 +33,7 @@ export default function App() {
       document.body.classList.remove("bg-transparent");
       document.body.classList.remove("pr-5");
     }
-    
-  });
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -57,7 +58,6 @@ export default function App() {
       )}
 
       {!isAuthModalOpen && !isRegisterModalOpen && <ScrollTopButton />}
-
     </div>
   );
 }
