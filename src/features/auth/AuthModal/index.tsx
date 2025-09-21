@@ -4,7 +4,7 @@ import { useAuthStore } from "store/authStore";
 import { useLogin } from "./hooks/useAuth";
 
 import { TModalProps } from "../types";
-import { useOpenModal } from "../features/useOpenModal";
+import { useOpenModal } from "../utils/useOpenModal";
 
 import BlackLineButton from "buttons/components/BlackLineButton";
 import close from "images/clear.svg";
@@ -50,9 +50,9 @@ export default function AuthModal({
 
   useEffect(() => {
     setClosing(false);
-    useOpenModal();
   }, []);
 
+  useOpenModal();
   return (
     <div
       className={`modal-overlay fixed top-0 left-0  w-full h-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center z-1000 transition-all duration-200 ${

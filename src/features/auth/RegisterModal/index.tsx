@@ -5,13 +5,13 @@ import { useAuthStore } from "store/authStore";
 import { useRegister } from "./hooks/UseRegister";
 
 import { TModalProps } from "../types";
-import { useOpenModal } from "../features/useOpenModal";
+import { useOpenModal } from "../utils/useOpenModal";
+
 
 import BlackLineButton from "buttons/components/BlackLineButton";
 import close from "images/clear.svg";
 
 import RegisterInputs from "./components/RegisterInputs";
-
 export default function RegisterModal({
   onClose,
   onSwitchToLogin,
@@ -29,6 +29,7 @@ export default function RegisterModal({
   const setUser = useAuthStore((state) => state.setUser);
 
   const onRegister = () => {
+    setError("");
     register(
       { email, password, confirm },
       {
