@@ -3,10 +3,10 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { getUserCart } from "hooks/cart/useGetUserCart";
+import { getUserCart } from "hooks/cart/user/useGetUserCart";
 import { TCartItem } from "types/CartTypes";
 
-import updateItem from "utils/updateItem";
+import updateItem from "utils/cart/updateItem";
 
 async function addToUserCart(
   product: TCartItem,

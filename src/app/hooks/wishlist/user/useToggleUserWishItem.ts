@@ -3,7 +3,7 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import getUserWishlist from "./getUserWishlist";
+import {getUserWishlist} from "../guest/useGetUserWishlist";
 import { TProduct } from "types/ProductTypes";
 
 const toggleUserItem = async (
@@ -34,10 +34,10 @@ export function useToggleUserWishItem(userId: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["wishlist"],
+    mutationKey: ["wishlist", userId],
     mutationFn: (product: TProduct) => toggleUserItem(product, userId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["wishlist"] });
+      queryClient.invalidateQueries({ queryKey: ["wishlist", userId] });
     },
   });
 }

@@ -3,23 +3,13 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { useAuthStore } from "store/authStore";
 import { TCartItem } from "types/CartTypes";
 import { TOrder } from "types/OrderTypes";
-import { TVariant } from "../types/ProductTypes";
-
-const makeDate = (): string => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = (now.getMonth() + 1).toString().padStart(2, "0");
-  const day = now.getDate().toString().padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
+import makeDate from "../utils/makeDate";
 
 
 
-async function makeOrder(cart: TCartItem[]) {
-  const userId: string = useAuthStore.getState().user.firebaseId;
+async function makeOrder(cart: TCartItem[], userId: string) {
   const date = makeDate();
   const newOrder: TOrder = {
     items: cart,
@@ -38,7 +28,6 @@ async function makeOrder(cart: TCartItem[]) {
     newOrder.value += el.count;
   });
 
-
   const { data } = await axios.post<{ name: string }>(
     `${DB_URL}/users/${userId}/orders.json`,
     newOrder
@@ -47,13 +36,13 @@ async function makeOrder(cart: TCartItem[]) {
   return { ...newOrder, id: data.name };
 }
 
-export default function useMakeOrder() {
+export default function useMakeOrder(userId: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: makeOrder,
-    mutationKey: ["orders"],
+    mutationFn: (cart: TCartItem[]) => makeOrder(cart, userId),
+    mutationKey: ["orders", userId],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["orders"] });
+      queryClient.invalidateQueries({ queryKey: ["orders", userId] });
     },
   });
 }

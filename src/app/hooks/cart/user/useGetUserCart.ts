@@ -22,7 +22,7 @@ export default function useGetUserCart(userId: string) {
 
   return useQuery<TCartItem[]>({
     queryFn: () => getUserCart(userId),
-    queryKey: ["cart"],
+    queryKey: ["cart", userId],
     enabled: !!userId && userId !== "guest",
   });
 }

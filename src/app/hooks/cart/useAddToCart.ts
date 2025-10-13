@@ -1,19 +1,16 @@
-import addToGuestCart from "hooks/cart/useAddToGuestCart";
-import useAddToUserCart from "hooks/cart/useAddToUserCart";
-import convertToCartItem from "utils/convertToCartItem";
+import useAddToUserCart from "./user/useAddToUserCart";
+import useAddToGuestCart from "hooks/cart/guest/useAddToGuestCart";
+import convertToCartItem from "utils/cart/convertToCartItem";
 
 import { TProduct } from "types/ProductTypes";
 
-import { useAuthStore } from "store/authStore";
-
-export default function useAddToCart() {
-  const userId = useAuthStore.getState().user.firebaseId;
+export default function useAddToCart(userId: string) {
   const { mutate } = useAddToUserCart(userId);
-
+  const addToGuestCart = useAddToGuestCart();
   return (product: TProduct) => {
     const item = convertToCartItem(product, product.color, product.memory);
     if (userId === "guest") {
-      return addToGuestCart(item);
+      addToGuestCart(item);
     }
     mutate(item);
   };
