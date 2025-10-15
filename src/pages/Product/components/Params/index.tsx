@@ -13,12 +13,11 @@ export default function ProductParams() {
   const product = useProductStore((state) => state.product);
 
   if (!product) return <MyLoader />;
-  // if (!product) return <div>Loading variant...</div>;
 
   return (
     <>
-      <section className="params flex items-center justify-between pt-11">
-        <ProductGallery/>
+      <section className="params flex items-center justify-between">
+        <ProductGallery />
 
         <div className="params_block flex flex-col gap-5 items-start max-w-134">
           <Title />
