@@ -12,7 +12,7 @@ import ProfileIcon from "../images/components/ProfileIcon";
 export default function PageButtons() {
   const { onClickButton, onClickProfile } = useNavigateActions();
 
-  const user = useAuthStore((state) => state.user);
+  const firebaseId = useAuthStore((state) => state.firebaseId);
 
   const buttons: TButton[] = [
     {
@@ -40,7 +40,7 @@ export default function PageButtons() {
             className="header-button-link group"
             to={button.path}
             onClick={(e) => {
-              if (button.path === "/profile" && user.firebaseId === "guest") {
+              if (button.path === "/profile" && firebaseId === "guest") {
                 e.preventDefault();
               }
               button.action();

@@ -4,7 +4,7 @@ import { useAuthStore } from "store/authStore";
 import { useLogin } from "./hooks/useAuth";
 
 import { TModalProps } from "../types";
-import { useOpenModal } from "../utils/useOpenModal";
+import { useOpenModal } from "utils/useOpenModal";
 
 import BlackLineButton from "buttons/components/BlackLineButton";
 import close from "images/clear.svg";
@@ -23,7 +23,7 @@ export default function AuthModal({
   const password = useAuthStore((s) => s.password);
   const error = useAuthStore((s) => s.error);
 
-  const setUser = useAuthStore((s) => s.setUser);
+  const setFirebaseId = useAuthStore((s) => s.setFirebaseId);
   const setError = useAuthStore((s) => s.setError);
 
   const onLogin = () => {
@@ -31,7 +31,7 @@ export default function AuthModal({
       { email, password },
       {
         onSuccess: (userData) => {
-          setUser(userData);
+          setFirebaseId(userData.firebaseId);
           onClose();
         },
         onError: (err) => {

@@ -7,7 +7,7 @@ import Logo from "./images/components/Logo";
 export default function Header() {
   return (
     <>
-      <header className="main-header h-22 w-full py-4 bg-white fixed top-0 left-0 right-0 z-999 border-b border-gray-200 shadow-md">
+      <header className="main-header h-22 w-full py-4 bg-white fixed top-0 left-0 right-0 z-100 border-b border-gray-200 shadow-md">
         <div className="container">
           <div className="header-inner flex items-center justify-between">
             <Logo />
