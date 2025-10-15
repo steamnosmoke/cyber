@@ -1,8 +1,9 @@
+import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { TCartItem } from "types/CartTypes";
 import { TVariant } from "types/ProductTypes";
 import DB_URL from "constants/DB_URL";
-import axios from "axios";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 async function updateStock(cart: TCartItem[]) {
   await Promise.all(
