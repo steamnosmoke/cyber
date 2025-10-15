@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 import { TProps } from "../types";
 import useRemoveItem from "../hooks/useRemoveItem";
-import ChangeCountButtton from "buttons/components/ChangeCountButton";
+import ChangeCountButton from "buttons/components/ChangeCountButton";
 
 export default function CartItem({ product }: TProps) {
   const [stock, setStock] = useState(false);
@@ -23,12 +23,16 @@ export default function CartItem({ product }: TProps) {
           </section>
         </Link>
         <section className="flex justify-between items-center gap-6">
-          <ChangeCountButtton
+          <ChangeCountButton
             product={product}
             stock={stock}
             setStock={setStock}
-            color={"white"}
+            color="white"
+            isAnimating={true}
+            setAnimating={() => {}}
+            timerRef={{ current: null }}
           />
+
           <p className="price text-base leading-4 w-14 text-center">
             ${product.total}
           </p>
