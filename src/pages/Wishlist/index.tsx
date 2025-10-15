@@ -1,14 +1,15 @@
-import { TProduct } from "types/ProductTypes";
 import Products from "components/Products";
-import useGetItems from "hooks/useGetItems";
+import { useAuthStore } from "store/authStore";
+import useGetWishlist from "hooks/wishlist/useGetWishlist";
 
 export default function Wishlist() {
-  const { items: products, status } = useGetItems <TProduct>("wishlist");
+  const userId = useAuthStore((state) => state.firebaseId);
+  const { wishlist, status } = useGetWishlist(userId);
   return (
-    <section className="wishlist mt-4 flex-grow">
-      <div className="container">
+    <section className="wishlist mt-4 flex-grow ">
+      <div className="container min-h-[calc(100vh-180px)]">
         <h1 className="text-4xl font-medium">WishList</h1>
-        <Products products={products} status={status} />
+        <Products products={wishlist} status={status} />
       </div>
     </section>
   );
