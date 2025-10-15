@@ -18,6 +18,7 @@ export default function usePostComment() {
   const queryClient = useQueryClient();
 
   return useMutation({
+    mutationKey: ["reviews"],
     mutationFn: postComment,
     onSuccess: (data) => {
       queryClient.invalidateQueries({
