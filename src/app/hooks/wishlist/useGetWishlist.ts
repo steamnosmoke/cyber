@@ -8,7 +8,6 @@ export default function useGetWishlist(userId: string): {
 } {
   const { data: userWishlist, status } = useGetUserWishlist(userId);
   const guestWishlist = useGuestStore((state) => state.wishlist);
-  console.log(userWishlist)
   if (userId === "guest") {
     return { wishlist: guestWishlist, status: "success" };
   }
