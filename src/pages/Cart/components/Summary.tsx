@@ -1,26 +1,24 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 
+import { useAuthStore } from "store/authStore";
 import useMakeOrder from "hooks/useMakeOrder";
-import useGetItems from "hooks/useGetItems";
-import { TCartItem } from "types/CartTypes";
+import useGetCart from "hooks/cart/useGetCart";
 
 import useClearCart from "../hooks/useClearCart";
 import useUpdateStock from "../hooks/useUpdateStock";
 import getNumbers from "../config/numbers";
-import { useCartStore } from "../store/cartStore";
 
 import BlackButton from "buttons/components/BlackButton";
 
 export default function Summary() {
+  const userId = useAuthStore((state) => state.firebaseId);
   const navigate = useNavigate();
-  const { items: products } = useGetItems<TCartItem>("cart");
+  const {cart: products} = useGetCart(userId);
 
-  const { mutate: makeOrder } = useMakeOrder();
-  const { mutate: clearCart } = useClearCart();
+  const { mutate: makeOrder } = useMakeOrder(userId);
+  const { mutate: clearCart } = useClearCart(userId);
   const { mutate: updateStock } = useUpdateStock();
-
-  const count = useCartStore((state) => state.count);
 
   const onMakeOrder = () => {
     updateStock(products);
@@ -29,7 +27,7 @@ export default function Summary() {
     navigate("/profile");
   };
 
-  const numbers = useMemo(() => getNumbers(), [count]);
+  const numbers = useMemo(() => getNumbers(), []);
 
   return (
     <section className="right border-1 border-stone-300 rounded-[10px] py-14 px-16 w-134 flex flex-col items-start justify-center gap-10 sticky top-40">
