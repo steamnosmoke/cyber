@@ -1,17 +1,16 @@
-
 import { useAuthStore } from "store/authStore";
 import { TCartItem } from "types/CartTypes";
 
 import useRemoveUserItem from "./user/useRemoveUserItem";
-import useRemoveGuestItem from "./guest/useRemoveGuestItem";
+import removeGuestItem from "./guest/useRemoveGuestItem";
 
 export default function useRemoveItem() {
-  const userId = useAuthStore.getState().user.firebaseId;
-  const { mutate: removeUserItem } = useRemoveUserItem();
+  const userId = useAuthStore(state=>state.firebaseId);
+  const { mutate: removeUserItem } = useRemoveUserItem(userId);
 
   return (product: TCartItem) => {
     if (userId === "guest") {
-      return useRemoveGuestItem(product);
+      return removeGuestItem(product);
     }
     removeUserItem(product);
   };

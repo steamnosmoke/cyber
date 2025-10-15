@@ -1,14 +1,10 @@
-
-import useGetGuestCart from "hooks/cart/useGetGuestCart";
-
+import { useGuestStore } from "store/guestStore";
 import { TCartItem } from "types/CartTypes";
 
-
-
 export default function useRemoveGuestItem(product: TCartItem): TCartItem {
-  const cart = useGetGuestCart();
-  // const product = useGetItem(product);
+  const cart = useGuestStore((state) => state.cart);
+  const setCart = useGuestStore((state) => state.setCart);
   const updatedCart = cart.filter((el) => el.objectId !== product.objectId);
-  localStorage.setItem("guest-cart", JSON.stringify(updatedCart));
+  setCart(updatedCart);
   return { ...product, count: 0 };
 }
