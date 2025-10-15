@@ -34,7 +34,7 @@ export type TUser = {
 };
 
 export type TAuthStore = {
-  user: TUser | null;
+  firebaseId: string;
   email: string;
   password: string;
   confirm: string;
@@ -43,6 +43,6 @@ export type TAuthStore = {
   setPassword: (password: string) => void;
   setConfirm: (confirm: string) => void;
   logOut: () => void;
-  setUser: (user: TUser) => void;
+  setFirebaseId: (firebaseI: string) => void;
   setError: (error: string) => void;
 };
