@@ -3,12 +3,12 @@ import BlackLineButton from "buttons/components/BlackLineButton";
 import { useCallback } from "react";
 import { useReviewStore } from "../store/useReviewStore";
 import { useProductStore } from "store/productsStore";
-import sendComment from "../utils/sendReview";
+import sendComment from "../hooks/useSendReview";
 import RatingStars from "./RatingStars";
 import CommentText from "./CommentText";
 
 export default function Comment() {
-  const user = useAuthStore((state) => state.user);
+  const userId = useAuthStore((state) => state.firebaseId);
   const product = useProductStore((state) => state.product);
 
   const comment = useReviewStore((state) => state.comment);
@@ -18,15 +18,15 @@ export default function Comment() {
 
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
-      sendComment(e, user, rating);
+      sendComment(e, userId, rating);
       setComment("");
       setRating(0);
     },
-    [user, product]
+    [userId, product]
   );
   return (
     <>
-      {user.firebaseId !== "guest" && (
+      {userId !== "guest" && (
         <form onSubmit={handleSubmit} className="form relative h-60">
           <CommentText />
           {comment && (
