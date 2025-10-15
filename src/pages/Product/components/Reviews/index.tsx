@@ -16,7 +16,7 @@ export default function Reviews() {
 
   return (
     <>
-      <section className="reviews pt-22">
+      <section className="reviews ">
         <div className="reviews_inner">
           <h2 className="title text-2xl leading-8">Reviews</h2>
 
