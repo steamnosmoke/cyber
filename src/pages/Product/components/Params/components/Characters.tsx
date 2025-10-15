@@ -8,7 +8,7 @@ export default function Characters() {
   const characters = getCharacters(product);
 
   return (
-    <ul className="characters_list grid grid-cols-3 grid-rows-2 gap-4">
+    <ul className="characters_list grid grid-cols-3 grid-rows-2 gap-4 items-center w-full">
       {characters.map((character, index) => (
         <li
           className="characters_item flex items-center gap-2 py-4 px-2 bg-stone-100 rounded-md"
