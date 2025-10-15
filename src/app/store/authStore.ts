@@ -6,7 +6,7 @@ import { TAuthStore } from "types/AuthTypes";
 export const useAuthStore = create<TAuthStore>()(
   persist(
     (set) => ({
-      user: { firebaseId: "guest" },
+      firebaseId: "guest",
       email: "",
       password: "",
       confirm: "",
@@ -17,15 +17,15 @@ export const useAuthStore = create<TAuthStore>()(
       setConfirm: (confirm) => set({ confirm }),
       logOut: () =>
         set({
-          user: { firebaseId: "guest" },
+          firebaseId: "guest",
         }),
-      setUser: (user) => set({ user }),
+      setFirebaseId: (firebaseId) => set({ firebaseId }),
       setError: (error) => set({ error }),
     }),
     {
       name: "user-storage",
       partialize: (state) => ({
-        user: state.user,
+        firebaseId: state.firebaseId,
       }),
     }
   )
