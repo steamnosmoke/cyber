@@ -1,14 +1,10 @@
 import { TProduct } from "types/ProductTypes";
 import { TCartItem } from "types/CartTypes";
 
-import { useProductStore } from "store/productsStore";
-
 export default function convertToCartItem(
   product: TProduct,
-  color: string,
-  memory: string
 ): TCartItem {
-  const setProduct = useProductStore.getState().setProduct;
+  const { color, memory } = product;
   const currentVariant = product.variants.find(
     (item) => item.color === color && item.memory === memory
   );
@@ -23,6 +19,5 @@ export default function convertToCartItem(
     subTotal: currentVariant.price,
     totalDiscount: currentVariant.discount,
   };
-  setProduct(item);
   return item;
 }
