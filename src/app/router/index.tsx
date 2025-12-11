@@ -1,9 +1,9 @@
-
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router";
 
 import MyLoader from "pages/Product/components/Params/components/Loader";
 import CartLoader from "pages/Cart/components/Loader";
+import ChatAssistant from "../../AI";
 
 const Home = lazy(() => import("pages/Home"));
 const Catalog = lazy(() => import("pages/Catalog"));
@@ -18,8 +18,8 @@ export default function RoutesComponent() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/catalog" element={<ChoosingCategories />} />
-      {/* <Route path='/contacts' element={<Contacts />} />
-            <Route path='/blog' element={<Blog />} /> */}
+      {/* {/* <Route path='/contacts' element={<Contacts />} /> */}
+      <Route path="/assistant" element={<ChatAssistant />} />
       <Route path="/catalog/:category" element={<Catalog />} />
       <Route
         path="/catalog/:category/:fullname"
