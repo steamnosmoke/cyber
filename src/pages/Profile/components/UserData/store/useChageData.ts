@@ -1,22 +1,17 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { useAuthStore } from "store/authStore";
-
 import { TDataStore } from "../types";
-import useGetDefaultAddress from "../hooks/query/useGetDefaultAddress";
-
-const authUser = useAuthStore.getState().user;
 
 export const useChangeData = create<TDataStore>()(
   persist(
     (set) => ({
       user: {
-        email: authUser.email,
-        name: authUser.name,
-        phone: authUser.phone,
-        birthday: authUser.birthday,
-        addresses: authUser.addresses,
+        email: "",
+        name: "",
+        phone: "",
+        birthday: "",
+        addresses: [],
       },
 
       defaultAddress: undefined,
@@ -24,11 +19,11 @@ export const useChangeData = create<TDataStore>()(
       setUser: (user) =>
         set({
           user: {
-            email: user.email,
-            name: user.name,
-            phone: user.phone,
-            birthday: user.birthday,
-            addresses: user.addresses,
+            email: user?.email,
+            name: user?.name,
+            phone: user?.phone,
+            birthday: user?.birthday,
+            addresses: user?.addresses,
           },
         }),
 
@@ -50,6 +45,16 @@ export const useChangeData = create<TDataStore>()(
             ...state.user,
             addresses: [...state.user.addresses, address],
           },
+        })),
+      removeAddress: (address) =>
+        set((state) => ({
+          user: {
+            ...state.user,
+            addresses: state.user.addresses.filter(
+              (el) => el.id === address.id
+            ),
+          },
+          defaultAddress: undefined,
         })),
     }),
     {

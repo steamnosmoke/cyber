@@ -3,24 +3,22 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { useAuthStore } from "store/authStore";
 import { TUser } from "types/AuthTypes";
 
 export async function saveData(updatedUser: TUser): Promise<TUser> {
-  const user: TUser = useAuthStore.getState().user;
-  const url: string = `${DB_URL}users/${user.firebaseId}.json`;
+  const url: string = `${DB_URL}users/${updatedUser.firebaseId}.json`;
   const { data } = await axios.patch<TUser>(url, updatedUser);
-  return { ...user, ...data };
+  return { ...updatedUser, ...data };
 }
 
-export function useSaveUserData() {
+export function useSaveUserData(user: TUser) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: saveData,
-    mutationKey: ["user"],
+    mutationFn: (updatedUser: TUser) => saveData(updatedUser),
+    mutationKey: ["user", user.firebaseId],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user"] });
+      queryClient.invalidateQueries({ queryKey: ["user", user.firebaseId] });
     },
   });
 }

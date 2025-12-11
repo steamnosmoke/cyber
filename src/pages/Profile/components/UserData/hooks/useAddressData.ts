@@ -1,9 +1,9 @@
-import { useNewAddress } from "../store/useAddress";
+import { useAddress } from "../store/useAddress";
 import { TAddressData } from "../types";
 
 export default function useAddressData(): TAddressData[] {
   const { city, country, street, zip, setCity, setCountry, setStreet, setZip } =
-    useNewAddress();
+    useAddress();
   return [
     {
       label: "city",

@@ -1,28 +1,30 @@
 import { TAddress } from "types/AuthTypes";
+import { useAuthStore } from "store/authStore";
 
 import { useAddAddress } from "../hooks/query/useAddAddress";
-import { useNewAddress } from "../store/useAddress";
+import useAddressData from "../hooks/useAddressData";
+import { useAddress } from "../store/useAddress";
 import { useChangeData } from "../store/useChageData";
 
 import BlackButton from "buttons/components/BlackButton";
 import close from "images/clear.svg";
-import useAddressData from "../hooks/useAddressData";
 
 export default function NewAddress() {
-  const city = useNewAddress((state) => state.city);
-  const country = useNewAddress((state) => state.country);
-  const street = useNewAddress((state) => state.street);
-  const zip = useNewAddress((state) => state.zip);
-  const clearAll = useNewAddress((state) => state.clearAll);
+  const userId = useAuthStore((state) => state.firebaseId);
+  const city = useAddress((state) => state.city);
+  const country = useAddress((state) => state.country);
+  const street = useAddress((state) => state.street);
+  const zip = useAddress((state) => state.zip);
+  const clearAll = useAddress((state) => state.clearAll);
 
   const setAddresses = useChangeData((state) => state.setAddresses);
   const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
 
-  const setIsNewAddressOpened = useNewAddress(
+  const setIsNewAddressOpened = useAddress(
     (state) => state.setIsNewAddressOpened
   );
 
-  const { mutate: addNewAddress } = useAddAddress();
+  const { mutate: addNewAddress } = useAddAddress(userId);
 
   const addressData = useAddressData();
 
@@ -42,18 +44,15 @@ export default function NewAddress() {
     setIsNewAddressOpened(false);
   };
 
-const onCloseModal = () => {
-  setIsNewAddressOpened(false);
-  document.body.style.overflow = 'auto';
-}
+  const onCloseModal = () => {
+    setIsNewAddressOpened(false);
+    document.body.style.overflow = "auto";
+  };
 
   return (
     <>
-      <section className="userdata mt-4 mx-auto justify-items-center w-full border-1 border-stone-300 py-8 z-1000 absolute top-[-370px] bg-white px-12 rounded-2xl">
-        <div
-          className="close absolute right-8 top-8"
-          onClick={onCloseModal}
-        >
+      <section className="userdata mx-auto justify-items-center w-full border-1 border-stone-300 py-8 z-1000 absolute top-[-370px] bg-white px-12 rounded-2xl">
+        <div className="close absolute right-8 top-8" onClick={onCloseModal}>
           <img
             className="w-3 h-3 cursor-pointer transition-all duration-100 hover:opacity-60"
             src={close}
@@ -89,7 +88,7 @@ const onCloseModal = () => {
         />
       </section>
       <div
-        className="bg w-[100vw] h-[100vh] fixed left-0 top-0 bg-black opacity-30 z-1"
+        className="bg w-[100vw] h-[100vh] fixed left-0 top-0 bg-black opacity-30 z-101"
         onClick={onCloseModal}
       ></div>
     </>

@@ -3,26 +3,31 @@ import { useAuthStore } from "store/authStore";
 
 import { useGetAddresses } from "../hooks/query/useGetAddresses";
 import { useChangeDefaultAddress } from "../hooks/query/useChangeDefaultAddress";
-
-import { useNewAddress } from "../store/useAddress";
+import useRemoveAddress from "../hooks/query/useRemoveAddress";
+import { useAddress } from "../store/useAddress";
 import { useChangeData } from "../store/useChageData";
-
 import formatAddress from "../utils/formatAddress";
 
+import remove from "assets/images/clear.svg";
+
 export default function AddressesList() {
-    const user = useAuthStore((state) => state.user);
-  
-  const { data: addresses } = useGetAddresses(user.firebaseId);
+  const userId = useAuthStore((state) => state.firebaseId);
 
-  const { mutate: changeDefaultAddress } = useChangeDefaultAddress();
+  const { data: addresses } = useGetAddresses(userId);
 
-  const isAddressesOpened = useNewAddress((state) => state.isAddressesOpened);
-  const setIsAddressesOpened = useNewAddress(
+  const { mutate: changeDefaultAddress } = useChangeDefaultAddress(userId);
+
+  const { mutate: removeAddress } = useRemoveAddress(userId);
+
+  const isAddressesOpened = useAddress((state) => state.isAddressesOpened);
+  const setIsAddressesOpened = useAddress(
     (state) => state.setIsAddressesOpened
   );
-  const setIsNewAddressOpened = useNewAddress(
+  const setIsNewAddressOpened = useAddress(
     (state) => state.setIsNewAddressOpened
   );
+
+  const removeStateAddress = useChangeData((state) => state.removeAddress);
 
   const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
 
@@ -35,6 +40,12 @@ export default function AddressesList() {
   const openAdding = () => {
     setIsNewAddressOpened(true);
     document.body.style.overflowY = "hidden";
+    setIsAddressesOpened(false);
+  };
+
+  const onRemoveAddress = (address: TAddress) => {
+    removeAddress(address);
+    removeStateAddress(address);
     setIsAddressesOpened(false);
   };
 
@@ -52,10 +63,20 @@ export default function AddressesList() {
           <li
             key={i}
             role="option"
-            onClick={() => onClickAddress(address)}
-            className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200"
+            className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200 group flex items-center justify-between gap-1"
           >
-            <p className="truncate">{formatAddress(address)}</p>
+            <p
+              className="truncate w-full"
+              onClick={() => onClickAddress(address)}
+            >
+              {formatAddress(address)}
+            </p>
+            <img
+              src={remove}
+              alt="remove address"
+              className="w-0 z-10 transition-all duration-200 opacity-0 group-hover:opacity-60 group-hover:w-6 group-hover:p-1.5 hover:opacity-100"
+              onClick={() => onRemoveAddress(address)}
+            />
           </li>
         ))}
       <li className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200">

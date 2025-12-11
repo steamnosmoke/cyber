@@ -1,12 +1,26 @@
-import { useSaveData } from "./hooks/query/useSaveData";
+
+import { useEffect } from "react";
+
+import { useAuthStore } from "store/authStore";
+import useGetUserById from "hooks/useGetUserById";
+
+import { useSaveData } from "./hooks/useSaveData";
+import { useChangeData } from "./store/useChageData";
 
 import BlackButton from "buttons/components/BlackButton";
 
 import PersonalData from "./components/PersonalData";
 
 export default function UserData({ flag }: { flag: boolean }) {
+  const userId = useAuthStore((state) => state.firebaseId);
+  const setUser = useChangeData((state) => state.setUser);
+  const { data: user } = useGetUserById(userId);
+
   const saveData = useSaveData();
-  
+
+  useEffect(() => {
+    setUser(user);
+  }, [user]);
 
   return (
     <section

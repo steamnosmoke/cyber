@@ -4,7 +4,7 @@ import { useAuthStore } from "store/authStore";
 import { getAddresses } from "../hooks/query/useGetAddresses";
 
 export function useInitDefaultAddress() {
-  const userId = useAuthStore((s) => s.user?.firebaseId);
+  const userId = useAuthStore((s) => s.firebaseId);
   const setDefaultAddress = useChangeData((s) => s.setDefaultAddress);
 
   useEffect(() => {

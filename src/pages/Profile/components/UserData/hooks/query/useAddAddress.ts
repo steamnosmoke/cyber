@@ -1,28 +1,33 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { useAuthStore } from "store/authStore";
 import { TAddress } from "types/AuthTypes";
 import { changeDefaultAddress } from "./useChangeDefaultAddress";
 
-export async function addAddress(address: TAddress): Promise<{ name: string }> {
-  const userId: string = useAuthStore.getState().user.firebaseId;
+export async function addAddress(
+  address: TAddress,
+  userId: string
+): Promise<TAddress> {
   const url: string = `${DB_URL}users/${userId}/addresses.json`;
   const { data } = await axios.post<{ name: string }>(url, address);
-  changeDefaultAddress({ ...address, id: data.name });
-  return data;
+
+  const newAddress: TAddress = { ...address, id: data.name };
+  changeDefaultAddress(newAddress, userId);
+  return newAddress;
 }
 
-export function useAddAddress() {
+export function useAddAddress(userId: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: addAddress,
+    mutationFn: (address: TAddress) => addAddress(address, userId),
     mutationKey: ["user", "addresses"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user", "addresses"] });
+      queryClient.invalidateQueries({
+        queryKey: ["user", "addresses", userId],
+      });
     },
   });
 }

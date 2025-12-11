@@ -1,20 +1,20 @@
 import { useEffect, useRef } from "react";
 
 import { useChangeData } from "../store/useChageData";
-import { useNewAddress } from "../store/useAddress";
+import { useAddress } from "../store/useAddress";
+import { useInitDefaultAddress } from "../hooks/useInitDefaultAddress";
 
 import formatAddress from "../utils/formatAddress";
 
 import NewAddress from "./NewAddress";
 import AddressesList from "./AddressesList";
-import { useInitDefaultAddress } from "../hooks/useInitDefaultAddress";
 
 export default function Addresses() {
   useInitDefaultAddress();
   const defaultAddress = useChangeData((state) => state.defaultAddress);
-  const isAddressesOpened = useNewAddress((state) => state.isAddressesOpened);
-  const isNewAddressOpened = useNewAddress((state) => state.isNewAddressOpened);
-  const setIsAddressesOpened = useNewAddress(
+  const isAddressesOpened = useAddress((state) => state.isAddressesOpened);
+  const isNewAddressOpened = useAddress((state) => state.isNewAddressOpened);
+  const setIsAddressesOpened = useAddress(
     (state) => state.setIsAddressesOpened
   );
 
@@ -29,7 +29,7 @@ export default function Addresses() {
 
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
-  }, []);
+  }, [setIsAddressesOpened]);
 
   return (
     <section

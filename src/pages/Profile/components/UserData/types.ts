@@ -25,6 +25,7 @@ export type TDataStore = {
   setBirthday: (birthday: string) => void;
   setDefaultAddress: (defaultAddress: TAddress | undefined) => void;
   setAddresses: (address: TAddress) => void;
+  removeAddress: (address: TAddress) => void;
   clearData: () => void;
 };
 

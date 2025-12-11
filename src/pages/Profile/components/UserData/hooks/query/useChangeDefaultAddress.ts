@@ -3,17 +3,16 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { useAuthStore } from "store/authStore";
-import { TAddress, TUser } from "types/AuthTypes";
+import { TAddress } from "types/AuthTypes";
 
-import useGetDefaultAddress from "./useGetDefaultAddress";
+import getDefaultAddress from "./useGetDefaultAddress";
 
 export async function changeDefaultAddress(
-  address: TAddress
+  address: TAddress,
+  userId: string
 ): Promise<{ isDefault: string }> {
-  const user: TUser = useAuthStore.getState().user;
-  const url = `${DB_URL}users/${user.firebaseId}/addresses`;
-  const defaultAddress = await useGetDefaultAddress();
+  const url = `${DB_URL}users/${userId}/addresses`;
+  const defaultAddress = await getDefaultAddress(userId);
   if (defaultAddress && defaultAddress.id !== address.id) {
     await axios.patch(`${url}/${defaultAddress.id}.json`, {
       isDefault: false,
@@ -30,11 +29,11 @@ export async function changeDefaultAddress(
   return { ...address, ...data };
 }
 
-export function useChangeDefaultAddress() {
+export function useChangeDefaultAddress(userId: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: changeDefaultAddress,
+    mutationFn: (address: TAddress) => changeDefaultAddress(address, userId),
     mutationKey: ["user", "addresses"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user", "addresses"] });

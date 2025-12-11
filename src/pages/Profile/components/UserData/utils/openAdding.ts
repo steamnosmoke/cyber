@@ -1,8 +1,8 @@
-import { useNewAddress } from "../store/useAddress";
+import { useAddress } from "../store/useAddress";
 
 export default function openAdding() {
-  const setIsAddressesOpened = useNewAddress.getState().setIsAddressesOpened;
-  const setIsNewAddressOpened = useNewAddress.getState().setIsNewAddressOpened;
+  const setIsAddressesOpened = useAddress.getState().setIsAddressesOpened;
+  const setIsNewAddressOpened = useAddress.getState().setIsNewAddressOpened;
 
   return () => {
     setIsNewAddressOpened(true);
