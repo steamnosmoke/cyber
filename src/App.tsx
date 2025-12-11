@@ -26,14 +26,12 @@ export default function App() {
   useEffect(() => {
     if (ariaOpened) {
       document.body.classList.add("overflow-y-hidden");
-      document.body.classList.add("bg-transparent");
       document.body.classList.add("pr-5");
     } else {
       document.body.classList.remove("overflow-y-hidden");
-      document.body.classList.remove("bg-transparent");
       document.body.classList.remove("pr-5");
     }
-  }, []);
+  }, [ariaOpened]);
 
   return (
     <div className="flex flex-col min-h-screen">
