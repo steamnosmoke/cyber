@@ -9,6 +9,7 @@ export default function CardByCategory({
 }: TCategoryprops) {
   const link = getLink(product);
   const param = getParams(product);
+
   return (
     <Link
       to={link}
