@@ -1,11 +1,12 @@
-import useGetItems from "hooks/useGetItems";
+import { useAuthStore } from "store/authStore";
 
 import Order from "./components/Order";
-import { TOrder } from "types/OrderTypes";
+import useGetOrders from "./hooks/useGetOrders";
 
 export default function Orders() {
-  const { items, status } = useGetItems<TOrder>("orders");
-  const orders = items.slice().reverse();
+  const userId = useAuthStore((state) => state.firebaseId);
+  const { data: items, status } = useGetOrders(userId);
+  const orders = items ? items.slice().reverse() : [];
   return (
     <>
       <h2 className="text-[32px] font-semibold leading-12 text-center pt-8">
