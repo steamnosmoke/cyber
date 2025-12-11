@@ -1,75 +1,72 @@
 import useMinusItem from "hooks/cart/useMinusItem";
 import usePlusItem from "hooks/cart/usePlusItem";
-import { TCountProps } from "../types";
-import changeCount from "../utils/changeCount";
+
+import { TAddToCartProps } from "../types";
 
 export default function ChangeCountButton({
   product,
   setStock,
   stock,
   color,
-  isAnimatingAdd,
-  isAnimatingRemove,
-  setAnimatingAdd,
-  setAnimatingRemove,
-  timerRef,
-}: TCountProps) {
+  setAnimating,
+  className,
+}: TAddToCartProps) {
   const plusItem = usePlusItem();
   const minusItem = useMinusItem();
 
   const onMinus = () => {
-    if (product.count === 1 && color==="black") {
-      changeCount(
-        setAnimatingRemove,
-        setAnimatingAdd,
-        minusItem,
-        product,
-        timerRef
-      );
+    minusItem(product);
+
+    if (product.count === 1 && color === "black" && setAnimating) {
+      setAnimating(true);
     }
-    setStock(false);
-    if (product.count === 0) {
-      setStock(true);
-    } else {
-      minusItem(product);
-    }
+
+    setStock((prev) => prev + 1);
   };
 
   const onPlus = () => {
+    if (stock <= 0) return;
+
     plusItem(product);
-    setStock(false);
-    if (product.count === product.stock) {
-      setStock(true);
-    }
+    setStock((prev) => Math.max(0, prev - 1));
   };
 
+  const blackButtonStyle = `relative w-53 h-16 py-4 ${className} border border-black rounded-xl bg-white transition-all duration-200 ease-in-out hover:scale-110 overflow-hidden`;
+
   return (
-    <div
-      className={`relative overflow-hidden ${
-        color === "black"
-          ? "w-53 h-16 py-3.5 px-14 rounded-xl border-1 border-stone-200 shadow-[inset_0_-3px_10px_-2px_rgb(223,223,223)]"
-          : "w-30 h-9"
-      } `}
-    >
+    <div className={color === "black" ? blackButtonStyle : "w-32 h-9"}>
       <div
-        className={`absolute top-[50%] left-[50%] translate-[-50%] flex gap-2 items-center transition-all duration-100 ease-in-out ${
-          isAnimatingAdd && !isAnimatingRemove ? "!top-[100px]" : "top-[50%]"
+        className={`flex items-center justify-between h-full ${
+          color === "black" ? "gap-2" : "gap-1"
         }`}
       >
-        <button className="text-3xl cursor-pointer" onClick={onMinus}>
-          -
+        <button
+          className={`${
+            color === "black" ? "text-2xl px-3 py-1" : "text-lg px-2"
+          } cursor-pointer select-none text-black hover:text-gray-700 transition-colors`}
+          onClick={onMinus}
+        >
+          −
         </button>
-        <span className="py-2 px-4 text-center text-base leading-4 rounded-[4px] border-1 border-stone-300 w-14">
+
+        <span
+          className={`${
+            color === "black" ? "px-4 text-base font-medium" : "px-2 text-sm"
+          } py-1 text-center leading-4 min-w-[40px] select-none text-black`}
+        >
           {product.count}
         </span>
+
         <button
-          className={`text-2xl ${
-            stock
+          className={`${
+            color === "black" ? "text-2xl px-3 py-1" : "text-lg px-2"
+          } select-none transition-colors ${
+            stock <= 0
               ? "text-stone-300 cursor-default"
-              : "text-black cursor-pointer"
+              : "text-black cursor-pointer hover:text-gray-700"
           }`}
           onClick={onPlus}
-          disabled={stock}
+          disabled={stock <= 0}
         >
           +
         </button>

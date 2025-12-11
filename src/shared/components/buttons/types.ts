@@ -1,24 +1,23 @@
+
+import { ReactNode, Dispatch, SetStateAction } from "react";
 import { TCartItem } from "types/CartTypes";
 
-type TProps = {
-  children: string;
-  onClick?: () => void;
+export default interface ButtonProps {
+  children: ReactNode;
+  onClick: () => void;
   twclass?: string;
-  textclass?: string;
   disabled?: boolean;
-  type?: "submit" | "reset" | "button";
-};
+  type?: "button" | "submit" | "reset";
+  textclass?: string;
+}
 
-export default TProps;
-
-export type TCountProps = {
+export type TAddToCartProps = {
   product: TCartItem;
-  stock: boolean;
-  setStock: (val: boolean) => void;
-  color?: string;
-  isAnimatingAdd?: boolean;
-  isAnimatingRemove?: boolean;
-  setAnimatingAdd?: (isAnimatingAdd: boolean) => void;
-  setAnimatingRemove?: (isAnimatingRemove: boolean) => void;
-  timerRef?: React.RefObject<any>;
+  setStock: Dispatch<SetStateAction<number>>;
+  stock: number;
+  color: "black" | "white";
+  isAnimating?: boolean;
+  setAnimating?: (val: boolean) => void;
+  timerRef: React.RefObject<ReturnType<typeof setTimeout> | null>;
+  className?: string;
 };
