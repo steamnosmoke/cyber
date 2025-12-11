@@ -19,8 +19,7 @@ export default function Cart() {
 
   useEffect(() => {
     calcNumbers(products || []);
-  }, [calcNumbers, products]);
-
+  }, [products]);
 
   return (
     <section className="cart py-4 px-0 flex-grow">
@@ -31,16 +30,14 @@ export default function Cart() {
         {status === "success" ? (
           count ? (
             <div className="flex justify-center gap-25 items-start">
-              <>
-                <section className="left flex flex-col items-start justify-center gap-10">
-                  <ul className="list flex flex-col items-start justify-center gap-10">
-                    {products.map((el) => (
-                      <CartItem product={el} key={el.objectId} />
-                    ))}
-                  </ul>
-                </section>
+              <section className="left flex flex-col items-start justify-center gap-10">
+                <ul className="list flex flex-col items-start justify-center gap-10">
+                  {products.map((el) => (
+                    <CartItem product={el} key={el.objectId} />
+                  ))}
+                </ul>
+              </section>
                 <Summary />
-              </>
             </div>
           ) : (
             <EmptyCart />

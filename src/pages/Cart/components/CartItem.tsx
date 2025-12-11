@@ -6,7 +6,7 @@ import useRemoveItem from "../hooks/useRemoveItem";
 import ChangeCountButton from "buttons/components/ChangeCountButton";
 
 export default function CartItem({ product }: TProps) {
-  const [stock, setStock] = useState(false);
+  const [stock, setStock] = useState(product.stock);
 
   const removeItem = useRemoveItem();
   return (
