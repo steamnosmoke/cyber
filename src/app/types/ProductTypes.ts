@@ -27,6 +27,8 @@ export type TProduct = {
   variantId?: string;
   variants?: TVariant[];
   variant?: TVariant;
+  size?: string;
+  storage?: string;
 };
 
 export type TReview = {
