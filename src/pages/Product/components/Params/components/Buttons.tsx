@@ -16,11 +16,12 @@ export default function Buttons() {
 
   const isLiked = wishlist?.some((item) => item.objectId === product.objectId);
 
+
   return (
     <div className="buttons flex items-center justify-around w-full gap-20 mb-4">
       <AddToCartButton
         product={product}
-        className="!w-[452px]"
+        className="!w-full !px-25"
       />
       <button
         className="add-to-wishlist cursor-pointer group"

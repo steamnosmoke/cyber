@@ -11,6 +11,7 @@ import MyLoader from "./components/Loader";
 
 export default function ProductParams() {
   const product = useProductStore((state) => state.product);
+  
 
   if (!product) return <MyLoader />;
 

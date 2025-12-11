@@ -2,7 +2,8 @@ import { useMemo } from "react";
 
 import { useProductStore } from "store/productsStore";
 
-import setItem from "utils/convertToCartItem";
+import setItem from "utils/cart/convertToCartItem";
+
 import colorHexs from "../config/colorHexs";
 import colors from "../config/colors";
 
@@ -11,6 +12,11 @@ export default function Colors() {
 
   const memoizedColors = useMemo(() => colors(product), [product]);
   const memoizedColorHexs = useMemo(() => colorHexs(product), [product]);
+
+  const onChangeColor = (col: string, memory: string) => {
+    setItem(product, col, memory);
+    
+  };
   return (
     <div className="select_color flex gap-6 items-center">
       <p className="color_label color-[#212121] text-base font-normal leading-6">
@@ -29,7 +35,7 @@ export default function Colors() {
               background: memoizedColorHexs[colIndex],
               outlineColor: memoizedColorHexs[colIndex],
             }}
-            onClick={() => setItem(product, col, product.memory)}
+            onClick={() => onChangeColor(col, product.memory)}
           ></li>
         ))}
       </ul>
