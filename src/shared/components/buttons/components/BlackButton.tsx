@@ -16,7 +16,7 @@ export default function BlackButton({
       type={type}
     >
       <p
-        className={`absolute top-[50%] left-[50%] translate-[-50%] z-100 text-white text-center text-lg group-hover:text-black transition-all duration-100 ease-in-out ${textclass} `}
+        className={`absolute top-[50%] left-[50%] translate-[-50%] z-100 text-white text-center text-lg group-hover:text-black transition-all duration-100 ease-in-out ${textclass}`}
       >
         {children}
       </p>
