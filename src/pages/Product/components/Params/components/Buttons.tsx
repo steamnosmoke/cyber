@@ -28,9 +28,9 @@ export default function Buttons() {
         onClick={() => addToWishlist(product)}
       >
         {isLiked ? (
-          <WishlistAdded cl=" w-[62px] h-[62px] bg-red-50 border-1 border-red-200 p-4 rounded-2xl transition-all duration-200 group-hover:scale-95" />
+          <WishlistAdded cl=" w-[48px] h-[48px] bg-red-50 border-1 border-red-200 p-3 rounded-2xl transition-all duration-200 group-hover:scale-95" />
         ) : (
-          <Wishlist cl=" w-[62px] h-[62px] border-1 border-black p-4 rounded-2xl transition-all duration-200  group-hover:scale-95 group-hover:border-red-200" />
+          <Wishlist cl=" w-[48px] h-[48px] border-1 border-black p-3 rounded-2xl transition-all duration-200  group-hover:scale-95 group-hover:border-red-200" />
         )}
       </button>
     </div>

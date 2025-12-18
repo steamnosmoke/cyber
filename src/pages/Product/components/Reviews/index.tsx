@@ -18,7 +18,7 @@ export default function Reviews() {
     <>
       <section className="reviews ">
         <div className="reviews_inner">
-          <h2 className="title text-2xl leading-8">Reviews</h2>
+          <h2 className="title text-2xl">Reviews</h2>
 
           <Rates data={reviewsData} />
 

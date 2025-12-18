@@ -9,7 +9,7 @@ export default function Socials() {
           className="social transition-all duration-100 ease-in-out hover:scale-110"
         >
           <a href={item.link} key={index}>
-            <img className=" w-6 h-6" src={item.icon} alt={item.alt} />
+            <img className=" w-4 h-4" src={item.icon} alt={item.alt} />
           </a>
         </li>
       ))}

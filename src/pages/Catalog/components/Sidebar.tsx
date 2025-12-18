@@ -35,15 +35,15 @@ export default function CatalogAside() {
   if (status === "success")
     return (
       <div
-        className={`transition-all duration-500 ease-in h-100% ${
+        className={`transition-all duration-500 ease-in h-100% min-w-60${
           isOpened ? "aside_open" : "aside_close"
         }`}
       >
         <section
-          className={`aside sticky top-61 flex flex-col items-center gap-5`}
+          className={`aside sticky top-46 flex flex-col items-center gap-5`}
         >
           <ul
-            className={`filters-list relative flex flex-col w-full max-h-[55vh] overflow-y-auto ${
+            className={`filters-list relative flex flex-col w-full max-h-[70vh] overflow-y-auto ${
               isFilterOpened ? "aside_open" : "aside_close"
             }`}
           >
@@ -57,12 +57,12 @@ export default function CatalogAside() {
             }`}
           >
             <BlackButton
-              twclass={`${isFilterOpened ? "" : "!p-0"}`}
+              twclass={`${isFilterOpened ? "!px-2 !w-30" : "!p-0"}`}
               children={"Confirm"}
               onClick={setConfirmedFilters}
             />
             <BlackButton
-              twclass={`${isFilterOpened ? "" : "!p-0"}`}
+              twclass={`${isFilterOpened ? "!w-30 !px-2" : "!p-0"}`}
               children={"Clear"}
               onClick={clearFilters}
             />

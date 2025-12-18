@@ -2,8 +2,8 @@ export default function WishlistAdded({ cl }: { cl?: string }) {
   return (
     <svg
       className={cl}
-      width="32.000000"
-      height="32.000000"
+      width="28.000000"
+      height="28.000000"
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

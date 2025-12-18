@@ -1,7 +1,9 @@
-// components/ChatAssistant.tsx
+
 import React, { useEffect } from "react";
+
 import { useChatLogic } from "./hooks/useChatLogic";
 import { useChatStore } from "./store/chatStore";
+
 import ChatInput from "./components/ChatInput";
 import MessageContent from "./components/MessageContent";
 
@@ -10,7 +12,6 @@ export default function ChatAssistant() {
     useChatLogic();
   const initializeHistory = useChatStore((state) => state.initializeHistory);
 
-  // Set welcome message on first load
   useEffect(() => {
     if (history.length === 0) {
       initializeHistory([welcomeMessage]);
@@ -18,8 +19,8 @@ export default function ChatAssistant() {
   }, [history.length, initializeHistory, welcomeMessage]);
 
   return (
-    <div className="max-w-4xl w-full mx-auto my-8 border border-gray-200 rounded-xl p-6 flex flex-col h-[85vh] bg-white shadow-lg">
-      {/* Header */}
+    <div className="container mx-auto my-8 border border-gray-200 rounded-xl p-6 flex flex-col h-[85vh] bg-white shadow-lg">
+
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
         <div className="w-8 h-8 bg-gradient-to-r from-gray-800 to-gray-600 rounded-full flex items-center justify-center">
           <span className="text-white font-bold text-sm">AI</span>
@@ -29,7 +30,6 @@ export default function ChatAssistant() {
         </h2>
       </div>
 
-      {/* Chat Messages */}
       <div
         className="flex-1 overflow-y-auto mb-4 space-y-4 pr-2
         scrollbar-thin
@@ -66,8 +66,8 @@ export default function ChatAssistant() {
               <div
                 className={
                   msg.role === "user"
-                    ? "text-white" // Белый текст для пользователя
-                    : "text-gray-800" // Темный текст для AI
+                    ? "text-white"
+                    : "text-gray-800"
                 }
               >
                 <MessageContent
@@ -80,7 +80,6 @@ export default function ChatAssistant() {
         ))}
       </div>
 
-      {/* Input Area */}
       <div className="border-t border-gray-100 pt-4">
         <ChatInput
           value={input}

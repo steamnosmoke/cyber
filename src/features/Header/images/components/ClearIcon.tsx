@@ -1,7 +1,7 @@
 export default function ClearIcon() {
   return (
     <svg
-      className="clear-icon w-6 h-6 cursor-pointer transition-all duration-200 hover:opacity-60 hover:scale-90"
+      className="clear-icon w-5 h-5 cursor-pointer transition-all duration-200 hover:opacity-60 hover:scale-90"
       width="24.000000"
       height="24.000000"
       viewBox="0 0 24 24"

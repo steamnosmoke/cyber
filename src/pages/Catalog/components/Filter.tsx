@@ -17,9 +17,9 @@ export default function Filter({ filter }: TFilterProps) {
   };
 
   return (
-    <li className="item text-xl mb-2">
+    <li className="item mb-2">
       <div
-        className="filter flex items-center justify-between pt-3 px-6 cursor-pointer"
+        className="filter flex items-center justify-between pt-3 pr-6 cursor-pointer"
         onClick={() => setOpened(!isOpened)}
       >
         <h2 className="title text-lg">{filter?.title}</h2>
@@ -32,11 +32,13 @@ export default function Filter({ filter }: TFilterProps) {
         />
       </div>
       <ul
-        className={`list px-5 flex flex-col items-start justify-center gap-1 shadow-[0_5px_10px_-7px_#a5a5a59a] transition-all duration-200 ease overflow-y-hidden ${isOpened ? "max-h-100 py-5" : "max-h-0 py-0 text-nowrap"}`}
+        className={`list px-0 flex flex-col items-start justify-center gap-1 shadow-[0_5px_10px_-7px_#a5a5a59a] transition-all duration-200 ease overflow-y-hidden ${
+          isOpened ? "max-h-100 py-5" : "max-h-0 py-0 text-nowrap"
+        }`}
       >
         {Object.values(filter.values).map((el, elIndex) => (
           <li
-            className="filter-item flex items-center justify-start w-full p-2 rounded-xl cursor-pointer transition-all duration-100 ease-in-out hover:bg-stone-100"
+            className="filter-item flex items-center justify-start w-full p-2 rounded-xl cursor-pointer transition-all duration-100 ease-in-out hover:bg-stone-100 group"
             key={elIndex}
             onClick={() =>
               onClickFilter({
@@ -52,7 +54,7 @@ export default function Filter({ filter }: TFilterProps) {
                     item.title === filter.title && item.values.includes(el)
                 )
                   ? "bg-[image:url('/images/checkbox.svg')]"
-                  : "bg-white "
+                  : "bg-white group-hover:bg-[image:url('/images/checkbox.svg')] group-hover:opacity-35"
               }`}
             ></div>
             <p className="text-base text-center font-semibold text-nowrap">

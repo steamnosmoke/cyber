@@ -13,20 +13,20 @@ export default function Categories() {
 
   return (
     <>
-      <section className="categories py-20 bg-stone-100 my-20">
+      <section className="categories py-8 bg-stone-100 my-12">
         <div className="container">
           <div className="categories-inner">
-            <h3 className="categories-title text-2xl mb-8">
+            <h3 className="categories-title text-2xl mb-6">
               Browse By Category
             </h3>
             <ul className="categories-list flex items-center justify-between">
               {memoizedCategories.map((item) => (
                 <li
                   key={item.category}
-                  className={` ${
+                  className={`text-[14px] ${
                     category === item.category
-                      ? "active-item group w-35 h-32 py-6 cursor-pointer rounded-2xl flex flex-col items-center gap-2 scale-100 bg-[#353535] text-stone-100 hover:scale-100"
-                      : "categories-item group w-35 h-32 py-6 cursor-pointer rounded-2xl flex flex-col items-center gap-2 bg-[rgb(237_237_237)] text-center transition-all duration-200 ease-in-out hover:scale-110 hover:bg-[#353535] hover:text-stone-100"
+                      ? "active-item group w-28 h-26 py-3 cursor-pointer rounded-2xl flex flex-col items-center gap-2 scale-100 bg-[#353535] text-stone-100 hover:scale-100"
+                      : "categories-item group w-28 h-26 py-3 cursor-pointer rounded-2xl flex flex-col items-center gap-2 bg-[rgb(237_237_237)] text-center transition-all duration-200 ease-in-out hover:scale-110 hover:bg-[#353535] hover:text-stone-100"
                   }`}
                   onClick={() => setCategory(item.category)}
                 >

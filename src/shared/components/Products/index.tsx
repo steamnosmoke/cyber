@@ -9,7 +9,7 @@ export default function Products({ products, status }: Props) {
       <div
         className={
           status === "success" && products.length > 0 
-            ? "grid gap-x-20 gap-y-8 justify-center content-start grid-cols-[repeat(4,minmax(220px,1fr))] transition-all duration-300"
+            ? "grid gap-x-20 gap-y-6 place-items-center justify-center content-center grid-cols-[repeat(auto-fit,minmax(200px,1fr))] transition-all duration-300"
             : "mt-50"
         }
       >
@@ -19,7 +19,7 @@ export default function Products({ products, status }: Props) {
               return products.length > 0 ? (
                 products.map((el) => <Card key={el.objectId} product={el} />)
               ) : (
-                <h1 className="text-4xl text-center font-semibold mt-3">
+                <h1 className="text-2xl text-center font-semibold mt-3">
                   No Products Found
                 </h1>
               );
@@ -32,7 +32,7 @@ export default function Products({ products, status }: Props) {
             case "error":
             default:
               return (
-                <h2 className="text-4xl text-center font-semibold mt-3">
+                <h2 className="text-2xl text-center font-semibold mt-3">
                   Something Went Wrong
                 </h2>
               );

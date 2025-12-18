@@ -31,7 +31,7 @@ export default function ChangeCountButton({
     setStock((prev) => Math.max(0, prev - 1));
   };
 
-  const blackButtonStyle = `relative w-53 h-16 py-4 ${className} border border-black rounded-xl bg-white transition-all duration-200 ease-in-out hover:scale-110 overflow-hidden`;
+  const blackButtonStyle = `relative w-38 h-12 py-3 ${className} border border-black rounded-xl bg-white overflow-hidden`;
 
   return (
     <div className={color === "black" ? blackButtonStyle : "w-32 h-9"}>
@@ -42,8 +42,8 @@ export default function ChangeCountButton({
       >
         <button
           className={`${
-            color === "black" ? "text-2xl px-3 py-1" : "text-lg px-2"
-          } cursor-pointer select-none text-black hover:text-gray-700 transition-colors`}
+            color === "black" ? "text-[18px] px-2 py-1" : "text-lg px-2"
+          } cursor-pointer select-none text-black hover:text-gray-500 transition-colors`}
           onClick={onMinus}
         >
           −
@@ -51,19 +51,19 @@ export default function ChangeCountButton({
 
         <span
           className={`${
-            color === "black" ? "px-4 text-base font-medium" : "px-2 text-sm"
-          } py-1 text-center leading-4 min-w-[40px] select-none text-black`}
+            color === "black" ? "px-2 text-base font-medium" : "px-2"
+          } py-1 text-center leading-3  select-none text-black`}
         >
           {product.count}
         </span>
 
         <button
           className={`${
-            color === "black" ? "text-2xl px-3 py-1" : "text-lg px-2"
+            color === "black" ? "text-[18px] px-3 py-1" : "text-lg px-2"
           } select-none transition-colors ${
             stock <= 0
               ? "text-stone-300 cursor-default"
-              : "text-black cursor-pointer hover:text-gray-700"
+              : "text-black cursor-pointer hover:text-gray-500"
           }`}
           onClick={onPlus}
           disabled={stock <= 0}

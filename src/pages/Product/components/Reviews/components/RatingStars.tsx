@@ -7,13 +7,13 @@ export default function RatingStars() {
   const setRating = useReviewStore((state) => state.setRating);
 
   return (
-    <div className="rating_stars flex absolute bottom-4 left-0">
+    <div className="rating_stars flex absolute bottom-10 left-0">
       {[...Array(5)].map((_, i) => {
         const value = i + 1;
         const isActive = value <= (ratingHover || rating);
         return (
           <div
-            className="star_item cursor-pointer w-6 h-6 bg-cover transition-all duration-200"
+            className="star_item cursor-pointer w-5 h-5 bg-cover transition-all duration-200"
             key={i + 1}
             onClick={() => setRating(i + 1)}
             onMouseEnter={() => setRatingHover(i + 1)}

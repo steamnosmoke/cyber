@@ -17,9 +17,9 @@ export default function CatalogHeader() {
 
   const setActivePage = useNavigationStore((state) => state.setActivePage);
   return (
-    <header className="catalog-header py-5 sticky top-22 bg-white z-1000 mb-10 shadow-[0_7px_20px_-5px_rgb(223,223,223)]">
+    <header className="catalog-header py-2 sticky top-18 bg-white z-1000 mb-8 shadow-[0_7px_20px_-5px_rgb(223,223,223)]">
       <div className="container">
-        <div className="paths pb-5 flex gap-3">
+        <div className="paths pb-3 flex gap-3">
           <Link
             to={"/"}
             className="transition-all duration-200 hover:font-semibold w-14"
@@ -42,32 +42,32 @@ export default function CatalogHeader() {
             {category}
           </Link>
         </div>
-        {category === "Phones" && (
-          <div className="bottom flex justify-between">
-            <div
-              className="filter flex gap-2 items-center cursor-pointer"
-              onClick={() => setFilterOpened()}
-            >
-              <h2 className="title text-2xl">Filters</h2>
-              <img
-                className={`transition-all duration-200 ease-in-out ${
-                  isFilterOpened ? "rotate-x-180" : ""
-                }`}
-                src={arrow}
-                alt="arrow"
-              />
-            </div>
-            <div className="params flex gap-5 items-center">
-              <span className="count text-lg font-medium text-center">
-                <span className="descr text-stone-500 text-base font-medium">
-                  Selected Products:{" "}
-                </span>
-                {filteredProducts.length}
-              </span>
-              <Sorting />
-            </div>
+
+
+        <div className="bottom flex justify-between">
+          <div
+            className="filter flex gap-2 items-center cursor-pointer"
+            onClick={() => setFilterOpened()}
+          >
+            <h2 className="title text-xl">Filters</h2>
+            <img
+              className={`transition-all duration-200 ease-in-out rotate-90 ${
+                isFilterOpened ? "rotate-x-180" : ""
+              }`}
+              src={arrow}
+              alt="arrow"
+            />
           </div>
-        )}
+          <div className="params flex gap-5 items-center">
+            <span className="count text-lg font-medium text-center">
+              <span className="descr text-stone-500 text-base font-medium">
+                Selected Products:{" "}
+              </span>
+              {filteredProducts.length}
+            </span>
+            <Sorting />
+          </div>
+        </div>
       </div>
     </header>
   );

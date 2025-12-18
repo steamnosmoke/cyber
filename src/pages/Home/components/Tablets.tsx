@@ -1,86 +1,94 @@
 import { Link } from "react-router";
 
 import mac from "../images/MacBook.png";
-import ps from "../images/ps.png";
+import ps from "../images/ps5.png";
 import ap from "../images/ap-max.png";
-import vision from "../images/vision.png";
-import BlackLineButton from "buttons/components/BlackLineButton";
+import vision from "../images/vis.png";
 
 export default function Tablets() {
   return (
     <>
-      <section className="tablets w-full pt-20 z-10 relative bg-white">
-        <div className="tablets-inner  h-150 max-w-405 mx-auto grid grid-cols-2 grid-rows-1">
+      <section className="tablets w-full pt-12 z-10 relative bg-white">
+        <div className="tablets-inner  h-100 max-w-480 mx-auto grid grid-cols-2 grid-rows-1">
           <div className="left-side h-full bg-white grid grid-cols-2 grid-rows-2">
-
-            <div className="ps5-block col-span-2 flex items-center justify-start">
+            <Link
+              to={
+                "/catalog/Gaming_Consoles/PlayStation_5_(Standard_Edition)_White_825GB_SSD"
+              }
+              className="ps5-block col-span-2 flex items-center justify-end"
+            >
               <div
-                className="ps-img h-full w-[40%] bg-cover bg-no-repeat bg-right"
+                className="ps-img h-full w-[50%] bg-cover  bg-no-repeat bg-right"
                 style={{ backgroundImage: `url(${ps})` }}
               ></div>
-              <div className="ps5-info w-[338px]">
-                <h2 className="text-5xl font-medium">Playstation 5</h2>
+              <div className="ps5-info w-[50%] pr-20">
+                <h2 className="text-black text-[36px] font-light">
+                  Playstation 5
+                </h2>
                 <p className="text-stone-400 text-[14px] mt-2">
                   Incredibly powerful CPUs, GPUs, and an SSD with integrated I/O
                   will redefine your PlayStation experience.
                 </p>
               </div>
-            </div>
+            </Link>
 
-            <div className="airpods-block bg-[rgb(237,237,237)] flex items-center justify-start gap-12">
+            <Link
+              to={"/catalog/Headphones/Apple_AirPods_Max_Space_gray"}
+              className="airpods-block bg-[rgb(237,237,237)] flex items-center justify-end gap-12 pr-10 pl-10"
+            >
               <div
-                className="airpods-img h-[90%] w-[30%] bg-cover bg-right"
+                className="airpods-img h-full w-[40%] bg-contain bg-right bg-no-repeat"
                 style={{ backgroundImage: `url(${ap})` }}
               ></div>
-              <div className="airpods-info w-40 gap-2">
-                <h2 className="text-3xl font-light">
-                  Apple
-                  <br />
-                  AirPods
+              <div className="airpods-info w-[50%] gap-2">
+                <h2 className="text-2xl font-light">
+                  Apple AirPods
                   <br /> <span className="font-semibold">Max</span>
                 </h2>
                 <p className="text-stone-500 text-[14px] mt-2">
                   Computational audio. Listen, it's powerfulf
                 </p>
               </div>
-            </div>
+            </Link>
 
-            <div className="vision-block  bg-[rgb(53,53,53)] flex items-center justify-start gap-12">
+            <Link
+              to={"/"}
+              className="vision-block bg-[rgb(53,53,53)] flex items-center justify-end gap-4 pr-10"
+            >
               <div
-                className="vision-img h-full w-[40%] bg-cover bg-right bg-no-repeat"
+                className="vision-img h-full w-[70%] bg-cover bg-right bg-no-repeat"
                 style={{ backgroundImage: `url(${vision})` }}
               ></div>
-              <div className="vision-info w-40 gap-2">
-                <h2 className="text-white text-3xl font-light">
-                  Apple <br />
-                  Vision <span className="font-semibold">Pro</span>
+              <div className="vision-info w-[50%] gap-2">
+                <h2 className="text-white text-2xl font-light">
+                  Apple
+                  <br /> Vision <span className="font-semibold">Pro</span>
                 </h2>
-                <p className="text-stone-400 text-[16px] mt-2">
+                <p className="text-stone-400 text-[14px] mt-2">
                   An immersive way to experience entertainment
                 </p>
               </div>
-            </div>
+            </Link>
           </div>
 
-          <div className="right-side bg-[rgb(237,237,237)] flex items-center justify-end overflow-hidden">
-            
-            <div className="w-92 gap-4 flex flex-col">
-              <h2 className="text-black text-[64px] font-light">
-                Macbook <span className="font-semibold">Air</span>
+          <Link
+            to={`/catalog/Computers/MacBook_Pro_16"_M3_Max_Space_Gray`}
+            className="right-side bg-[rgb(237,237,237)] flex items-center justify-start overflow-hidden pl-20 py-10"
+          >
+            <div className="w-[60%] gap-2 flex flex-col cursor-pointer">
+              <h2 className="text-black text-[36px] font-light">
+                Macbook <span className="font-semibold">Pro</span>
               </h2>
               <p className="text-stone-500 text-[14px]">
-                The new 15‑inch MacBook Air makes room for more of what you love
-                with a spacious Liquid Retina display.
+                The new 16‑inch MacBook Pro makes room for more of what you love
+                with a spacious Liquid Retina XDR display
               </p>
-              <Link to="/">
-                <BlackLineButton children={"View"} />
-              </Link>
             </div>
             <div
-              className="h-[80%] w-[40%] bg-cover bg-no-repeat"
+              className="h-full w-full bg-contain bg-no-repeat"
               style={{ backgroundImage: `url(${mac})` }}
             ></div>
-          </div>
+          </Link>
         </div>
       </section>
     </>

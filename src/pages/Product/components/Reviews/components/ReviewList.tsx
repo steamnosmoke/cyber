@@ -8,8 +8,8 @@ export default function ReviewList({ data }: TProps) {
   return (
     <>
       <ul
-        className={`comments mt-10 transition-all duration-200 ease-in-out ${
-          isCommentsOpened ? "max-h-3000" : "max-h-112 overflow-hidden"
+        className={`comments mt-8 transition-all duration-200 ease-in-out ${
+          isCommentsOpened ? "max-h-3000" : "max-h-96 overflow-hidden"
         }`}
       >
         {data.reviews &&

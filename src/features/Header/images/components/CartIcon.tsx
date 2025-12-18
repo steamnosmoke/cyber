@@ -2,9 +2,9 @@ export default function CartIcon() {
   return (
     <svg
       className="cart-icon"
-      width="32.000000"
-      height="32.000000"
-      viewBox="0 0 32 32"
+      width="28.000000"
+      height="28.000000"
+      viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

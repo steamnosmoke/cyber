@@ -20,20 +20,11 @@ export default function ProductParams() {
       <section className="params flex items-center justify-between">
         <ProductGallery />
 
-        <div className="params_block flex flex-col gap-5 items-start max-w-134">
+        <div className="params_block flex flex-col gap-6 items-start max-w-134">
           <Title />
           <Colors />
           <Memory />
           <Characters />
-          <div className="info max-w-134">
-            <p
-              className="text text-[14px] leading-6 text-stone-600"
-              style={{ letterSpacing: "3%" }}
-            >
-              {product.specs.description}
-            </p>
-            <button></button>
-          </div>
           <Buttons />
           <Tablets />
         </div>

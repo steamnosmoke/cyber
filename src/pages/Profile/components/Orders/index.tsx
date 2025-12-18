@@ -9,7 +9,7 @@ export default function Orders() {
   const orders = items ? items.slice().reverse() : [];
   return (
     <>
-      <h2 className="text-[32px] font-semibold leading-12 text-center pt-8">
+      <h2 className="text-3xl font-medium leading-12 text-center pt-8">
         Order List
       </h2>
       <section className="orders flex flex-col flex-wrap items-start justify-between pt-5 gap-8">

@@ -56,7 +56,7 @@ export default function AddToCartButton({
   };
 
   return (
-    <div className="relative w-full h-16">
+    <div className="relative w-full h-12">
       <div
         className={`absolute w-full transition-all duration-300 ease-in-out ${
           shouldShowCounter
@@ -66,7 +66,7 @@ export default function AddToCartButton({
       >
         <BlackButton
           onClick={handleAddToCart}
-          twclass={`w-full ${
+          twclass={`w-full !p-0 ${
             isOutOfStock
               ? "!cursor-not-allowed !text-stone-500 !bg-stone-100 !border-stone-300 hover:!bg-stone-100 hover:!text-stone-500 hover:!scale-100"
               : ""

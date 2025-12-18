@@ -12,7 +12,7 @@ export default function Navigation() {
     <ul className="navigate-list flex items-center justify-between gap-10 ">
       {navs.map((nav, navId) => (
         <li
-          className="navigate-point w-24 text-center"
+          className="navigate-point min-w-28 text-center"
           onClick={() => onClickNav(navId)}
           key={navId}
         >

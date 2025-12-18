@@ -17,7 +17,7 @@ export default function ChoosingCategories() {
 
   return (
     <>
-      <section className="categories py-4 bg-stone-50 flex-grow">
+      <section className="categories py-10 bg-stone-50 flex-grow">
         <div className="container">
           <ul className="list grid gap-5 grid-cols-3 grid-rows-2">
             {categories.map((item, index) => (

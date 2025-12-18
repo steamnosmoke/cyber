@@ -7,7 +7,7 @@ export default function Specs() {
   const specs = useSpecs();
   return (
     <ul
-      className={`main_list flex flex-col gap-10 transition-all duration-400 ease-in-out overflow-hidden ${
+      className={`main_list flex flex-col gap-10 transition-all duration-400 ease-in-out overflow-hidden  ${
         isDetailsOpened ? "max-h-3000" : "max-h-150"
       }`}
     >
@@ -55,7 +55,7 @@ export default function Specs() {
                   typeof v === "object" && !Array.isArray(v) ? (
                     <li
                       key={i}
-                      className="specials border-b-2 border-[#cdcdcd] pb-4 pt-2 flex justify-between items-start"
+                      className="specials border-b-2 border-[#cdcdcd] pb-4 pt-2 ml-3 flex justify-between items-start"
                     >
                       <h4 className="name capitalize text-base leading-6">
                         {formatKey(k)}
@@ -74,7 +74,7 @@ export default function Specs() {
                   ) : typeof v === "object" && Array.isArray(v) ? (
                     <li
                       key={i}
-                      className="specials border-b-2 border-[#cdcdcd] pb-4 pt-2 flex justify-between items-start"
+                      className="specials border-b-2 border-[#cdcdcd] pb-4 pt-2 ml-3 flex justify-between items-start"
                     >
                       <h4 className="name capitalize text-base leading-6">
                         {formatKey(k)}
@@ -94,7 +94,7 @@ export default function Specs() {
                     typeof v !== "object" && (
                       <li
                         key={i}
-                        className="specials border-b-2 border-[#cdcdcd] pb-4 pt-2 flex justify-between items-start"
+                        className="specials border-b-2 border-[#cdcdcd] pb-2 pt-2 ml-3 flex justify-between items-start"
                       >
                         <h4 className="name capitalize text-base leading-6">
                           {formatKey(k)}

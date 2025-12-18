@@ -23,15 +23,15 @@ export default function Cart() {
 
   return (
     <section className="cart py-4 px-0 flex-grow">
-      <div className="container min-h-[calc(100vh-180px)]">
-        <h1 className="mb-4 text-[32px] text-center font-medium">
+      <div className="container min-h-[calc(100vh-120px)]">
+        <h1 className="mb-8 text-3xl text-center font-medium">
           Shopping Cart
         </h1>
         {status === "success" ? (
           count ? (
-            <div className="flex justify-center gap-25 items-start">
-              <section className="left flex flex-col items-start justify-center gap-10">
-                <ul className="list flex flex-col items-start justify-center gap-10">
+            <div className="flex justify-center gap-25 items-start ">
+              <section className="left flex flex-col items-start justify-center gap-10 w-[60%]">
+                <ul className="list flex flex-col items-start justify-center gap-4 w-full">
                   {products.map((el) => (
                     <CartItem product={el} key={el.objectId} />
                   ))}

@@ -1,7 +1,7 @@
 export default function SearchIcon() {
   return (
     <svg
-      className="search-icon absolute w-6 h-6 left-4 z-50 top-4 group-hover:stroke-stone-700"
+      className="search-icon absolute w-5 h-5 left-4 z-50 top-3.5 group-hover:stroke-stone-700"
       width="24.000000"
       height="24.000000"
       viewBox="0 0 24 24"

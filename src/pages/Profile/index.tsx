@@ -33,15 +33,15 @@ export default function Profile() {
   if (userId !== "guest")
     return (
       <section className="flex-grow">
-        <div className="container min-h-[calc(100vh-180px)]">
-          <div className="flex items-center justify-between py-10 px-0 border-b-1 border-b-stone-300">
-            <h1 className="hello text-3xl leading-9">
+        <div className="container min-h-[calc(100vh-120px)]">
+          <div className="flex items-center justify-between py-8 px-0 ">
+            <h1 className="hello text-2xl leading-9">
               Hello, {user?.name ? user?.name : user?.email}!
             </h1>
             <div className="buttons flex items-center gap-6">
               <BlackLineButton
                 children="Change your profile"
-                twclass="!px-8"
+                twclass="!px-8 !py-3 !text-base"
                 onClick={() => setIsData(!isData)}
               />
               <BlackButton children="Log out" onClick={onLogOut} />

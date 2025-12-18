@@ -25,7 +25,7 @@ export default function Colors() {
       <ul className="color_list flex justify-between gap-3">
         {memoizedColors.map((col, colIndex) => (
           <li
-            className={`color_item w-8 h-8 rounded-[50%] cursor-pointer transition-all duration-200 ease-in-out hover:scale-110 ${
+            className={`color_item w-6 h-6 rounded-[50%] cursor-pointer transition-all duration-200 ease-in-out hover:scale-110 ${
               product.color === col
                 ? "color_active transition-all duration-200 ease-in-out outline-2 border-2 border-white"
                 : ""

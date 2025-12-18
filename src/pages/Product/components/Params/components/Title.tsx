@@ -5,20 +5,20 @@ export default function Title() {
 
   return (
     <>
-      <h1 className="title text-[40px] font-bold leading-10">
-        {product.name},<br />
-        {product.color}
+      <h1 className="title text-3xl font-medium ">
+        {product.name}
+        <br />
+        <span className="text-2xl">{product.color}</span>
       </h1>
-      <div className="price flex items-center gap-6">
+      <div className="price flex items-start gap-1">
         <p
-          className="actualy_price text-[32px] leading-12 min-w-23 text-center"
-          style={{ letterSpacing: "3%" }}
+          className="actualy_price text-2xl font-medium  min-w-23 text-left"
         >
           {product.totalPrice}$
         </p>
         <p
-          className="old_price text-[32px] leading-12 text-black relative 
-                        after:content-[''] after:w-25 after:rotate-[20deg] after:h-[4px] after:bg-red-700 after:absolute after:top-1/2 after:left-[-10px] after:rounded-[4px]"
+          className="old_price text-xl  text-black text-right relative 
+                        after:content-[''] after:w-18 after:rotate-[18deg] after:h-[2px] after:bg-red-700 after:absolute after:top-1/2 after:left-[-15px] after:rounded-[4px]"
         >
           {product.price}$
         </p>

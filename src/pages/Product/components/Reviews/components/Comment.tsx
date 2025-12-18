@@ -27,13 +27,13 @@ export default function Comment() {
   return (
     <>
       {userId !== "guest" && (
-        <form onSubmit={handleSubmit} className="form relative h-60">
+        <form onSubmit={handleSubmit} className="form relative h-54">
           <CommentText />
           {comment && (
             <>
               <RatingStars />
               <BlackLineButton
-                twclass={"submit absolute bottom-0 right-0 hover:scale-100"}
+                twclass={"submit absolute bottom-0 right-0 hover:scale-100 text-[16px] !px-10 !py-3"}
                 type={"submit"}
                 disabled={!comment && !rating}
                 children={"Send Comment"}

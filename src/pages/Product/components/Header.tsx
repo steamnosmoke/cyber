@@ -11,7 +11,7 @@ export default function Header() {
   const setCategory = useProductStore((state) => state.setCategory);
 
   return (
-    <header className="py-11 flex gap-3">
+    <header className="py-8 flex gap-3">
       <Link
         to={"/"}
         className="transition-all duration-200 hover:font-semibold w-14"

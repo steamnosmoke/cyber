@@ -26,7 +26,7 @@ export default function Card({ product }: { product: TProduct }) {
 
   return (
     <>
-      <section className="card w-75 bg-white relative pt-18 px-7.5 pb-6 rounded-2xl shadow-[0_0_0_-5px_rgb(223,223,223)] flex flex-col items-center gap-5 transition-all duration-200 ease-in-out hover:translate-y-[-24px] hover:shadow-[0_20px_24px_-1px_rgb(223,223,223)]">
+      <section className="card w-50 bg-red relative pt-12 px-4 pb-4 rounded-2xl shadow-[0_0_0_-5px_rgb(223,223,223)] flex flex-col items-center gap-3 transition-all duration-200 ease-in-out hover:translate-y-[-20px] hover:shadow-[0_16px_20px_-1px_rgb(223,223,223)]">
         <button
           className="add-to-wishlist cursor-pointer absolute top-4 right-4 z-50 group"
           onClick={() => addToWishlist(product)}
@@ -34,7 +34,7 @@ export default function Card({ product }: { product: TProduct }) {
           {isLiked ? <WishlistAdded /> : <Wishlist />}
         </button>
         <CardByCategory product={product} onClickCard={onClickCard} />
-        <AddToCartButton product={product} className="!px-8"/>
+        <AddToCartButton product={product} className="px-4 mx-auto"/>
       </section>
     </>
   );

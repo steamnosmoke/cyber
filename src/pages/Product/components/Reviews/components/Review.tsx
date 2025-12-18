@@ -5,7 +5,7 @@ import Stars from "../images/components/Stars";
 export default function Review({ review }: TReviewProps) {
   return (
     <>
-      <section className="comment p-6 mb-5 bg-stone-100 flex flex-col w-full gap-2 rounded-[10px]">
+      <section className="comment py-4 px-6 mb-5 bg-stone-100 flex flex-col w-full gap-2 rounded-[10px]">
         <header className="header flex items-center justify-between">
           <p className="name text-base font-bold leading-6">
             {review.userName}

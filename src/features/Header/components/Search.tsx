@@ -1,10 +1,12 @@
+
+import { useMemo } from "react";
+
 import { useSearchStore } from "../store/searchStore";
+import useGetProducts from "hooks/useGetProducts";
+import search from "../utils/fuse";
 
 import SearchIcon from "../images/components/SearchIcon";
 import ClearIcon from "../images/components/ClearIcon";
-import useGetProducts from "hooks/useGetProducts";
-import { useMemo } from "react";
-import search from "../utils/fuse";
 
 export default function Search() {
   const inputValue = useSearchStore((state) => state.value);
@@ -13,7 +15,7 @@ export default function Search() {
   const setResult = useSearchStore((state) => state.setResult);
   const setAriaOpened = useSearchStore((state) => state.setAriaOpened);
 
-  const { products, status, error } = useGetProducts("");
+  const { products } = useGetProducts("");
 
   const fuse = useMemo(() => search(products), [products]);
 
@@ -40,10 +42,10 @@ export default function Search() {
 
   return (
     <>
-      <div className="search-wrapper relative w-100 h-14 rounded-2xl group">
+      <div className="search-wrapper relative w-100 h-11 rounded-2xl group">
         <SearchIcon />
         <input
-          className={`searh-input outline-0 hover-target w-80 bg-stone-100 p-4 pl-12 rounded-2xl absolute transition-all border-1 border-transparent duration-150
+          className={`searh-input outline-0 hover-target w-80 bg-stone-100 p-3 pl-10 rounded-2xl absolute transition-all border-1 border-transparent duration-150
           placeholder:transition-colors  
           focus:w-100 focus:border-stone-500 focus:placeholder:text-stone-700 ${
             inputValue ? "w-100" : ""
@@ -56,7 +58,7 @@ export default function Search() {
           onClick={() => onSearch()}
         />
         <button
-          className={`search-clear-button w-6 h-6 absolute top-4 right-4 cursor-pointer opacity-70 hover:opacity-100 transition-all duration-150 ${
+          className={`search-clear-button w-5 h-5 absolute top-3.5 right-4 cursor-pointer opacity-70 hover:opacity-100 transition-all duration-150 ${
             !inputValue && "hidden"
           }`}
           onClick={() => onClear()}

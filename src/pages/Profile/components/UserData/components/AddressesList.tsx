@@ -52,7 +52,7 @@ export default function AddressesList() {
   return (
     <ul
       role="listbox"
-      className={`absolute left-0 max-w-150 w-full bg-white border border-stone-300 rounded-lg transition-all duration-200 hover:border-black overflow-hidden ${
+      className={`absolute left-0 max-w-150 w-full bg-white border border-stone-300 rounded-lg transition-all duration-200  overflow-hidden ${
         isAddressesOpened
           ? "opacity-100 top-18 z-10"
           : "opacity-0 top-14 pointer-events-none z-[-1]"

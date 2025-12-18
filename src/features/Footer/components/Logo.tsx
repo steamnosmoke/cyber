@@ -6,9 +6,9 @@ export default function Logo() {
   return (
     <div className="block">
       <Link to={"/"}>
-        <img src={logo} alt="logotype" onClick={() => window.scrollTo(0, 0)} />
+        <img className="w-20" src={logo} alt="logotype" onClick={() => window.scrollTo(0, 0)} />
       </Link>
-      <p className="max-w-92 mt-6 text-[14px]">
+      <p className="max-w-92 mt-6 text-[12px]">
         We are a residential interior design firm located in Portland. Our
         boutique-studio offers more than
       </p>

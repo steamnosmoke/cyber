@@ -4,7 +4,7 @@ import { TCartItem } from "types/CartTypes";
 
 export default interface ButtonProps {
   children: ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   twclass?: string;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
