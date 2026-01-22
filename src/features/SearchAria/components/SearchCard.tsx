@@ -16,7 +16,7 @@ export default function SearchCard({ product }: { product: TProduct }) {
     window.scrollTo(0, 0);
   }, [setProduct, product]);
   return (
-    <li className="card w-80 h-35 rounded-xl transition-all duration-200 ease-in hover:translate-y-[-10px] hover:shadow-[0_6px_12px_-1px_rgb(223,223,223)]">
+    <li className="card w-80 h-35 rounded-xl transition-all duration-200 ease-in hover:translate-y-[-2px] hover:shadow-[0_6px_12px_-1px_rgb(223,223,223)]">
       <Link
         to={`/catalog/${product.category}/${product.name} ${product.color} ${
           product.memory
