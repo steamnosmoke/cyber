@@ -22,20 +22,31 @@ export default function Colors() {
       <p className="color_label color-[#212121] text-base font-normal leading-6">
         Select color:
       </p>
-      <ul className="color_list flex justify-between gap-3">
+      <ul className="color_list flex justify-between gap-4">
         {memoizedColors.map((col, colIndex) => (
           <li
-            className={`color_item w-6 h-6 rounded-[50%] cursor-pointer transition-all duration-200 ease-in-out hover:scale-110 ${
-              product.color === col
-                ? "color_active transition-all duration-200 ease-in-out outline-2 border-2 border-white"
-                : ""
-            }`}
             key={colIndex}
-            style={{
-              background: memoizedColorHexs[colIndex],
-              outlineColor: memoizedColorHexs[colIndex],
-            }}
             onClick={() => onChangeColor(col, product.memory)}
+            style={
+              {
+                backgroundColor: memoizedColorHexs[colIndex],
+                "--ring-color": memoizedColorHexs[colIndex],
+              } as React.CSSProperties
+            }
+            className={`
+    w-7 h-7 rounded-full cursor-pointer
+    transition-all duration-200 ease-in-out
+    ring-2 ring-offset-3
+
+    border border-black/10
+    shadow-[inset_0_1px_2px_rgba(0,0,0,0.7),_0_1px_2px_rgba(0,0,0,0.12)]
+
+    ${
+      product.color === col
+        ? " ring-stone-700 scale-110"
+        : "ring-white hover:ring-stone-400 "
+    }
+  `}
           ></li>
         ))}
       </ul>
