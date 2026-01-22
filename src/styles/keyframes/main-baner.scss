@@ -1,15 +1,30 @@
-@keyframes iphone_up {
-  from {
-    transform: translateY(200px);
-    opacity: 0;
-  }
+@keyframes phone_up {
   to {
-    transform: translateY(0);
+    bottom: var(--final-bottom);
     opacity: 1;
   }
 }
 
-.iphone {
-  animation-name: iphone_up;
-  animation-duration: 1000ms;
+.phone-bottom{
+  position: absolute;
+  bottom: -400px;
+  opacity: 0;
+  max-width: 480px;
+}
+
+.blue {
+  --final-bottom: -75px;
+  animation: phone_up 500ms ease-out forwards;
+}
+
+.white {
+  --final-bottom: -60px;
+  animation: phone_up 500ms ease-out forwards;
+  animation-delay: 300ms;
+}
+
+.orange {
+  --final-bottom: -70px;
+  animation: phone_up 500ms ease-out forwards;
+  animation-delay: 600ms;
 }
