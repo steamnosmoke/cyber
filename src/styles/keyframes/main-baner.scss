@@ -9,22 +9,22 @@
   position: absolute;
   bottom: -400px;
   opacity: 0;
-  max-width: 480px;
+  max-width: 420px;
 }
 
 .blue {
-  --final-bottom: -75px;
+  --final-bottom: -115px;
   animation: phone_up 500ms ease-out forwards;
 }
 
 .white {
-  --final-bottom: -60px;
+  --final-bottom: -105px;
   animation: phone_up 500ms ease-out forwards;
   animation-delay: 300ms;
 }
 
 .orange {
-  --final-bottom: -70px;
+  --final-bottom: -115px;
   animation: phone_up 500ms ease-out forwards;
   animation-delay: 600ms;
 }
