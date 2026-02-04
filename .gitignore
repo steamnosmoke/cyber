@@ -7,8 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
+node_modules/
+dist/
 dist-ssr
 *.local
 package.json
@@ -24,3 +24,6 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+server/.env
+server/node_modules/
