@@ -8,50 +8,38 @@ dotenv.config();
 const app = express();
 
 app.use(express.json({ limit: "2mb" }));
-
 app.use(
   cors({
     origin: "http://localhost:5173",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
-  })
+  }),
 );
 
 const openRouter = new OpenRouter({
   apiKey: process.env.OPENROUTER_API_KEY ?? "",
 });
 
-// Сокращённое описание товара
-function formatProductShort(p) {
-  return `${p.brand} ${p.name} — категория: ${p.category}`;
-}
-
-// Список моделей
 const MODELS = [
-  "x-ai/grok-4.1-fast:free",
-  "kwaipilot/kat-coder-pro:free",
-  "nvidia/nemotron-nano-12b-v2-vl:free",
-  "alibaba/tongyi-deepresearch-30b-a3b:free",
-  "openai/gpt-oss-20b:free",
-  "google/gemma-3n-e2b-it:free",
+  "xiaomi/mimo-v2-flash:free",
+  "tngtech/deepseek-r1t2-chimera:free",
+  "tngtech/deepseek-r1t-chimera:free",
+  "deepseek/deepseek-r1-0528:free",
+  "google/gemma-3-27b-it:free",
+  "meta-llama/llama-3.3-70b-instruct:free",
+  "openai/gpt-oss-120b:free",
+  "nvidia/nemotron-3-nano-30b-a3b:free",
 ];
 
-/**
- * Перебираем модели и отправляем запрос
- */
 async function sendAIMessage(messages) {
   for (const model of MODELS) {
     try {
-      console.log(`⚙ Trying model: ${model}`);
-
       const response = await openRouter.chat.send({
         model,
         messages,
       });
 
-      const text =
-        response?.choices?.[0]?.message?.content ?? "Модель не вернула текст";
-
+      const text = response?.choices?.[0]?.message?.content ?? "";
       return { success: true, text };
     } catch (e) {
       const message = String(e);
@@ -61,63 +49,93 @@ async function sendAIMessage(messages) {
         message.includes("rate") ||
         message.includes("limit")
       ) {
-        console.log(`⚠ Model ${model} rate-limited — switching...`);
         continue;
       }
 
       if (
         message.includes("ECONNRESET") ||
         message.includes("fetch failed") ||
-        message.includes("getaddrinfo") ||
         message.includes("timeout")
       ) {
         return {
           success: false,
-          text: "❌ Похоже, что соединение с OpenRouter заблокировано. Возможно выключен VPN.",
+          text: "❌ Проблема соединения с OpenRouter.",
         };
       }
-
-      console.log("Model error:", message);
     }
   }
 
   return {
     success: false,
-    text: "❌ Все модели недоступны. Возможно нужен VPN.",
+    text: "❌ Все модели недоступны.",
   };
 }
 
 app.post("/api/chat", async (req, res) => {
-  const { history = [], userMessage = "", products = [] } = req.body;
+  const { userMessage = "", products = [] } = req.body;
+
+  const currentDate = new Date().toLocaleDateString("ru-RU", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   const systemMessage = `
-Ты — ИИ ассистент магазина электроники.
-Отвечай только на вопросы про технику, гаджеты, характеристики, IT и ПО.
+ТЕКУЩАЯ ДАТА (ФАКТ):
+${currentDate}
 
-ВАЖНО: Используй простое форматирование текста. Избегай сложных таблиц.
-Если нужно сравнить товары, используй списки и заголовки.
+Считай, что сейчас именно эта дата.
+Запрещено использовать устаревшие формулировки.
 
-Если вопрос не относится к технике — отвечай:
-"Этот вопрос не относится к технике, поэтому я не могу ответить."
+Ты — ИИ ассистент интернет-магазина электроники.
 
-${
-  products.length > 0
-    ? `Вот доступные товары:\n${products.map(formatProductShort).join("\n")}`
-    : `Товары отсутствуют. Спроси пользователя, что ему нужно.`
-}`;
+Ты должен помогать клиентам с выбором гаджетов, отвечать на их вопросы, которые касаются техники. Если клиент справшивает про гаджет который не продается в магазине, ты должен рассказать про него и предложить схожее устройство из БД магазина. ИСпользуй интернет если можешь для поиска информации об устройствах. 
+
+КРИТИЧЕСКИ ВАЖНО:
+Ты можешь возвращать товары ТОЛЬКО из ассортимента ниже.
+
+ПРАВИЛА:
+- при сравнении или подборе всегда предлагай аналоги
+- если есть рекомендация — товарный блок ОБЯЗАТЕЛЕН
+
+ФОРМАТ ОТВЕТА:
+
+ЧАСТЬ 1 — ТЕКСТ
+
+ЧАСТЬ 2 — ТОВАРНЫЙ БЛОК
+В КОНЦЕ ответа:
+
+===PRODUCTS_START===
+[ JSON массив ]
+===PRODUCTS_END===
+
+Формат товара:
+{
+  "objectId": string,
+  "name": string,
+  "brand": string,
+  "category": string,
+  "price": number
+}
+
+Ответ НЕВЕРЕН, если:
+- нет PRODUCTS_START / PRODUCTS_END
+- JSON невалидный
+- возвращён товар не из ассортимента
+
+АССОРТИМЕНТ (JSON):
+${JSON.stringify(products, null, 2)}
+`.trim();
 
   const messages = [
     { role: "system", content: systemMessage },
-    ...history,
     { role: "user", content: userMessage },
   ];
 
   const result = await sendAIMessage(messages);
 
   if (!result.success) {
-    return res.status(503).json({
-      error: result.text,
-    });
+    return res.status(503).json({ error: result.text });
   }
 
   return res.json({ reply: result.text });
