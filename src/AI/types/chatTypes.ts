@@ -21,3 +21,11 @@ export type ChatRequest = {
   userMessage: string;
   products: TProduct[];
 };
+
+export type TChatProduct = {
+  objectId: string;
+  name: string;
+  category: string;
+  price: number;
+  brand: string;
+}

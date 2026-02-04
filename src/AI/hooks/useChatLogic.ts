@@ -1,7 +1,7 @@
-// hooks/useChatLogic.ts
+
 import { useCallback, useRef } from "react";
 import { sendChatMessage } from "../utils/sendChatMessage";
-import useGetProducts from "hooks/useGetProducts";
+import useGetProducts from "../hooks/useGetProducts";
 import { useChatStore } from "../store/chatStore";
 import { TChatMessage } from "../types/chatTypes";
 import { getLoadingMessages } from "../config/loadingMessages";
@@ -14,7 +14,7 @@ export const useChatLogic = () => {
 
   const loadingRef = useRef<number | null>(null);
 
-  const { products } = useGetProducts("");
+  const { products } = useGetProducts();
 
   const loadingMessages = getLoadingMessages();
 

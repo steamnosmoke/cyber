@@ -19,13 +19,13 @@ export default function ChatAssistant() {
   }, [history.length, initializeHistory, welcomeMessage]);
 
   return (
-    <div className="container mx-auto my-8 border border-gray-200 rounded-xl p-6 flex flex-col h-[85vh] bg-white shadow-lg">
+    <div className="container w-full max-w-370 mx-auto my-3 border border-gray-200 rounded-xl p-4 flex flex-col h-[90vh] bg-white shadow-lg">
 
-      <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-        <div className="w-8 h-8 bg-gradient-to-r from-gray-800 to-gray-600 rounded-full flex items-center justify-center">
-          <span className="text-white font-bold text-sm">AI</span>
+      <div className="flex items-center gap-3 mb-2 pb-3 border-b border-gray-100">
+        <div className="w-6 h-6 bg-gradient-to-r from-gray-800 to-gray-600 rounded-full flex items-center justify-center">
+          <span className="text-white font-bold text-[12px]">AI</span>
         </div>
-        <h2 className="text-2xl font-bold text-gray-800">
+        <h2 className="text-xl font-bold text-gray-800">
           Cyber's AI Assistant
         </h2>
       </div>

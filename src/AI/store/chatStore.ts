@@ -27,7 +27,6 @@ export const useChatStore = create<TChatStore>()(
       name: "chat-storage",
       partialize: (state) => ({
         history: state.history,
-        // Don't persist input to avoid showing stale text on reload
       }),
     }
   )
