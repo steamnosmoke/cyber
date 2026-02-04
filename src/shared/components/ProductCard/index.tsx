@@ -34,7 +34,7 @@ export default function Card({ product }: { product: TProduct }) {
           {isLiked ? <WishlistAdded /> : <Wishlist />}
         </button>
         <CardByCategory product={product} onClickCard={onClickCard} />
-        <AddToCartButton product={product} className="px-4 mx-auto"/>
+        <AddToCartButton product={product} className="px-4 mx-auto" />
       </section>
     </>
   );
