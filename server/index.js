@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 import { OpenRouter } from "@openrouter/sdk";
 import dotenv from "dotenv";
 
@@ -15,6 +16,15 @@ app.use(
     allowedHeaders: ["Content-Type"],
   }),
 );
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 минута
+  max: 5, // максимум 5 запросов в минуту с одного IP
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use("/api/chat", limiter);
 
 const openRouter = new OpenRouter({
   apiKey: process.env.OPENROUTER_API_KEY ?? "",
@@ -32,42 +42,51 @@ const MODELS = [
 ];
 
 async function sendAIMessage(messages) {
-  for (const model of MODELS) {
-    try {
-      const response = await openRouter.chat.send({
-        model,
-        messages,
-      });
+  const MAX_RETRIES = 3;
 
-      const text = response?.choices?.[0]?.message?.content ?? "";
-      return { success: true, text };
-    } catch (e) {
-      const message = String(e);
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    for (const model of MODELS) {
+      try {
+        const response = await openRouter.chat.send({
+          model,
+          messages,
+        });
 
-      if (
-        message.includes("429") ||
-        message.includes("rate") ||
-        message.includes("limit")
-      ) {
-        continue;
-      }
+        const text = response?.choices?.[0]?.message?.content ?? "";
+        return { success: true, text };
+      } catch (e) {
+        const message = String(e);
 
-      if (
-        message.includes("ECONNRESET") ||
-        message.includes("fetch failed") ||
-        message.includes("timeout")
-      ) {
-        return {
-          success: false,
-          text: "❌ Проблема соединения с OpenRouter.",
-        };
+        if (
+          message.includes("429") ||
+          message.includes("rate") ||
+          message.includes("limit")
+        ) {
+          continue;
+        }
+
+        if (
+          message.includes("ECONNRESET") ||
+          message.includes("fetch failed") ||
+          message.includes("timeout")
+        ) {
+          if (attempt < MAX_RETRIES) {
+            await new Promise((r) => setTimeout(r, attempt * 1000));
+            continue;
+          }
+
+          return {
+            success: false,
+            text: "❌ Connection error while contacting AI.",
+          };
+        }
       }
     }
   }
 
   return {
     success: false,
-    text: "❌ Все модели недоступны.",
+    text: "❌ AI service temporarily unavailable.",
   };
 }
 
