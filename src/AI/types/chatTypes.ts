@@ -11,8 +11,7 @@ export interface TChatStore {
   input: string;
   history: TChatMessage[];
   setInput: (val: string) => void;
-  setHistory: (message: TChatMessage, replaceIndex?: number) => void;
-  initializeHistory: (initialHistory: TChatMessage[]) => void;
+  setHistory: (message: TChatMessage, replaceId?: string) => void;
   clearHistory: () => void;
 }
 

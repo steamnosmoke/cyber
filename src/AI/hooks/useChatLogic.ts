@@ -1,28 +1,29 @@
-
-import { useCallback, useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useState } from "react";
 import { sendChatMessage } from "../utils/sendChatMessage";
-import useGetProducts from "../hooks/useGetProducts";
+import useGetProducts from "./useGetProducts";
 import { useChatStore } from "../store/chatStore";
 import { TChatMessage } from "../types/chatTypes";
 import { getLoadingMessages } from "../config/loadingMessages";
+import useUpdateUserAIChat from "./user/useUpdateUSerAIChat";
+import useGetAIChat from "./useGetAIChat";
+import { v4 as uuid } from "uuid";
+import welcomeMessage from "../config/welcomeMessage";
 
-export const useChatLogic = () => {
+export const useChatLogic = (id: string) => {
   const input = useChatStore((state) => state.input);
   const setInput = useChatStore((state) => state.setInput);
-  const history = useChatStore((state) => state.history);
-  const setHistory = useChatStore((state) => state.setHistory);
-
-  const loadingRef = useRef<number | null>(null);
-
+  const setGuestHistory = useChatStore((state) => state.setHistory);
+  const loadingMessages = getLoadingMessages();
   const { products } = useGetProducts();
 
-  const loadingMessages = getLoadingMessages();
+  const { mutate: setUserHistory } = useUpdateUserAIChat(id);
+  const { chatData } = useGetAIChat(id);
+  const setHistory = id === "guest" ? setGuestHistory : setUserHistory;
 
-  const welcomeMessage: TChatMessage = {
-    role: "assistant",
-    content:
-      "Hello! I'm your AI shopping assistant. I can help you:\n\n• Find products based on your needs\n• Compare different items\n• Provide product recommendations\n• Answer questions about brands and categories\n• Help you make informed purchasing decisions\n\nWhat would you like to know about our products?",
-  };
+  const history = chatData ? chatData : [welcomeMessage]
+
+  const [loadingMessage, setLoadingMessage] = useState<TChatMessage | null>(null)
 
   const handleSend = useCallback(async () => {
     if (!input.trim()) return;
@@ -30,25 +31,25 @@ export const useChatLogic = () => {
     const userMessage: TChatMessage = {
       role: "user",
       content: input,
+      id: uuid(),
+      timestamp: new Date(),
     };
 
-    // Добавляем сообщение пользователя
-    const newHistory = [...history, userMessage];
+    const newHistory: TChatMessage[] = [...history, userMessage];
     setHistory(userMessage);
     setInput("");
 
-    // Показываем loading message
     const loadingMessage: TChatMessage = {
       role: "assistant",
       content:
         loadingMessages[Math.floor(Math.random() * loadingMessages.length)],
+      id: "loading",
+      timestamp: new Date(),
     };
 
-    loadingRef.current = newHistory.length;
-    setHistory(loadingMessage);
+    setLoadingMessage(loadingMessage)
 
     try {
-      // Convert TChatMessage to compatible type for sendChatMessage
       const compatibleHistory = newHistory.map((msg) => ({
         role: msg.role as "user" | "assistant",
         content: msg.content,
@@ -59,29 +60,20 @@ export const useChatLogic = () => {
       const assistantMessage: TChatMessage = {
         role: "assistant",
         content: reply,
+        id: uuid(),
+        timestamp: new Date(),
       };
-
-      // Заменяем loading message на реальный ответ
-      setHistory(assistantMessage, loadingRef.current);
-      loadingRef.current = null;
-    } catch (err) {
-      const errorMessage: TChatMessage = {
+      setHistory(assistantMessage);
+      setLoadingMessage(null)
+    } catch {
+      setLoadingMessage({
         role: "assistant",
-        content:
-          "An error occurred while contacting AI. Please try again later.",
-      };
-      if (loadingRef.current !== null) {
-        setHistory(errorMessage, loadingRef.current);
-        loadingRef.current = null;
-      }
+        content: "An error occurred while contacting AI.",
+        id: "loading",
+        timestamp: new Date(),
+      });
     }
-  }, [input, products, history, setHistory, setInput, loadingMessages]);
+  }, [input, products, history]);
 
-  return {
-    input,
-    setInput,
-    history,
-    handleSend,
-    welcomeMessage,
-  };
+  return {history, setHistory, handleSend, loadingMessage};
 };

@@ -1,26 +1,22 @@
 
-import React, { useEffect } from "react";
+import { useAuthStore } from "../app/store/authStore";
 
-import { useChatLogic } from "./hooks/useChatLogic";
 import { useChatStore } from "./store/chatStore";
+import { useChatLogic } from "./hooks/useChatLogic";
 
 import ChatInput from "./components/ChatInput";
 import MessageContent from "./components/MessageContent";
 
 export default function ChatAssistant() {
-  const { input, setInput, history, handleSend, welcomeMessage } =
-    useChatLogic();
-  const initializeHistory = useChatStore((state) => state.initializeHistory);
+  const id = useAuthStore(state=>state.firebaseId);
+  const input = useChatStore(state=>state.input)
+  const setInput = useChatStore(state=>state.setInput)
+  const {history, handleSend, loadingMessage} = useChatLogic(id);
 
-  useEffect(() => {
-    if (history.length === 0) {
-      initializeHistory([welcomeMessage]);
-    }
-  }, [history.length, initializeHistory, welcomeMessage]);
+  const messages = loadingMessage ? [...history, loadingMessage] : history;
 
   return (
     <div className="container w-full max-w-370 mx-auto my-3 border border-gray-200 rounded-xl p-4 flex flex-col h-[90vh] bg-white shadow-lg">
-
       <div className="flex items-center gap-3 mb-2 pb-3 border-b border-gray-100">
         <div className="w-6 h-6 bg-gradient-to-r from-gray-800 to-gray-600 rounded-full flex items-center justify-center">
           <span className="text-white font-bold text-[12px]">AI</span>
@@ -40,7 +36,7 @@ export default function ChatAssistant() {
         hover:scrollbar-thumb-gray-600
       "
       >
-        {history.map((msg, i) => (
+        {messages?.map((msg, i) => (
           <div
             key={i}
             className={`flex ${
@@ -64,11 +60,7 @@ export default function ChatAssistant() {
                 </span>
               </div>
               <div
-                className={
-                  msg.role === "user"
-                    ? "text-white"
-                    : "text-gray-800"
-                }
+                className={msg.role === "user" ? "text-white" : "text-gray-800"}
               >
                 <MessageContent
                   content={msg.content}
