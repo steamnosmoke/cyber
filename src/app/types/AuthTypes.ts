@@ -1,3 +1,4 @@
+import { TChatMessage } from "src/AI/types/chatTypes";
 import { TCartItem } from "./CartTypes";
 import { TOrder } from "./OrderTypes";
 import { TProduct } from "./ProductTypes";
@@ -31,6 +32,7 @@ export type TUser = {
   firebaseId?: string;
   birthday?: string;
   defaultAddress?: TAddress;
+  AIchatHistory?: TChatMessage[];
 };
 
 export type TAuthStore = {
