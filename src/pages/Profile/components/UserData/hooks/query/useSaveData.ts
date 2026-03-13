@@ -1,8 +1,8 @@
 import { useAuthStore } from "store/authStore";
-import { TUser } from "types/AuthTypes";
+import { User } from "types/AuthTypes";
 
 import { useSaveUserData } from "./useSaveUserData";
-import { useGetAddresses } from "./useGetAddresses";
+import { useGeAddresses } from "./useGeAddresses";
 
 import { useChangeData } from "../../store/useChageData";
 
@@ -11,18 +11,18 @@ export function useSaveData() {
 
   const { mutate: saveData } = useSaveUserData();
 
-  const { data: addresses } = useGetAddresses(user.firebaseId);
+  const { data: addresses } = useGeAddresses(user.firebaseId);
 
-  const setUser = useAuthStore((state) => state.setUser);
-  const setUserData = useChangeData((state) => state.setUser);
+  const seUser = useAuthStore((state) => state.seUser);
+  const seUserData = useChangeData((state) => state.seUser);
 
   const userData = useChangeData((state) => state.user) || {};
-  const defaultAddress = useChangeData((state) => state.defaultAddress);
+  const defaulAddress = useChangeData((state) => state.defaulAddress);
 
   const { email, name, phone, birthday } = userData;
 
   return () => {
-    const updatedUser: TUser = {
+    const updatedUser: User = {
       email,
       name,
       phone,
@@ -30,7 +30,7 @@ export function useSaveData() {
       addresses: addresses,
     };
     saveData(updatedUser);
-    setUser({ ...user, ...updatedUser });
-    setUserData({ ...updatedUser, defaultAddress });
+    seUser({ ...user, ...updatedUser });
+    seUserData({ ...updatedUser, defaulAddress });
   };
 }

@@ -1,7 +1,7 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-export type Props = {
-  products: TProduct[];
+export interface Props {
+  products: Product[];
   status: string;
   grid?: string;
 };

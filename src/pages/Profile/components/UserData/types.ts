@@ -1,35 +1,35 @@
-import { TAddress, TUser } from "types/AuthTypes";
+import { Address, User } from "types/AuthTypes";
 
-export type TUserData = {
+export interface UserData {
   type: string;
   label: string;
   value: string;
   placeholder: string;
   func: (input: string) => void;
-};
+}
 
-export type TAddressData = {
+export interface AddressData {
   label: string;
   value: string;
   placeholder: string;
   func: (input: string) => void;
-};
+}
 
-export type TDataStore = {
-  user: TUser;
-  defaultAddress: TAddress | undefined;
-  setUser: (user: TUser) => void;
+export interface DataStore {
+  user: User;
+  defaulAddress: Address | undefined;
+  seUser: (user: User) => void;
   setEmail: (email: string) => void;
   setName: (name: string) => void;
   setPhone: (phone: string) => void;
   setBirthday: (birthday: string) => void;
-  setDefaultAddress: (defaultAddress: TAddress | undefined) => void;
-  setAddresses: (address: TAddress) => void;
-  removeAddress: (address: TAddress) => void;
+  setDefaulAddress: (defaulAddress: Address | undefined) => void;
+  seAddresses: (address: Address) => void;
+  removeAddress: (address: Address) => void;
   clearData: () => void;
-};
+}
 
-export type TAddressStore = TAddress & {
+export interface AddressStore extends Address {
   isNewAddressOpened: boolean;
   isAddressesOpened: boolean;
   setIsNewAddressOpened: (isNewAddressOpened: boolean) => void;
@@ -39,4 +39,4 @@ export type TAddressStore = TAddress & {
   setStreet: (street: string) => void;
   setZip: (zip: string) => void;
   clearAll: () => void;
-};
+}

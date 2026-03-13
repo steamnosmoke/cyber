@@ -1,10 +1,10 @@
 // utils/sendChatMessage.ts
 import axios from "axios";
-import { TChatProduct } from "../types/chatTypes";
+import { ChatProduct } from "../types/chatTypes";
 
 export async function sendChatMessage(
   message: string,
-  products: TChatProduct[],
+  products: ChatProduct[],
   history: { role: "user" | "assistant"; content: string }[]
 ) {
 

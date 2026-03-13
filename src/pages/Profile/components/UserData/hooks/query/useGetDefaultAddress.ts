@@ -1,10 +1,10 @@
-import { TAddress } from "types/AuthTypes";
+import { Address } from "types/AuthTypes";
 
-import { getAddresses } from "./useGetAddresses";
+import { geAddresses } from "./useGeAddresses";
 
-export default async function getDefaultAddress(
+export default async function getDefaulAddress(
   userId: string
-): Promise<TAddress | undefined> {
-  const addresses = await getAddresses(userId);
+): Promise<Address | undefined> {
+  const addresses = await geAddresses(userId);
   return addresses ? addresses.find((address) => address.isDefault) : undefined;
 }

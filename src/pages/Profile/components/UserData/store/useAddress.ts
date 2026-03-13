@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { TAddressStore } from "../types";
+import { AddressStore } from "../types";
 
-export const useAddress = create<TAddressStore>()((set) => ({
+export const useAddress = create<AddressStore>()((set) => ({
   city: "",
   country: "",
   zip: "",

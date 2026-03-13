@@ -1,14 +1,14 @@
-import { TAddress } from "./AuthTypes";
-import { TCartItem } from "./CartTypes";
+import { Address } from "./AuthTypes";
+import { CartItem } from "./CartTypes";
 
-export type TOrder = {
+export interface Order {
   date: string;
-  items: TCartItem[];
+  items: CartItem[];
   status: string;
   totalDiscount: number;
   totalPriceWithDiscount: number;
   totalPriceWithoutDiscount: number;
   value: number;
   id?: string;
-  address?: TAddress;
+  address?: Address;
 };

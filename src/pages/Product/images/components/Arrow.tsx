@@ -1,6 +1,6 @@
-import { TArrowProps } from "../types";
+import { ArrowProps } from "../types";
 
-export default function Arrow({ check }: TArrowProps) {
+export default function Arrow({ check }: ArrowProps) {
   return (
     <svg
       className={`arrow transition-all duration-200 ease-in-out ${

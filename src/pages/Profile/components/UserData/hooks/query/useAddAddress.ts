@@ -3,18 +3,18 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { TAddress } from "types/AuthTypes";
-import { changeDefaultAddress } from "./useChangeDefaultAddress";
+import { Address } from "types/AuthTypes";
+import { changeDefaulAddress } from "./useChangeDefaulAddress";
 
 export async function addAddress(
-  address: TAddress,
+  address: Address,
   userId: string
-): Promise<TAddress> {
+): Promise<Address> {
   const url: string = `${DB_URL}users/${userId}/addresses.json`;
   const { data } = await axios.post<{ name: string }>(url, address);
 
-  const newAddress: TAddress = { ...address, id: data.name };
-  changeDefaultAddress(newAddress, userId);
+  const newAddress: Address = { ...address, id: data.name };
+  changeDefaulAddress(newAddress, userId);
   return newAddress;
 }
 
@@ -22,7 +22,7 @@ export function useAddAddress(userId: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (address: TAddress) => addAddress(address, userId),
+    mutationFn: (address: Address) => addAddress(address, userId),
     mutationKey: ["user", "addresses"],
     onSuccess: () => {
       queryClient.invalidateQueries({

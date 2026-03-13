@@ -1,11 +1,11 @@
-import { TService, TSocial } from "../types";
+import { Service, Social } from "../types";
 
 import twitter from "../images/Twitter.svg";
 import facebook from "../images/Facebook.svg";
 import tiktok from "../images/Tiktok.png";
 import instagram from "../images/Instagram.svg";
 
-export const services: TService[] = [
+export const services: Service[] = [
   { label: "Bonus program", link: "/" },
   { label: "Gift cards", link: "/" },
   { label: "Credit and payment", link: "/" },
@@ -14,7 +14,7 @@ export const services: TService[] = [
   { label: "Payment", link: "/" },
 ];
 
-export const assistances: TService[] = [
+export const assistances: Service[] = [
   { label: "Find an order", link: "/" },
   { label: "Terms of delivery", link: "/" },
   { label: "Exchange and return of goods", link: "/" },
@@ -23,7 +23,7 @@ export const assistances: TService[] = [
   { label: "Terms of use of the site", link: "/" },
 ];
 
-export const socials: TSocial[] = [
+export const socials: Social[] = [
   { icon: twitter, alt: "twitter", link: "#!" },
   { icon: facebook, alt: "facebook", link: "#!" },
   { icon: tiktok, alt: "tiktok", link: "#!" },

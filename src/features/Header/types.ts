@@ -1,22 +1,22 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-export type TButton = {
+export interface Button {
   path: string;
   src: React.ReactNode;
   action: () => void;
-};
+}
 
-export type TNavigate = {
+export interface Navigate {
   path: string;
   label: string;
-};
+}
 
-export type TSearchStore = {
+export interface SearchStore {
   value: string;
-  result: TProduct[];
+  result: Product[];
   ariaOpened: boolean;
   setAriaOpened: (value: boolean) => void;
-  setResult: (products: TProduct[]) => void;
+  setResult: (products: Product[]) => void;
   Searching: (value: string) => void;
   ClearValue: () => void;
-};
+}

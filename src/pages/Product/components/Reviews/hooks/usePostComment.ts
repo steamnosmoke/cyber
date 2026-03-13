@@ -3,9 +3,9 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { TReview } from "types/ProductTypes";
+import { Review } from "types/ProductTypes";
 
-async function postComment(review: TReview) {
+async function postComment(review: Review) {
   const { productId, ...comment } = review;
   const response = await axios.post(
     `${DB_URL}/products/${productId}/reviews.json`,

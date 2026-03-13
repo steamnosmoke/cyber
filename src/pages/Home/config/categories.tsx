@@ -5,9 +5,9 @@ import Accessories from "../images/components/Accessories";
 import Headphones from "../images/components/Headphones";
 import Computers from "../images/components/Computers";
 import Gaming from "../images/components/Gaming";
-import { TCategory } from "../types";
+import { Category } from "../types";
 
-const categories: TCategory[] = [
+const categories: Category[] = [
   {
     label: "All",
     category: "",

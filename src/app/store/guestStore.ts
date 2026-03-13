@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { TGusetStore } from "../types/GuestTypes";
+import { GuestStore } from "../types/GuestTypes";
 
-export const useGuestStore = create<TGusetStore>()(
+export const useGuestStore = create<GuestStore>()(
   persist(
     (set) => ({
       cart: [],

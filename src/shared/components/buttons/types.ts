@@ -1,6 +1,6 @@
 
 import { ReactNode, Dispatch, SetStateAction } from "react";
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
 export default interface ButtonProps {
   children: ReactNode;
@@ -11,8 +11,8 @@ export default interface ButtonProps {
   textclass?: string;
 }
 
-export type TAddToCartProps = {
-  product: TCartItem;
+export interface AddToCarProps {
+  product: CartItem;
   setStock: Dispatch<SetStateAction<number>>;
   stock: number;
   color: "black" | "white";

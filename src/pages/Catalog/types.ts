@@ -1,24 +1,24 @@
-import { TFilter, TSortingParams } from "types/CategoryTypes";
-import { TProduct } from "types/ProductTypes";
+import { Filter, SortingParams } from "types/CategoryTypes";
+import { Product } from "types/ProductTypes";
 
-export type TFilterProps = {
-  filter: TFilter;
+export interface FilterProps {
+  filter: Filter;
 };
 
-export type TOption = TSortingParams & {
+export interface Option extends SortingParams {
   label: string;
 };
 
-export type TStoreState = {
-  filters: TFilter[];
-  confirmedFilters: TFilter[];
-  filteredProducts: TProduct[];
+export interface FilterStore {
+  filters: Filter[];
+  confirmedFilters: Filter[];
+  filteredProducts: Product[];
   isFilterOpened: boolean;
-  sortingParams: TSortingParams;
-  setFilters: (filter: { title: string; value: string }) => void;
+  sortingParams: SortingParams;
+  seFilters: (filter: { title: string; value: string }) => void;
   clearFilters: () => void;
   setConfirmedFilters: () => void;
-  setFilterOpened: () => void;
-  setFilteredProducts: (products: TProduct[]) => void;
-  setSortingParams: (params: TSortingParams) => void;
+  seFilterOpened: () => void;
+  seFilteredProducts: (products: Product[]) => void;
+  seSortingParams: (params: SortingParams) => void;
 };

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useState } from "react";
 import { sendChatMessage } from "../utils/sendChatMessage";
-import useGetProducts from "./useGetProducts";
+import useGeProducts from "./useGeProducts";
 import { useChatStore } from "../store/chatStore";
-import { TChatMessage } from "../types/chatTypes";
+import { ChatMessage } from "../types/chatTypes";
 import { getLoadingMessages } from "../config/loadingMessages";
 import useUpdateUserAIChat from "./user/useUpdateUSerAIChat";
 import useGetAIChat from "./useGetAIChat";
@@ -15,31 +15,31 @@ export const useChatLogic = (id: string) => {
   const setInput = useChatStore((state) => state.setInput);
   const setGuestHistory = useChatStore((state) => state.setHistory);
   const loadingMessages = getLoadingMessages();
-  const { products } = useGetProducts();
+  const { products } = useGeProducts();
 
-  const { mutate: setUserHistory } = useUpdateUserAIChat(id);
+  const { mutate: seUserHistory } = useUpdateUserAIChat(id);
   const { chatData } = useGetAIChat(id);
-  const setHistory = id === "guest" ? setGuestHistory : setUserHistory;
+  const setHistory = id === "guest" ? setGuestHistory : seUserHistory;
 
   const history = chatData ? chatData : [welcomeMessage]
 
-  const [loadingMessage, setLoadingMessage] = useState<TChatMessage | null>(null)
+  const [loadingMessage, setLoadingMessage] = useState<ChatMessage | null>(null)
 
   const handleSend = useCallback(async () => {
     if (!input.trim()) return;
 
-    const userMessage: TChatMessage = {
+    const userMessage: ChatMessage = {
       role: "user",
       content: input,
       id: uuid(),
       timestamp: new Date(),
     };
 
-    const newHistory: TChatMessage[] = [...history, userMessage];
+    const newHistory: ChatMessage[] = [...history, userMessage];
     setHistory(userMessage);
     setInput("");
 
-    const loadingMessage: TChatMessage = {
+    const loadingMessage: ChatMessage = {
       role: "assistant",
       content:
         loadingMessages[Math.floor(Math.random() * loadingMessages.length)],
@@ -57,7 +57,7 @@ export const useChatLogic = (id: string) => {
 
       const reply = await sendChatMessage(input, products, compatibleHistory);
 
-      const assistantMessage: TChatMessage = {
+      const assistantMessage: ChatMessage = {
         role: "assistant",
         content: reply,
         id: uuid(),

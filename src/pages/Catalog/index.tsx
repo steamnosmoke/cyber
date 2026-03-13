@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useProductStore } from "store/productsStore";
 import { useNavigationStore } from "store/navigationStroe";
-import useGetProducts from "hooks/useGetProducts";
+import useGeProducts from "hooks/useGeProducts";
 import { useFilterStore } from "./store/filter";
 
 import Products from "components/Products";
@@ -19,15 +19,15 @@ export default function Catalog() {
   const param = useFilterStore((state) => state.sortingParams.param);
   const mod = useFilterStore((state) => state.sortingParams.mod);
 
-  const setFilteredProducts = useFilterStore(
-    (state) => state.setFilteredProducts
+  const seFilteredProducts = useFilterStore(
+    (state) => state.seFilteredProducts
   );
 
-  const { products, status } = useGetProducts(category);
+  const { products, status } = useGeProducts(category);
 
   useEffect(() => {
-    setFilteredProducts(products);
-  }, [confirmedFilters, status, mod, param, setFilteredProducts, category]);
+    seFilteredProducts(products);
+  }, [confirmedFilters, status, mod, param, seFilteredProducts, category]);
 
   useEffect(() => {
     setActivePage(1);

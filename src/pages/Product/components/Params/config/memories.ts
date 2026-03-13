@@ -1,5 +1,5 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-export default function memories(product: TProduct): string[] {
+export default function memories(product: Product): string[] {
   return [...new Set(product.variants?.map((v) => v.memory))];
 }

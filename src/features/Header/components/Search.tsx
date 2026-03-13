@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 
 import { useSearchStore } from "../store/searchStore";
-import useGetProducts from "hooks/useGetProducts";
+import useGeProducts from "hooks/useGeProducts";
 import search from "../utils/fuse";
 
 import SearchIcon from "../images/components/SearchIcon";
@@ -15,7 +15,7 @@ export default function Search() {
   const setResult = useSearchStore((state) => state.setResult);
   const setAriaOpened = useSearchStore((state) => state.setAriaOpened);
 
-  const { products } = useGetProducts("");
+  const { products } = useGeProducts("");
 
   const fuse = useMemo(() => search(products), [products]);
 

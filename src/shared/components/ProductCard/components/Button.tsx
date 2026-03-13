@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import useAddToCart from "hooks/cart/useAddToCart";
 import changeCount from "buttons/utils/changeCount";
 import BlackButton from "buttons/components/BlackButton";
-import ChangeCountButtton from "buttons/components/ChangeCountButton";
+import ChangeCountButtton from "buttons/components/ChangeCounButton";
 import useGetCart from "hooks/cart/useGetCart";
 import { useAuthStore } from "store/authStore";
 

@@ -1,21 +1,21 @@
-import { TAddress } from "types/AuthTypes";
+import { Address } from "types/AuthTypes";
 import { useAuthStore } from "store/authStore";
 
-import { useGetAddresses } from "../hooks/query/useGetAddresses";
-import { useChangeDefaultAddress } from "../hooks/query/useChangeDefaultAddress";
+import { useGeAddresses } from "../hooks/query/useGeAddresses";
+import { useChangeDefaulAddress } from "../hooks/query/useChangeDefaulAddress";
 import useRemoveAddress from "../hooks/query/useRemoveAddress";
 import { useAddress } from "../store/useAddress";
 import { useChangeData } from "../store/useChageData";
-import formatAddress from "../utils/formatAddress";
+import formaAddress from "../utils/formaAddress";
 
 import remove from "assets/images/clear.svg";
 
 export default function AddressesList() {
   const userId = useAuthStore((state) => state.firebaseId);
 
-  const { data: addresses } = useGetAddresses(userId);
+  const { data: addresses } = useGeAddresses(userId);
 
-  const { mutate: changeDefaultAddress } = useChangeDefaultAddress(userId);
+  const { mutate: changeDefaulAddress } = useChangeDefaulAddress(userId);
 
   const { mutate: removeAddress } = useRemoveAddress(userId);
 
@@ -29,11 +29,11 @@ export default function AddressesList() {
 
   const removeStateAddress = useChangeData((state) => state.removeAddress);
 
-  const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
+  const setDefaulAddress = useChangeData((state) => state.setDefaulAddress);
 
-  const onClickAddress = (address: TAddress) => {
-    changeDefaultAddress(address);
-    setDefaultAddress(address);
+  const onClickAddress = (address: Address) => {
+    changeDefaulAddress(address);
+    setDefaulAddress(address);
     setIsAddressesOpened(false);
   };
 
@@ -43,7 +43,7 @@ export default function AddressesList() {
     setIsAddressesOpened(false);
   };
 
-  const onRemoveAddress = (address: TAddress) => {
+  const onRemoveAddress = (address: Address) => {
     removeAddress(address);
     removeStateAddress(address);
     setIsAddressesOpened(false);
@@ -69,7 +69,7 @@ export default function AddressesList() {
               className="truncate w-full"
               onClick={() => onClickAddress(address)}
             >
-              {formatAddress(address)}
+              {formaAddress(address)}
             </p>
             <img
               src={remove}

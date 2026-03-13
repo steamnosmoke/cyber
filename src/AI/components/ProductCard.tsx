@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useGetProductById } from "../hooks/useGetProductById";
+import { useGeProductById } from "../hooks/useGeProductById";
 import getParams from "components/ProductCard/config/params";
 import getLink from "components/ProductCard/utils/getLink";
 import { useCallback } from "react";
@@ -10,14 +10,14 @@ interface Props {
 }
 
 export default function ProductCard({ objectId }: Props) {
-  const { product } = useGetProductById(objectId);
-  const setProduct = useProductStore((state) => state.setProduct);
+  const { product } = useGeProductById(objectId);
+  const seProduct = useProductStore((state) => state.seProduct);
 
   const onClickCard = useCallback(() => {
-    setProduct(product);
+    seProduct(product);
 
     window.scrollTo(0, 0);
-  }, [setProduct, product]);
+  }, [seProduct, product]);
 
   if (!product) {
     return null;

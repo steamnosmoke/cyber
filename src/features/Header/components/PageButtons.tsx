@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 import { useAuthStore } from "store/authStore";
 
 import { useNavigateActions } from "../hooks/useNavigateActions";
-import { TButton } from "../types";
+import { Button } from "../types";
 
 import WishlistIcon from "../images/components/WishlistIcon";
 import CartIcon from "../images/components/CartIcon";
@@ -14,7 +14,7 @@ export default function PageButtons() {
 
   const firebaseId = useAuthStore((state) => state.firebaseId);
 
-  const buttons: TButton[] = [
+  const buttons: Button[] = [
     {
       path: "/wishlist",
       src: <WishlistIcon />,

@@ -1,7 +1,7 @@
 import { useCartStore } from "../store/cartStore";
-import { TNum } from "../types";
+import { Num } from "../types";
 
-export default function useGetNumbers(): TNum[] {
+export default function useGeNumbers(): Num[] {
   const subtotal = useCartStore((state) => state.subtotal);
   const discount = useCartStore((state) => state.discount);
   const total = useCartStore((state) => state.total);

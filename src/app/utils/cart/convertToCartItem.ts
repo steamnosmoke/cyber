@@ -1,33 +1,33 @@
-import { TProduct } from "types/ProductTypes";
-import { TCartItem } from "types/CartTypes";
+import { Product } from "types/ProductTypes";
+import { CartItem } from "types/CartTypes";
 
 import { useProductStore } from "store/productsStore";
 
 export default function convertToCartItem(
-  product: TProduct,
+  product: Product,
   color: string,
   memory: string
-): TCartItem {
+): CartItem {
 
-  const setProduct = useProductStore.getState().setProduct;
-  const currentVariant = product.variants.find(
+  const seProduct = useProductStore.getState().seProduct;
+  const currenVariant = product.variants.find(
     (item) => item.color === color && item.memory === memory
   );
-  const variantId = `${product.variants.indexOf(currentVariant)}`;
+  const variantId = `${product.variants.indexOf(currenVariant)}`;
   const objectId = `${Number(product.id) - 1}x${variantId}`;
-  const item: TCartItem = {
+  const item: CartItem = {
     ...product,
-    ...currentVariant,
-    totalPrice: currentVariant.price - currentVariant.discount,
+    ...currenVariant,
+    totalPrice: currenVariant.price - currenVariant.discount,
     count: 1,
     total: product.price - product.discount,
-    price: currentVariant.price,
-    discount: currentVariant.discount,
-    subTotal: currentVariant.price,
-    totalDiscount: currentVariant.discount,
+    price: currenVariant.price,
+    discount: currenVariant.discount,
+    subTotal: currenVariant.price,
+    totalDiscount: currenVariant.discount,
     objectId,
     variantId
   };
-  setProduct(item);
+  seProduct(item);
   return item;
 }

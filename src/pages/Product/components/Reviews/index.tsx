@@ -1,5 +1,5 @@
 
-import useGetReviews from "./hooks/useGetReviews";
+import useGeReviews from "./hooks/useGeReviews";
 
 import { useProductStore } from "store/productsStore";
 import Rates from "./components/Rates";
@@ -8,7 +8,7 @@ import ReviewList from "./components/ReviewList";
 
 export default function Reviews() {
   const product = useProductStore((state) => state.product);
-  const { data: reviewsData, status } = useGetReviews(product.productId);
+  const { data: reviewsData, status } = useGeReviews(product.productId);
 
   if (!reviewsData || status === "pending") return <h1>Loading reviews...</h1>;
 

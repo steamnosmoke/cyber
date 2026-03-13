@@ -1,4 +1,4 @@
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 import minusItem from "utils/cart/minusItem";
 import { useGuestStore } from "store/guestStore";
 
@@ -6,7 +6,7 @@ export default function useMinusGuestItem() {
   const cart = useGuestStore((state) => state.cart);
   const setCart = useGuestStore((state) => state.setCart);
 
-  return (product: TCartItem): TCartItem => {
+  return (product: CartItem): CartItem => {
     const updatedCart = [...cart];
 
     const updatedItem = minusItem(product);

@@ -1,6 +1,6 @@
-import { TNavigate } from "../types";
+import { Navigate } from "../types";
 
-export const navs: TNavigate[] = [
+export const navs: Navigate[] = [
   { path: "/", label: "Home" },
   { path: "/catalog", label: "Catalog" },
   // { path: "/contacts", label: "Contact Us" },

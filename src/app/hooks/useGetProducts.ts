@@ -2,15 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-async function getProducts(category: string): Promise<TProduct[]> {
+async function geProducts(category: string): Promise<Product[]> {
   const url = `${DB_URL}products.json${
     category ? `?orderBy="category"&equalTo="${category}"` : ""
   }`;
 
-  const { data } = await axios.get<Record<string, TProduct>>(url);
-  const products: TProduct[] = [];
+  const { data } = await axios.get<Record<string, Product>>(url);
+  const products: Product[] = [];
 
   Object.entries(data || {}).forEach(([prodId, product]) => {
     product.variants?.forEach((variant, varId) => {
@@ -29,10 +29,10 @@ async function getProducts(category: string): Promise<TProduct[]> {
   return products;
 }
 
-export default function useGetProducts(category: string) {
-  const { data, status, error } = useQuery<TProduct[]>({
+export default function useGeProducts(category: string) {
+  const { data, status, error } = useQuery<Product[]>({
     queryKey: ["products", category],
-    queryFn: () => getProducts(category),
+    queryFn: () => geProducts(category),
     placeholderData: (prev) => prev,
   });
 

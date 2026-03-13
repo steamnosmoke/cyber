@@ -1,18 +1,18 @@
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
-export type TNum = {
+export interface Num {
   label: string;
   value: string;
 };
 
-export type TProps = {
-  product: TCartItem;
+export interface Props {
+  product: CartItem;
 };
 
-export type TCartStore = {
+export interface CartStorev {
   subtotal: number;
   discount: number;
   total: number;
   count: number;
-  calcNumbers: (cart: TCartItem[]) => void;
+  calcNumbers: (cart: CartItem[]) => void;
 };

@@ -2,17 +2,17 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
-import { TUser, TLogin } from "types/AuthTypes";
+import { User, Login } from "types/AuthTypes";
 import DB_URL from "constants/DB_URL";
 
 async function registerUser({
   email,
   password,
   confirm,
-}: TLogin): Promise<TUser> {
+}: Login): Promise<User> {
   if (password !== confirm) throw new Error("Passwords do not match");
 
-  const { data: existingUsers } = await axios.get<{ [key: string]: TUser }>(
+  const { data: existingUsers } = await axios.get<{ [key: string]: User }>(
     `${DB_URL}users.json?orderBy="email"&equalTo="${email}"`
   );
 
@@ -22,7 +22,7 @@ async function registerUser({
 
   const passwordHash = bcrypt.hashSync(password, 10);
 
-  const newUser: TUser = {
+  const newUser: User = {
     name: "",
     email,
     role: "customer",

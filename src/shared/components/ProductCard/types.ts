@@ -1,6 +1,6 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-export type TCategoryprops = {
-  product: TProduct;
+export interface Categoryprops {
+  product: Product;
   onClickCard: () => void;
 };

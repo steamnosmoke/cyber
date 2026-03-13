@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { TNavigateStore } from "types/NavigationStore";
+import { NavigateStore } from "types/NavigationStore";
 
-export const useNavigationStore = create<TNavigateStore>()(
+export const useNavigationStore = create<NavigateStore>()(
   persist(
     (set) => ({
       activePage: 0,

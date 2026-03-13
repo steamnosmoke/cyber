@@ -3,13 +3,13 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
-export async function getUserCart(userId: string): Promise<TCartItem[]> {
-  const { data } = await axios.get<Record<string, TCartItem>>(
+export async function geUserCart(userId: string): Promise<CartItem[]> {
+  const { data } = await axios.get<Record<string, CartItem>>(
     `${DB_URL}/users/${userId}/cart.json`
   );
-  const cartData: TCartItem[] = data
+  const cartData: CartItem[] = data
     ? Object.entries(data).map((el) => {
         const [key, value] = el;
         return { ...value, id: key };
@@ -18,10 +18,10 @@ export async function getUserCart(userId: string): Promise<TCartItem[]> {
   return cartData;
 }
 
-export default function useGetUserCart(userId: string) {
+export default function useGeUserCart(userId: string) {
 
-  return useQuery<TCartItem[]>({
-    queryFn: () => getUserCart(userId),
+  return useQuery<CartItem[]>({
+    queryFn: () => geUserCart(userId),
     queryKey: ["cart", userId],
     enabled: !!userId && userId !== "guest",
   });

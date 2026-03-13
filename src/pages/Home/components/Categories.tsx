@@ -2,14 +2,14 @@ import { useMemo } from "react";
 
 import { useProductStore } from "store/productsStore";
 
-import { TCategory } from "../types";
+import { Category } from "../types";
 import categories from "../config/categories";
 
 export default function Categories() {
   const category = useProductStore((state) => state.category);
-  const setCategory = useProductStore((state) => state.setCategory);
+  const seCategory = useProductStore((state) => state.seCategory);
 
-  const memoizedCategories = useMemo<TCategory[]>(() => categories, [category]);
+  const memoizedCategories = useMemo<Category[]>(() => categories, [category]);
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function Categories() {
                       ? "active-item group w-28 h-26 py-3 cursor-pointer rounded-2xl flex flex-col items-center gap-2 scale-100 bg-[#353535] text-stone-100 hover:scale-100"
                       : "categories-item group w-28 h-26 py-3 cursor-pointer rounded-2xl flex flex-col items-center gap-2 bg-[rgb(237_237_237)] text-center transition-all duration-200 ease-in-out hover:scale-110 hover:bg-[#353535] hover:text-stone-100"
                   }`}
-                  onClick={() => setCategory(item.category)}
+                  onClick={() => seCategory(item.category)}
                 >
                   {item.img}
                   <p>{item.label}</p>

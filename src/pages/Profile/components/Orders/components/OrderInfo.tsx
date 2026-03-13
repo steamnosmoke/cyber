@@ -1,9 +1,9 @@
-import { TOrderProps } from "../types";
+import { OrderProps } from "../types";
 
-import getNumbers from "../config/numbers";
+import geNumbers from "../config/numbers";
 
-export default function OrderInfo({ order }: TOrderProps) {
-  const numbers = getNumbers(order);
+export default function OrderInfo({ order }: OrderProps) {
+  const numbers = geNumbers(order);
 
   return (
     <div className="info  flex flex-col items-center ">

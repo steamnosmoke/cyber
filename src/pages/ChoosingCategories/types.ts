@@ -1,4 +1,4 @@
-export type TCategory = {
+export interface Category {
     label: string;
     class: string;
     img_class: string;

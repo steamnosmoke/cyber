@@ -1,27 +1,27 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-export interface TChatMessage {
+export interface ChatMessage {
   role: "user" | "assistant" | "system";
   content: string;
   timestamp?: Date;
   id?: string;
 }
 
-export interface TChatStore {
+export interface ChatStore {
   input: string;
-  history: TChatMessage[];
+  history: ChatMessage[];
   setInput: (val: string) => void;
-  setHistory: (message: TChatMessage, replaceId?: string) => void;
+  setHistory: (message: ChatMessage, replaceId?: string) => void;
   clearHistory: () => void;
 }
 
-export type ChatRequest = {
-  history: TChatMessage[];
+export interface ChatRequest {
+  history: ChatMessage[];
   userMessage: string;
-  products: TProduct[];
+  products: Product[];
 };
 
-export type TChatProduct = {
+export interface ChatProduct {
   objectId: string;
   name: string;
   category: string;

@@ -1,12 +1,12 @@
 import { Link } from "react-router";
 import getLink from "../utils/getLink";
 import getParams from "../config/params";
-import { TCategoryprops } from "../types";
+import { Categoryprops } from "../types";
 
 export default function CardByCategory({
   product,
   onClickCard,
-}: TCategoryprops) {
+}: Categoryprops) {
   const link = getLink(product);
   const param = getParams(product);
 

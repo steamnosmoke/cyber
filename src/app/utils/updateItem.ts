@@ -1,6 +1,6 @@
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
-export default function updateItem(product: TCartItem) {
+export default function updateItem(product: CartItem) {
   const updatedCount = product.count + 1;
   const updatedTotal = product.total + product.totalPrice;
   const updatedDiscount = updatedCount * product.discount;

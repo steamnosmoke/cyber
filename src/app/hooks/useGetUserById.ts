@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-import { TUser } from "types/AuthTypes";
+import { User } from "types/AuthTypes";
 import DB_URL from "constants/DB_URL";
 
-async function getUser(firebaseId: string): Promise<TUser> {
-  const { data } = await axios.get<TUser>(
+async function geUser(firebaseId: string): Promise<User> {
+  const { data } = await axios.get<User>(
     `${DB_URL}users/${firebaseId}.json`
   );
   return data;
 }
 
-export default function useGetUserById(firebaseId: string) {
+export default function useGeUserById(firebaseId: string) {
   return useQuery({
-    queryFn: () => getUser(firebaseId),
+    queryFn: () => geUser(firebaseId),
     queryKey: ["user", firebaseId],
   });
 }

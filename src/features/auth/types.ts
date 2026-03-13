@@ -1,13 +1,13 @@
-export type TInputs = {
+export interface Inputs {
   type: string;
   label: string;
   value: string;
   placeholder: string;
   func: (s: string) => void;
-};
+}
 
-export type TModalProps = {
-    onClose: ()=>void;
-    onSwitchToRegister?: ()=>void
-    onSwitchToLogin?: ()=>void
+export interface ModalProps {
+  onClose: () => void;
+  onSwitchToRegister?: () => void;
+  onSwitchToLogin?: () => void;
 }

@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { TStoreState } from "../types";
+import { FilterStore } from "../types";
 
-export const useFilterStore = create<TStoreState>()(
+export const useFilterStore = create<FilterStore>()(
   persist(
     (set, get) => ({
       isFilterOpened: true,
@@ -12,7 +12,7 @@ export const useFilterStore = create<TStoreState>()(
       filteredProducts: [],
       sortingParams: { param: "price", mod: "desc" },
 
-      setFilters: ({ title, value }) => {
+      seFilters: ({ title, value }) => {
         set((state) => {
           const existingFilter = state.filters.find((f) => f.title === title);
           const updatedFilters = [...state.filters];
@@ -55,10 +55,10 @@ export const useFilterStore = create<TStoreState>()(
       setConfirmedFilters: () =>
         set((state) => ({ confirmedFilters: state.filters })),
 
-      setFilterOpened: () =>
+      seFilterOpened: () =>
         set((state) => ({ isFilterOpened: !state.isFilterOpened })),
 
-      setFilteredProducts: (products) => {
+      seFilteredProducts: (products) => {
         const state = get();
         const filters: Record<string, string[]> = {};
 
@@ -110,7 +110,7 @@ export const useFilterStore = create<TStoreState>()(
         set({ filteredProducts });
       },
 
-      setSortingParams: (params) => set({ sortingParams: params }),
+      seSortingParams: (params) => set({ sortingParams: params }),
     }),
     {
       name: "product-storage",

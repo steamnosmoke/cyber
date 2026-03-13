@@ -3,10 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import DB_URL from "constants/DB_URL";
 
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
 async function clearCart(userId: string) {
-  await axios.delete<TCartItem[]>(`${DB_URL}/users/${userId}/cart.json`);
+  await axios.delete<CartItem[]>(`${DB_URL}/users/${userId}/cart.json`);
 }
 
 export default function useClearCart(userId: string) {

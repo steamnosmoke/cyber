@@ -1,19 +1,19 @@
-import { TCartItem } from "types/CartTypes";
-import { TOrder } from "types/OrderTypes";
+import { CartItem } from "types/CartTypes";
+import { Order } from "types/OrderTypes";
 
-export type TNumber = {
+export interface Number {
   label: string;
   value: string;
 };
 
-export type TOrderProps = {
-  order: TOrder;
+export interface OrderProps {
+  order: Order;
 };
 
-export type TOrderCardProps = {
-  product: TCartItem;
+export interface OrderCardProps {
+  product: CartItem;
 };
 
-export type TOrderItemsProps = {
-  items: TCartItem[];
+export interface OrderItemsProps {
+  items: CartItem[];
 };

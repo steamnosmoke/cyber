@@ -1,17 +1,17 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { TCartItem } from "types/CartTypes";
-import { TVariant } from "types/ProductTypes";
+import { CartItem } from "types/CartTypes";
+import { Variant } from "types/ProductTypes";
 import DB_URL from "constants/DB_URL";
 
-async function updateStock(cart: TCartItem[]) {
+async function updateStock(cart: CartItem[]) {
   await Promise.all(
     cart.map(async (item) => {
-      const { data: product } = await axios.get<TVariant>(
+      const { data: product } = await axios.get<Variant>(
         `${DB_URL}products/${item.productId}/variants/${item.variantId}.json`
       );
-      await axios.patch<TVariant>(
+      await axios.patch<Variant>(
         `${DB_URL}products/${item.productId}/variants/${item.variantId}.json`,
         { ...product, stock: product.stock - item.count }
       );
@@ -22,7 +22,7 @@ async function updateStock(cart: TCartItem[]) {
 export default function useUpdateStock() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (cart: TCartItem[]) => updateStock(cart),
+    mutationFn: (cart: CartItem[]) => updateStock(cart),
     mutationKey: ["products"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });

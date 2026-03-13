@@ -1,12 +1,12 @@
-import { TUser } from "types/AuthTypes";
-import { TReview } from "types/ProductTypes";
+import { User } from "types/AuthTypes";
+import { Review } from "types/ProductTypes";
 import usePostComment from "../hooks/usePostComment";
 import { useReviewStore } from "../store/useReviewStore";
 import { useProductStore } from "store/productsStore";
 
 export default function sendComment(
   e: React.FormEvent<HTMLFormElement>,
-  user: TUser,
+  user: User,
   rating: number
 ) {
   const { mutate } = usePostComment();
@@ -21,7 +21,7 @@ export default function sendComment(
     const day = now.getDate().toString().padStart(2, "0");
     const date = `${year}-${month}-${day}`;
 
-    const review: TReview = {
+    const review: Review = {
       userId: user.firebaseId,
       userName: user.name,
       rating,

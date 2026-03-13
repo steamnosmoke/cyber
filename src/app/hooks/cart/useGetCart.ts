@@ -1,12 +1,12 @@
 import { useGuestStore } from "store/guestStore";
-import { TCartItem } from "../../types/CartTypes";
-import useGetUserCart from "./user/useGetUserCart";
+import { CartItem } from "../../types/CartTypes";
+import useGeUserCart from "./user/useGeUserCart";
 
 export default function useGetCart(userId: string): {
-  cart: TCartItem[];
+  cart: CartItem[];
   status: "success" | "error" | "pending";
 } {
-  const { data: userCart, status } = useGetUserCart(userId);
+  const { data: userCart, status } = useGeUserCart(userId);
   const guestCart = useGuestStore((state) => state.cart);
   if (userId === "guest") {
     return { cart: guestCart, status: "success" };

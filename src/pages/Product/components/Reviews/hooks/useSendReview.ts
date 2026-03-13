@@ -1,8 +1,8 @@
-import { TReview } from "types/ProductTypes";
+import { Review } from "types/ProductTypes";
 import usePostComment from "./usePostComment";
 import { useReviewStore } from "../store/useReviewStore";
 import { useProductStore } from "store/productsStore";
-import useGetUserById from "hooks/useGetUserById";
+import useGeUserById from "hooks/useGeUserById";
 
 export default function useSendComment(
   e: React.FormEvent<HTMLFormElement>,
@@ -13,7 +13,7 @@ export default function useSendComment(
   const comment = useReviewStore((state) => state.comment);
   const product = useProductStore((state) => state.product);
 
-  const { data: user } = useGetUserById(userId);
+  const { data: user } = useGeUserById(userId);
 
   return () => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function useSendComment(
     const day = now.getDate().toString().padStart(2, "0");
     const date = `${year}-${month}-${day}`;
 
-    const review: TReview = {
+    const review: Review = {
       userId: userId,
       userName: user.name,
       rating,

@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import send from "assets/images/send.png";
 
-interface ChatInputProps {
+interface ChatInpuProps {
   value: string;
   onChange: (value: string) => void;
   onSend: () => void;
@@ -16,7 +16,7 @@ export default function ChatInput({
   onSend,
   placeholder = "Write your message...",
   disabled = false,
-}: ChatInputProps) {
+}: ChatInpuProps) {
   const [isFocused, setIsFocused] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { useAuthStore } from "store/authStore";
-import useGetUserById from "hooks/useGetUserById";
+import useGeUserById from "hooks/useGeUserById";
 
 import Orders from "./components/Orders";
 import UserData from "./components/UserData";
@@ -16,9 +16,9 @@ export default function Profile() {
   const userId = useAuthStore((state) => state.firebaseId);
   const logOut = useAuthStore((state) => state.logOut);
   const clearData = useChangeData((state) => state.clearData);
-  const setUser = useChangeData((state) => state.setUser);
+  const seUser = useChangeData((state) => state.seUser);
 
-  const { data: user } = useGetUserById(userId);
+  const { data: user } = useGeUserById(userId);
 
   const onLogOut = () => {
     logOut();
@@ -27,7 +27,7 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    setUser(user);
+    seUser(user);
   }, [user]);
 
   if (userId !== "guest")

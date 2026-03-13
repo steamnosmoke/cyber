@@ -1,21 +1,21 @@
-export type TCategory = {
+export interface Category {
   id: number;
   description: string;
   name: string;
-  filters: TFilter[];
+  filters: Filter[];
 };
 
-export type TFilter = {
+export interface Filter {
   title?: string;
   values?: string[];
 };
 
-export type TSortingParams = {
+export interface SortingParams {
   param?: "price" | "rating";
   mod?: "asc" | "desc";
 };
 
-export type TfilterItem = {
+export interface FilterItem {
   title: string;
   value: string;
 };

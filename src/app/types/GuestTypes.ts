@@ -1,9 +1,9 @@
-import { TCartItem } from "./CartTypes";
-import { TProduct } from "./ProductTypes";
+import { CartItem } from "./CartTypes";
+import { Product } from "./ProductTypes";
 
-export type TGusetStore = {
-  cart: TCartItem[];
-  wishlist: TProduct[];
-  setCart: (cart: TCartItem[]) => void;
-  setWishlist: (wishlist: TProduct[]) => void;
+export interface GuestStore {
+  cart: CartItem[];
+  wishlist: Product[];
+  setCart: (cart: CartItem[]) => void;
+  setWishlist: (wishlist: Product[]) => void;
 };

@@ -1,6 +1,6 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-export default function getParams(product: TProduct) {
+export default function getParams(product: Product) {
   const category = product.category;
   return category === "Phones"
     ? `${product.memory}${Number(product.memory) === 1 ? "TB" : "GB"}`

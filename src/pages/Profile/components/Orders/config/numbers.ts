@@ -1,8 +1,8 @@
-import { TOrder } from "types/OrderTypes";
-import { TNumber } from "../types";
+import { Order } from "types/OrderTypes";
+import { Number } from "../types";
 
-export default function getNumbers(order: TOrder): TNumber[] {
-  const numbers: TNumber[] = [
+export default function geNumbers(order: Order): Number[] {
+  const numbers: Number[] = [
     { label: "Subtotal", value: `$${order?.totalPriceWithoutDiscount}` },
     { label: "Discount", value: `$${order?.totalDiscount}` },
     { label: "Total", value: `$${order?.totalPriceWithDiscount + 79}` },

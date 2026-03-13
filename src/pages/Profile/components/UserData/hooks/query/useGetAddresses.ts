@@ -3,12 +3,12 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { TAddress } from "types/AuthTypes";
+import { Address } from "types/AuthTypes";
 
-export async function getAddresses(userId: string): Promise<TAddress[]> {
+export async function geAddresses(userId: string): Promise<Address[]> {
   const url = `${DB_URL}users/${userId}/addresses.json`;
 
-  const { data } = await axios.get<Record<string, TAddress> | null>(url);
+  const { data } = await axios.get<Record<string, Address> | null>(url);
 
   return data
     ? Object.entries(data).map(([id, address]) => ({
@@ -18,9 +18,9 @@ export async function getAddresses(userId: string): Promise<TAddress[]> {
     : [];
 }
 
-export function useGetAddresses(userId: string) {
-  return useQuery<TAddress[]>({
-    queryFn: () => getAddresses(userId),
+export function useGeAddresses(userId: string) {
+  return useQuery<Address[]>({
+    queryFn: () => geAddresses(userId),
     queryKey: ["user", "addresses", userId],
   });
 }

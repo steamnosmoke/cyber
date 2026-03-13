@@ -1,7 +1,7 @@
 import { useAddress } from "../store/useAddress";
-import { TAddressData } from "../types";
+import { AddressData } from "../types";
 
-export default function useAddressData(): TAddressData[] {
+export default function useAddressData(): AddressData[] {
   const { city, country, street, zip, setCity, setCountry, setStreet, setZip } =
     useAddress();
   return [

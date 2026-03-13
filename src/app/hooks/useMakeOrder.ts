@@ -3,15 +3,15 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { TCartItem } from "types/CartTypes";
-import { TOrder } from "types/OrderTypes";
+import { CartItem } from "types/CartTypes";
+import { Order } from "types/OrderTypes";
 import makeDate from "../utils/makeDate";
 
 
 
-async function makeOrder(cart: TCartItem[], userId: string) {
+async function makeOrder(cart: CartItem[], userId: string) {
   const date = makeDate();
-  const newOrder: TOrder = {
+  const newOrder: Order = {
     items: cart,
     totalPriceWithDiscount: 0,
     totalPriceWithoutDiscount: 0,
@@ -39,7 +39,7 @@ async function makeOrder(cart: TCartItem[], userId: string) {
 export default function useMakeOrder(userId: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (cart: TCartItem[]) => makeOrder(cart, userId),
+    mutationFn: (cart: CartItem[]) => makeOrder(cart, userId),
     mutationKey: ["orders", userId],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["orders", userId] });

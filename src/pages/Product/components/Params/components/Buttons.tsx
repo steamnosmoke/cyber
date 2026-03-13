@@ -6,7 +6,7 @@ import { useAuthStore } from "store/authStore";
 
 import WishlistAdded from "images/components/WishlistAdded";
 import Wishlist from "images/components/Wishlist";
-import AddToCartButton from "buttons/components/AddToCartButton";
+import AddToCarButton from "buttons/components/AddToCarButton";
 
 export default function Buttons() {
   const userId = useAuthStore((state) => state.firebaseId);
@@ -19,7 +19,7 @@ export default function Buttons() {
 
   return (
     <div className="buttons flex items-center justify-around w-full gap-20 mb-4">
-      <AddToCartButton
+      <AddToCarButton
         product={product}
         className="!w-full !px-25"
       />

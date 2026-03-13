@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
-import { TReviewStore } from "../types";
+import { ReviewStore } from "../types";
 
-export const useReviewStore = create<TReviewStore>()((set) => ({
+export const useReviewStore = create<ReviewStore>()((set) => ({
   comment: "",
   rating: 0,
   setComment: (comment) => set({ comment }),

@@ -1,16 +1,16 @@
 import useMinusItem from "hooks/cart/useMinusItem";
 import usePlusItem from "hooks/cart/usePlusItem";
 
-import { TAddToCartProps } from "../types";
+import { AddToCarProps } from "../types";
 
-export default function ChangeCountButton({
+export default function ChangeCounButton({
   product,
   setStock,
   stock,
   color,
   setAnimating,
   className,
-}: TAddToCartProps) {
+}: AddToCarProps) {
   const plusItem = usePlusItem();
   const minusItem = useMinusItem();
 

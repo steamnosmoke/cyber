@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useAuthStore } from "store/authStore";
 import { useRegister } from "./hooks/UseRegister";
 
-import { TModalProps } from "../types";
+import { ModalProps } from "../types";
 import { useOpenModal } from "../utils/useOpenModal";
 
 
@@ -15,7 +15,7 @@ import RegisterInputs from "./components/RegisterInputs";
 export default function RegisterModal({
   onClose,
   onSwitchToLogin,
-}: TModalProps) {
+}: ModalProps) {
   const navigate = useNavigate();
 
   const { mutate: register } = useRegister();
@@ -26,7 +26,7 @@ export default function RegisterModal({
   const error = useAuthStore((state) => state.error);
 
   const setError = useAuthStore((state) => state.setError);
-  const setUser = useAuthStore((state) => state.setUser);
+  const seUser = useAuthStore((state) => state.seUser);
 
   const onRegister = () => {
     setError("");
@@ -34,7 +34,7 @@ export default function RegisterModal({
       { email, password, confirm },
       {
         onSuccess: (userData) => {
-          setUser(userData);
+          seUser(userData);
           onClose();
           navigate("/profile");
         },

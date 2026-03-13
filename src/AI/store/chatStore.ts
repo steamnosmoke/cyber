@@ -1,9 +1,9 @@
 // store/chatStore.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { TChatStore} from "../types/chatTypes";
+import { ChatStore} from "../types/chatTypes";
 
-export const useChatStore = create<TChatStore>()(
+export const useChatStore = create<ChatStore>()(
   persist(
     (set, get) => ({
       input: "",

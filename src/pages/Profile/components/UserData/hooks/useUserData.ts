@@ -1,8 +1,8 @@
 
 import { useChangeData } from "../store/useChageData";
-import { TUserData } from "../types";
+import { UserData } from "../types";
 
-export default function useUserData(): TUserData[] {
+export default function useUserData(): UserData[] {
   const user = useChangeData((state) => state.user);
   const { setEmail, setName, setPhone, setBirthday } = useChangeData();
 

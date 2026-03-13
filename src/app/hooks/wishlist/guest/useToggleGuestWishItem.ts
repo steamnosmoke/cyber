@@ -1,11 +1,11 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 import { useGuestStore } from "store/guestStore";
 
 export default function useToggleGuestWishItem() {
   const wishlist = useGuestStore((state) => state.wishlist);
   const setWishlist = useGuestStore((state) => state.setWishlist);
 
-  return (product: TProduct): TProduct => {
+  return (product: Product): Product => {
     const updatedWishlist = [...wishlist];
 
     const existingEntry = updatedWishlist.find(

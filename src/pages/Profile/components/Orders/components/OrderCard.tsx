@@ -1,13 +1,13 @@
 import { Link } from "react-router";
 
 import { useProductStore } from "store/productsStore";
-import { TProduct } from "types/ProductTypes";
-import { TOrderCardProps } from "../types";
+import { Product } from "types/ProductTypes";
+import { OrderCardProps } from "../types";
 
-export default function OrderCard({ product }: TOrderCardProps) {
-  const setProduct = useProductStore((state) => state.setProduct);
-  const onClickCard = (product: TProduct) => {
-    setProduct(product);
+export default function OrderCard({ product }: OrderCardProps) {
+  const seProduct = useProductStore((state) => state.seProduct);
+  const onClickCard = (product: Product) => {
+    seProduct(product);
     window.scrollTo(0, 0);
   };
 

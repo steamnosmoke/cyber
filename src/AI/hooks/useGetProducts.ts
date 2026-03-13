@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
-import { TProduct } from "types/ProductTypes";
-import { TChatProduct } from "../types/chatTypes";
+import { Product } from "types/ProductTypes";
+import { ChatProduct } from "../types/chatTypes";
 
-async function getProducts(): Promise<TChatProduct[]> {
+async function geProducts(): Promise<ChatProduct[]> {
   const url = `${DB_URL}products.json`;
 
-  const { data } = await axios.get<Record<string, TProduct>>(url);
-  const products: TChatProduct[] = [];
+  const { data } = await axios.get<Record<string, Product>>(url);
+  const products: ChatProduct[] = [];
 
   Object.entries(data || {}).forEach(([prodId, product]) => {
     products.push({
@@ -23,10 +23,10 @@ async function getProducts(): Promise<TChatProduct[]> {
   return products;
 }
 
-export default function useGetProducts() {
-  const { data, status, error } = useQuery<TChatProduct[]>({
-    queryKey: ["chatProducts"],
-    queryFn: () => getProducts(),
+export default function useGeProducts() {
+  const { data, status, error } = useQuery<ChatProduct[]>({
+    queryKey: ["chaProducts"],
+    queryFn: () => geProducts(),
     placeholderData: (prev) => prev,
   });
 

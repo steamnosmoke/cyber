@@ -7,7 +7,7 @@ import { useNavigationStore } from "store/navigationStroe";
 import { categories } from "./config/categories";
 
 export default function ChoosingCategories() {
-  const setCategory = useProductStore((state) => state.setCategory);
+  const seCategory = useProductStore((state) => state.seCategory);
 
   const setActivePage = useNavigationStore((state) => state.setActivePage);
 
@@ -27,7 +27,7 @@ export default function ChoosingCategories() {
               >
                 <Link
                   to={`/catalog/${item.category}`}
-                  onClick={() => setCategory(item.category)}
+                  onClick={() => seCategory(item.category)}
                   className="item-inner group w-full h-full bg-[#ededed] transition-all duration-200 ease-in-out hover:bg-[rgb(53_53_53)] hover:text-stone-50"
                 >
                   <div

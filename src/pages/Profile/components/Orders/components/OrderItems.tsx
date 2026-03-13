@@ -1,8 +1,8 @@
-import { TOrderItemsProps} from "../types";
+import { OrderItemsProps} from "../types";
 
 import OrderCard from "./OrderCard";
 
-export default function OrderItems({ items }: TOrderItemsProps) {
+export default function OrderItems({ items }: OrderItemsProps) {
   return (
     <ul className="list flex gap-4 justify-start items-center">
       {items.length <= 4 ? (

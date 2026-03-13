@@ -3,18 +3,18 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { TAddress } from "types/AuthTypes";
+import { Address } from "types/AuthTypes";
 
-import getDefaultAddress from "./useGetDefaultAddress";
+import getDefaulAddress from "./useGetDefaulAddress";
 
-export async function changeDefaultAddress(
-  address: TAddress,
+export async function changeDefaulAddress(
+  address: Address,
   userId: string
 ): Promise<{ isDefault: string }> {
   const url = `${DB_URL}users/${userId}/addresses`;
-  const defaultAddress = await getDefaultAddress(userId);
-  if (defaultAddress && defaultAddress.id !== address.id) {
-    await axios.patch(`${url}/${defaultAddress.id}.json`, {
+  const defaulAddress = await getDefaulAddress(userId);
+  if (defaulAddress && defaulAddress.id !== address.id) {
+    await axios.patch(`${url}/${defaulAddress.id}.json`, {
       isDefault: false,
     });
   }
@@ -29,11 +29,11 @@ export async function changeDefaultAddress(
   return { ...address, ...data };
 }
 
-export function useChangeDefaultAddress(userId: string) {
+export function useChangeDefaulAddress(userId: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (address: TAddress) => changeDefaultAddress(address, userId),
+    mutationFn: (address: Address) => changeDefaulAddress(address, userId),
     mutationKey: ["user", "addresses"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user", "addresses"] });

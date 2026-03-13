@@ -1,18 +1,18 @@
-import { TReview } from "types/ProductTypes";
+import { Review } from "types/ProductTypes";
 
-export type TReviewStore = {
+export type ReviewStore = {
   comment: string;
   rating: number;
   setComment: (comment: string) => void;
   setRating: (rating: number) => void;
 };
 
-export type TProps = {
+export type Props = {
   data: {
-    reviews: TReview[];
+    reviews: Review[];
     rates: number[];
   };
 };
-export type TReviewProps = {
-  review: TReview;
+export type ReviewProps = {
+  review: Review;
 };

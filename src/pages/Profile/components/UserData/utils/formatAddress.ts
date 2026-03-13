@@ -1,5 +1,5 @@
-import { TAddress } from "types/AuthTypes";
+import { Address } from "types/AuthTypes";
 
-export default function formatAddress(address: TAddress) {
+export default function formaAddress(address: Address) {
     return `${address.country}, ${address.city}, ${address.street}, ${address.zip}`;
   };

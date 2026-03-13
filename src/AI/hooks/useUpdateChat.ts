@@ -1,8 +1,8 @@
 import { useChatStore } from "../store/chatStore";
-import { TChatMessage } from "../types/chatTypes";
+import { ChatMessage } from "../types/chatTypes";
 import useUpdateUserAIChat from "./user/useUpdateUSerAIChat";
 
-export default function useUpdateChat(id: string, message: TChatMessage) {
+export default function useUpdateChat(id: string, message: ChatMessage) {
     const {mutate: updateUserChat} = useUpdateUserAIChat(id);
     const updateGuestChat = useChatStore(state=>state.setHistory);
 

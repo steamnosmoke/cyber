@@ -3,14 +3,14 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import {getUserWishlist} from "../guest/useGetUserWishlist";
-import { TProduct } from "types/ProductTypes";
+import {geUserWishlist} from "../guest/useGeUserWishlist";
+import { Product } from "types/ProductTypes";
 
 const toggleUserItem = async (
-  product: TProduct,
+  product: Product,
   userId: string
-): Promise<TProduct> => {
-  const wishlistData = await getUserWishlist(userId);
+): Promise<Product> => {
+  const wishlistData = await geUserWishlist(userId);
 
   const existingEntry = wishlistData.find(
     (value) => value.objectId === product.objectId
@@ -35,7 +35,7 @@ export function useToggleUserWishItem(userId: string) {
 
   return useMutation({
     mutationKey: ["wishlist", userId],
-    mutationFn: (product: TProduct) => toggleUserItem(product, userId),
+    mutationFn: (product: Product) => toggleUserItem(product, userId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["wishlist", userId] });
     },

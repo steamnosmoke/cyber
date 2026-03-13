@@ -1,4 +1,4 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
 import { TTablet } from "../types";
 
@@ -6,7 +6,7 @@ import Delivery from "../images/Delivery.svg";
 import Stock from "../images/Stock.svg";
 import Guaranteed from "../images/Guaranteed.svg";
 
-export default function getTablets(product: TProduct): TTablet[] {
+export default function getTablets(product: Product): TTablet[] {
   return [
     {
       label: "Delivery",

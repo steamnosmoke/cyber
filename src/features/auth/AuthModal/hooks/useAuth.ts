@@ -2,12 +2,12 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
-import { TUser, TLogin } from "types/AuthTypes";
+import { User, Login } from "types/AuthTypes";
 import DB_URL from "constants/DB_URL";
 
-async function loginUser({ email, password }: TLogin): Promise<TUser> {
+async function loginUser({ email, password }: Login): Promise<User> {
   const url: string = `${DB_URL}users.json?orderBy="email"&equalTo="${email}"`;
-  const { data: user } = await axios.get<Record<string, TUser>>(url);
+  const { data: user } = await axios.get<Record<string, User>>(url);
   if (!user || Object.values(user).length === 0) {
     throw new Error("The user was not found");
   }

@@ -1,18 +1,18 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { TProductStore } from "types/ProductTypes";
+import { ProductStore } from "types/ProductTypes";
 
-export const useProductStore = create<TProductStore>()(
+export const useProductStore = create<ProductStore>()(
   persist(
     (set) => ({
       category: "Phones",
       product: null,
       filteredProducts: [],
 
-      setProduct: (product) => set({ product }),
+      seProduct: (product) => set({ product }),
 
-      setCategory: (category) =>
+      seCategory: (category) =>
         set({
           category: category.charAt(0).toUpperCase() + category.slice(1),
         }),

@@ -1,7 +1,7 @@
 import { useAuthStore } from "store/authStore";
-import { TInputs } from "../../types";
+import { Inputs } from "../../types";
 
-export default function useAuthInputs(): TInputs[] {
+export default function useAuthInputs(): Inputs[] {
   const email = useAuthStore((s) => s.email);
   const password = useAuthStore((s) => s.password);
   const setEmail = useAuthStore((s) => s.setEmail);

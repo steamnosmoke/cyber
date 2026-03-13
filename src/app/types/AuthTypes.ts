@@ -1,9 +1,9 @@
-import { TChatMessage } from "src/AI/types/chatTypes";
-import { TCartItem } from "./CartTypes";
-import { TOrder } from "./OrderTypes";
-import { TProduct } from "./ProductTypes";
+import { ChatMessage } from "src/AI/types/chatTypes";
+import { CartItem } from "./CartTypes";
+import { Order } from "./OrderTypes";
+import { Product } from "./ProductTypes";
 
-export type TAddress = {
+export interface Address {
   id?: string;
   country: string;
   city: string;
@@ -12,30 +12,30 @@ export type TAddress = {
   isDefault?: boolean;
 };
 
-export type TLogin = {
+export interface Login {
   email: string;
   password: string;
   confirm?: string;
 };
 
-export type TUser = {
+export interface User {
   email?: string;
   passwordHash?: string;
   name?: string;
   role?: string;
-  wishlist?: TProduct[];
-  cart?: TCartItem[];
-  orders?: TOrder[];
+  wishlist?: Product[];
+  cart?: CartItem[];
+  orders?: Order[];
   permissions?: string[];
   phone?: string;
-  addresses?: TAddress[];
+  addresses?: Address[];
   firebaseId?: string;
   birthday?: string;
-  defaultAddress?: TAddress;
-  AIchatHistory?: TChatMessage[];
+  defaulAddress?: Address;
+  AIchatHistory?: ChatMessage[];
 };
 
-export type TAuthStore = {
+export interface AuthStore {
   firebaseId: string;
   email: string;
   password: string;

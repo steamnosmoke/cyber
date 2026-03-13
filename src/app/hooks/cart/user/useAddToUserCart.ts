@@ -3,16 +3,16 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { getUserCart } from "hooks/cart/user/useGetUserCart";
-import { TCartItem } from "types/CartTypes";
+import { geUserCart } from "hooks/cart/user/useGeUserCart";
+import { CartItem } from "types/CartTypes";
 
 import updateItem from "utils/cart/updateItem";
 
 async function addToUserCart(
-  product: TCartItem,
+  product: CartItem,
   userId: string
-): Promise<TCartItem> {
-  const data = await getUserCart(userId);
+): Promise<CartItem> {
+  const data = await geUserCart(userId);
   const existingEntry = data.find(
     (item) =>
       item.productId === product.productId &&
@@ -20,7 +20,7 @@ async function addToUserCart(
   );
   if (existingEntry) {
     const updatedItem = updateItem(existingEntry);
-    await axios.patch<Record<string, TCartItem>>(
+    await axios.patch<Record<string, CartItem>>(
       `${DB_URL}/users/${userId}/cart/${existingEntry.id}.json`,
       updatedItem
     );
@@ -41,7 +41,7 @@ async function addToUserCart(
 export default function useAddToUserCart(userId: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (product: TCartItem) => addToUserCart(product, userId),
+    mutationFn: (product: CartItem) => addToUserCart(product, userId),
     mutationKey: ["cart"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });

@@ -1,6 +1,6 @@
-import { TFilter, TSortingParams } from "./CategoryTypes";
+import { Filter, SortingParams } from "./CategoryTypes";
 
-export type TProduct = {
+export interface Product {
   id: string;
   productId: string;
   category: string;
@@ -20,18 +20,18 @@ export type TProduct = {
   processor?: string;
   ram?: number;
   rating?: number;
-  reviews?: TReview[];
+  reviews?: Review[];
   screenSize?: string;
-  specs?: TSpecs;
+  specs?: Specs;
   objectId?: string;
   variantId?: string;
-  variants?: TVariant[];
-  variant?: TVariant;
+  variants?: Variant[];
+  variant?: Variant;
   size?: string;
   storage?: string;
 };
 
-export type TReview = {
+export interface Review {
   comment: string;
   date: string;
   rating: number;
@@ -40,7 +40,7 @@ export type TReview = {
   userName?: string;
 };
 
-export type TVariant = {
+export interface Variant {
   price: number;
   stock: number;
   images: string[];
@@ -50,7 +50,7 @@ export type TVariant = {
   discount?: number;
 };
 
-export type TSpecs = {
+export interface Specs {
   description?: string;
   screen?: {
     diagonal?: string;
@@ -111,23 +111,23 @@ export type TSpecs = {
   guarantee?: string;
 };
 
-export type TProductStore = {
-  product?: TProduct | null;
+export interface ProductStore {
+  product?: Product | null;
   category?: string;
-  filters?: TFilter[];
-  confirmedFilters?: TFilter[];
-  filteredProducts?: TProduct[];
+  filters?: Filter[];
+  confirmedFilters?: Filter[];
+  filteredProducts?: Product[];
   isFilterOpened?: boolean;
   comment?: string;
-  sortingParams?: TSortingParams;
+  sortingParams?: SortingParams;
 
-  setProduct?: (product?: TProduct) => void;
+  seProduct?: (product?: Product) => void;
   setComment?: (comment?: string) => void;
-  setFilters?: (filter?: { title?: string; value?: string }) => void;
+  seFilters?: (filter?: { title?: string; value?: string }) => void;
   clearFilters?: () => void;
   setConfirmedFilters?: () => void;
-  setFilterOpened?: () => void;
-  setCategory?: (category?: string) => void;
-  setFilteredProducts?: (products?: TProduct[]) => void;
-  setSortingParams?: (params?: TSortingParams) => void;
+  seFilterOpened?: () => void;
+  seCategory?: (category?: string) => void;
+  seFilteredProducts?: (products?: Product[]) => void;
+  seSortingParams?: (params?: SortingParams) => void;
 };

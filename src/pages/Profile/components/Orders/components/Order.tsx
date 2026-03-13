@@ -1,10 +1,10 @@
-import { TOrderProps } from "../types";
+import { OrderProps } from "../types";
 
 import OrderHeader from "./OrderHeader";
 import OrderInfo from "./OrderInfo";
 import OrderItems from "./OrderItems";
 
-export default function Order({ order }: TOrderProps) {
+export default function Order({ order }: OrderProps) {
   return (
     <section className="order w-full pt-4 pb-8 flex flex-col gap-4 items-start justify-between rounded-2xl border-1 border-stone-200 bg-white">
       <OrderHeader order={order} />

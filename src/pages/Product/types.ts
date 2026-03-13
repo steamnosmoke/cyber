@@ -1,12 +1,12 @@
-export type TArrowProps = {
+export interface ArrowProps {
   check: boolean;
-};
+}
 
-export type TStarsProps = {
+export interface StarsProps {
   rating: number;
-};
+}
 
-export type TButtonProps = {
+export interface ButtonProps {
   flag: boolean;
   setFlag: (flag: boolean) => void;
-};
+}

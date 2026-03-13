@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { TAuthStore } from "types/AuthTypes";
+import { AuthStore } from "types/AuthTypes";
 
-export const useAuthStore = create<TAuthStore>()(
+export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
       firebaseId: "guest",

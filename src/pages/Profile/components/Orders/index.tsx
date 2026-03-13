@@ -1,11 +1,11 @@
 import { useAuthStore } from "store/authStore";
 
 import Order from "./components/Order";
-import useGetOrders from "./hooks/useGetOrders";
+import useGeOrders from "./hooks/useGeOrders";
 
 export default function Orders() {
   const userId = useAuthStore((state) => state.firebaseId);
-  const { data: items, status } = useGetOrders(userId);
+  const { data: items, status } = useGeOrders(userId);
   const orders = items ? items.slice().reverse() : [];
   return (
     <>

@@ -9,35 +9,35 @@ import { useProductStore } from "store/productsStore";
 export function useNavigateActions() {
   const navigate = useNavigate();
   const firebaseId = useAuthStore((s) => s.firebaseId);
-  const setCategory = useProductStore((s) => s.setCategory);
+  const seCategory = useProductStore((s) => s.seCategory);
   const setIsActive = useNavigationStore((s) => s.setActivePage);
   const openAuthModal = useModalStore((s) => s.openAuthModal);
 
   const onClickNav = useCallback(
     (i: number) => {
       window.scrollTo(0, 0);
-      setCategory("Phones");
+      seCategory("Phones");
       setIsActive(i);
     },
-    [setCategory, setIsActive]
+    [seCategory, setIsActive]
   );
 
   const onClickButton = useCallback(() => {
     window.scrollTo(0, 0);
     setIsActive(-1);
-    setCategory("Phones");
-  }, [setIsActive, setCategory]);
+    seCategory("Phones");
+  }, [setIsActive, seCategory]);
 
   const onClickProfile = useCallback(() => {
     if (firebaseId !== "guest") {
       window.scrollTo(0, 0);
       setIsActive(-1);
-      setCategory("Phones");
+      seCategory("Phones");
       navigate("/profile");
     } else {
       openAuthModal();
     }
-  }, [firebaseId, setIsActive, setCategory, navigate, openAuthModal]);
+  }, [firebaseId, setIsActive, seCategory, navigate, openAuthModal]);
 
   return { onClickNav, onClickButton, onClickProfile };
 }

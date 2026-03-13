@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useFilterStore } from "../store/filter";
-import { TSortingParams } from "types/CategoryTypes";
-import sortOptions from "../config/sortOptions";
+import { SortingParams } from "types/CategoryTypes";
+import sorOptions from "../config/sorOptions";
 
 export default function Sorting() {
   const [opened, setOpened] = useState(false);
@@ -10,10 +10,10 @@ export default function Sorting() {
 
   const param = useFilterStore((state) => state.sortingParams.param);
   const mod = useFilterStore((state) => state.sortingParams.mod);
-  const setSortingParams = useFilterStore((state) => state.setSortingParams);
+  const seSortingParams = useFilterStore((state) => state.seSortingParams);
 
-  const handleSetParams = ({ param, mod }: TSortingParams) =>
-    setSortingParams({ param, mod });
+  const handleSetParams = ({ param, mod }: SortingParams) =>
+    seSortingParams({ param, mod });
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -43,7 +43,7 @@ export default function Sorting() {
           opened ? "opacity-100 z-1 mt-[10px]" : "opacity-0 mt-[-20px]"
         }`}
       >
-        {sortOptions.map(({ label, param, mod }) => (
+        {sorOptions.map(({ label, param, mod }) => (
           <li
             key={label}
             className="item w-full py-2 px-10  text-center transition-all duration-200 ease hover:bg-stone-100"

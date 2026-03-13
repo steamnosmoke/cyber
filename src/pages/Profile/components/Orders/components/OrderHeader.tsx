@@ -1,6 +1,6 @@
-import { TOrderProps } from "../types";
+import { OrderProps } from "../types";
 
-export default function OrderHeader({ order }: TOrderProps) {
+export default function OrderHeader({ order }: OrderProps) {
   return (
     <div className="header pb-2 border-b-1 border-stone-300 w-full flex justify-between">
       <h3 className="relative pl-1 mx-8 flex gap-3 items-center justify-start text-xl group cursor-pointer *:transition-all *:duration-200 ">

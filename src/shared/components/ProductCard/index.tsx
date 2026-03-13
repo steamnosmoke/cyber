@@ -4,25 +4,25 @@ import { useProductStore } from "store/productsStore";
 import { useAuthStore } from "store/authStore";
 import useAddToWishlist from "hooks/wishlist/useAddToWishlist";
 import useGetWishlist from "hooks/wishlist/useGetWishlist";
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
 import Wishlist from "../../assets/images/components/Wishlist";
 import WishlistAdded from "../../assets/images/components/WishlistAdded";
-import AddToCartButton from "../buttons/components/AddToCartButton";
+import AddToCarButton from "../buttons/components/AddToCarButton";
 import CardByCategory from "./components/CardByCategory";
 
-export default function Card({ product }: { product: TProduct }) {
-  const setProduct = useProductStore((state) => state.setProduct);
+export default function Card({ product }: { product: Product }) {
+  const seProduct = useProductStore((state) => state.seProduct);
   const userId = useAuthStore((state) => state.firebaseId);
   const { wishlist: products } = useGetWishlist(userId);
   const isLiked = products?.some((item) => item.objectId === product.objectId);
   const addToWishlist = useAddToWishlist(userId);
 
   const onClickCard = useCallback(() => {
-    setProduct(product);
+    seProduct(product);
 
     window.scrollTo(0, 0);
-  }, [setProduct, product]);
+  }, [seProduct, product]);
 
   return (
     <>
@@ -34,7 +34,7 @@ export default function Card({ product }: { product: TProduct }) {
           {isLiked ? <WishlistAdded /> : <Wishlist />}
         </button>
         <CardByCategory product={product} onClickCard={onClickCard} />
-        <AddToCartButton product={product} className="px-4 mx-auto" />
+        <AddToCarButton product={product} className="px-4 mx-auto" />
       </section>
     </>
   );

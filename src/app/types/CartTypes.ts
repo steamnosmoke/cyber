@@ -1,7 +1,7 @@
-import { TProduct } from "./ProductTypes";
+import { Product } from "./ProductTypes";
 
 
-export type TCartItem = TProduct & {
+export interface CartItem extends Product {
   count: number;
   subTotal: number;
   totalDiscount: number;

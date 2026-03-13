@@ -1,4 +1,4 @@
-export type TAuthModalStore = {
+export interface AuthModalStore {
   isAuthModalOpen: boolean;
   isRegisterModalOpen: boolean;
   openAuthModal: () => void;

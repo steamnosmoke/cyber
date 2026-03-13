@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuthStore } from "store/authStore";
 import { useLogin } from "./hooks/useAuth";
 
-import { TModalProps } from "../types";
+import { ModalProps } from "../types";
 import { useOpenModal } from "utils/useOpenModal";
 
 import BlackLineButton from "buttons/components/BlackLineButton";
@@ -14,7 +14,7 @@ import AuthInputs from "./components/AuthInputs";
 export default function AuthModal({
   onClose,
   onSwitchToRegister,
-}: TModalProps) {
+}: ModalProps) {
   const [closing, setClosing] = useState(false);
 
   const { mutate: login } = useLogin();

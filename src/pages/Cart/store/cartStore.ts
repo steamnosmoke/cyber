@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { TCartStore } from "../types";
+import { CartStorev } from "../types";
 
-export const useCartStore = create<TCartStore>()(
+export const useCartStore = create<CartStorev>()(
   persist(
     (set, get) => ({
       subtotal: 0,

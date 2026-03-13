@@ -1,15 +1,15 @@
 import { create } from "zustand";
 
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-import { TSearchStore } from "../types";
+import { SearchStore } from "../types";
 
-export const useSearchStore = create<TSearchStore>((set) => ({
+export const useSearchStore = create<SearchStore>((set) => ({
   value: "",
   result: [],
   ariaOpened: false,
   setAriaOpened: (value: boolean) => set(() => ({ ariaOpened: value })),
-  setResult: (products: TProduct[]) => set(() => ({ result: products })),
+  setResult: (products: Product[]) => set(() => ({ result: products })),
   Searching: (value: string) => set(() => ({ value: value })),
   ClearValue: () => set(() => ({ value: "" })),
 }));

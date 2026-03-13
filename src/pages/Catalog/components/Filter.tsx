@@ -1,19 +1,19 @@
 import { useState } from "react";
 
-import { TfilterItem } from "types/CategoryTypes";
-import { TFilterProps } from "../types";
+import { FilterItem } from "types/CategoryTypes";
+import { FilterProps } from "../types";
 import { useFilterStore } from "../store/filter";
 
 import arrow from "../images/arrow.svg";
 
-export default function Filter({ filter }: TFilterProps) {
+export default function Filter({ filter }: FilterProps) {
   const [isOpened, setOpened] = useState(true);
 
   const filters = useFilterStore((state) => state.filters);
-  const setFilters = useFilterStore((state) => state.setFilters);
+  const seFilters = useFilterStore((state) => state.seFilters);
 
-  const onClickFilter = ({ title, value }: TfilterItem) => {
-    setFilters({ title, value });
+  const onClickFilter = ({ title, value }: FilterItem) => {
+    seFilters({ title, value });
   };
 
   return (

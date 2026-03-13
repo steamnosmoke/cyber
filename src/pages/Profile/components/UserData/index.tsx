@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 
 import { useAuthStore } from "store/authStore";
-import useGetUserById from "hooks/useGetUserById";
+import useGeUserById from "hooks/useGeUserById";
 
 import { useSaveData } from "./hooks/useSaveData";
 import { useChangeData } from "./store/useChageData";
@@ -13,13 +13,13 @@ import PersonalData from "./components/PersonalData";
 
 export default function UserData({ flag }: { flag: boolean }) {
   const userId = useAuthStore((state) => state.firebaseId);
-  const setUser = useChangeData((state) => state.setUser);
-  const { data: user } = useGetUserById(userId);
+  const seUser = useChangeData((state) => state.seUser);
+  const { data: user } = useGeUserById(userId);
 
   const saveData = useSaveData();
 
   useEffect(() => {
-    setUser(user);
+    seUser(user);
   }, [user]);
 
   return (

@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import DB_URL from "constants/DB_URL";
 
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
-export async function getUserWishlist(userId: string): Promise<TProduct[]> {
+export async function geUserWishlist(userId: string): Promise<Product[]> {
   const url = `${DB_URL}/users/${userId}/wishlist.json`;
-  const { data } = await axios.get<Record<string, TProduct> | null>(url);
+  const { data } = await axios.get<Record<string, Product> | null>(url);
 
   if (!data) return []; 
 
@@ -19,10 +19,10 @@ export async function getUserWishlist(userId: string): Promise<TProduct[]> {
   return wishlist;
 }
 
-export default function useGetUserWishlist(userId: string) {
+export default function useGeUserWishlist(userId: string) {
   return useQuery({
     queryKey: ["wishlist", userId],
-    queryFn: () => getUserWishlist(userId),
+    queryFn: () => geUserWishlist(userId),
     enabled: !!userId && userId !== "guest",
   });
 }

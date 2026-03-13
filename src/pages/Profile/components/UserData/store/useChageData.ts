@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { TDataStore } from "../types";
+import { DataStore } from "../types";
 
-export const useChangeData = create<TDataStore>()(
+export const useChangeData = create<DataStore>()(
   persist(
     (set) => ({
       user: {
@@ -14,9 +14,9 @@ export const useChangeData = create<TDataStore>()(
         addresses: [],
       },
 
-      defaultAddress: undefined,
+      defaulAddress: undefined,
 
-      setUser: (user) =>
+      seUser: (user) =>
         set({
           user: {
             email: user?.email,
@@ -30,7 +30,7 @@ export const useChangeData = create<TDataStore>()(
       clearData: () =>
         set({
           user: {},
-          defaultAddress: undefined,
+          defaulAddress: undefined,
         }),
 
       setEmail: (email) => set((state) => ({ user: { ...state.user, email } })),
@@ -38,8 +38,8 @@ export const useChangeData = create<TDataStore>()(
       setPhone: (phone) => set((state) => ({ user: { ...state.user, phone } })),
       setBirthday: (birthday) =>
         set((state) => ({ user: { ...state.user, birthday } })),
-      setDefaultAddress: (defaultAddress) => set({ defaultAddress }),
-      setAddresses: (address) =>
+      setDefaulAddress: (defaulAddress) => set({ defaulAddress }),
+      seAddresses: (address) =>
         set((state) => ({
           user: {
             ...state.user,
@@ -54,14 +54,14 @@ export const useChangeData = create<TDataStore>()(
               (el) => el.id === address.id
             ),
           },
-          defaultAddress: undefined,
+          defaulAddress: undefined,
         })),
     }),
     {
       name: "userData-storage",
       partialize: (state) => ({
         user: state.user,
-        defaultAddress: state.defaultAddress,
+        defaulAddress: state.defaulAddress,
       }),
     }
   )

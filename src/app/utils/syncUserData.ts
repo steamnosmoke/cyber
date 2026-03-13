@@ -4,6 +4,6 @@ import { useAuthStore } from "store/authStore";
 export function syncUserData() {
   const authUser = useAuthStore.getState().user;
   if (authUser) {
-    useChangeData.getState().setUser(authUser);
+    useChangeData.getState().seUser(authUser);
   }
 }

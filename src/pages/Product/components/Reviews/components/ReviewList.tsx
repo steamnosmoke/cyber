@@ -1,9 +1,9 @@
 import { useState } from "react";
 import MoreButton from "../../MoreButton";
 import Review from "./Review";
-import { TProps } from "../types";
+import { Props } from "../types";
 
-export default function ReviewList({ data }: TProps) {
+export default function ReviewList({ data }: Props) {
   const [isCommentsOpened, setCommentsOpened] = useState(false);
   return (
     <>

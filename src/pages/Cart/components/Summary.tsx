@@ -6,7 +6,7 @@ import useGetCart from "hooks/cart/useGetCart";
 
 import useClearCart from "../hooks/useClearCart";
 import useUpdateStock from "../hooks/useUpdateStock";
-import useGetNumbers from "../hooks/useGetNumbers";
+import useGeNumbers from "../hooks/useGeNumbers";
 
 import BlackButton from "buttons/components/BlackButton";
 import BlackLineButton from "buttons/components/BlackLineButton";
@@ -31,7 +31,7 @@ export default function Summary() {
     navigate("/profile");
   };
 
-  const numbers = useGetNumbers();
+  const numbers = useGeNumbers();
 
   return (
     <section className="right border-2 border-stone-200 py-10 px-12 w-[40%] flex flex-col items-start justify-center gap-10 sticky top-42 rounded-3xl ">

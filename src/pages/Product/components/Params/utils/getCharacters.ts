@@ -1,4 +1,4 @@
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 
 import { TCharacter } from "../types";
 
@@ -23,7 +23,7 @@ const CHARACTER_CONFIG = [
   { key: "battery", label: "Battery capacity", img: battery },
 ];
 
-export default function getCharacters(product: TProduct): TCharacter[] {
+export default function getCharacters(product: Product): TCharacter[] {
   return CHARACTER_CONFIG.map(({ key, label, img, transform }) => ({
     label,
     img,

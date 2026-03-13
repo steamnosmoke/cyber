@@ -1,8 +1,8 @@
-import { TReviewProps } from "../types";
+import { ReviewProps } from "../types";
 
 import Stars from "../images/components/Stars";
 
-export default function Review({ review }: TReviewProps) {
+export default function Review({ review }: ReviewProps) {
   return (
     <>
       <section className="comment py-4 px-6 mb-5 bg-stone-100 flex flex-col w-full gap-2 rounded-[10px]">

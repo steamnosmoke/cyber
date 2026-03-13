@@ -4,18 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { useAuthStore } from "store/authStore";
 import useGetCart from "hooks/cart/useGetCart";
 import useAddToCart from "hooks/cart/useAddToCart";
-import { TProduct } from "types/ProductTypes";
+import { Product } from "types/ProductTypes";
 import convertToCartItem from "utils/convertToCartItem";
 
 import changeCount from "buttons/utils/changeCount";
 import BlackButton from "buttons/components/BlackButton";
-import ChangeCountButton from "buttons/components/ChangeCountButton";
+import ChangeCounButton from "buttons/components/ChangeCounButton";
 
-export default function AddToCartButton({
+export default function AddToCarButton({
   product,
   className,
 }: {
-  product: TProduct;
+  product: Product;
   className?: string;
 }) {
   const userId = useAuthStore((state) => state.firebaseId);
@@ -84,7 +84,7 @@ export default function AddToCartButton({
             : "opacity-0 translate-y-4 pointer-events-none"
         }`}
       >
-        <ChangeCountButton
+        <ChangeCounButton
           product={{ ...currentItem, count: currentCount }}
           stock={localStock}
           setStock={setLocalStock}

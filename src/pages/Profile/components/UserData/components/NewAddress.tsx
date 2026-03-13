@@ -1,4 +1,4 @@
-import { TAddress } from "types/AuthTypes";
+import { Address } from "types/AuthTypes";
 import { useAuthStore } from "store/authStore";
 
 import { useAddAddress } from "../hooks/query/useAddAddress";
@@ -17,8 +17,8 @@ export default function NewAddress() {
   const zip = useAddress((state) => state.zip);
   const clearAll = useAddress((state) => state.clearAll);
 
-  const setAddresses = useChangeData((state) => state.setAddresses);
-  const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
+  const seAddresses = useChangeData((state) => state.seAddresses);
+  const setDefaulAddress = useChangeData((state) => state.setDefaulAddress);
 
   const setIsNewAddressOpened = useAddress(
     (state) => state.setIsNewAddressOpened
@@ -29,7 +29,7 @@ export default function NewAddress() {
   const addressData = useAddressData();
 
   const onClickAdd = () => {
-    const newAddress: TAddress = {
+    const newAddress: Address = {
       city,
       country,
       street,
@@ -38,8 +38,8 @@ export default function NewAddress() {
     };
 
     addNewAddress(newAddress);
-    setAddresses(newAddress);
-    setDefaultAddress(newAddress);
+    seAddresses(newAddress);
+    setDefaulAddress(newAddress);
     clearAll();
     setIsNewAddressOpened(false);
   };

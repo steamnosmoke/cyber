@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-import { TProps } from "../types";
+import { Props } from "../types";
 import useRemoveItem from "../hooks/useRemoveItem";
-import ChangeCountButton from "buttons/components/ChangeCountButton";
+import ChangeCounButton from "buttons/components/ChangeCounButton";
 
-export default function CartItem({ product }: TProps) {
+export default function CartItem({ product }: Props) {
   const [stock, setStock] = useState(product.stock);
 
   const removeItem = useRemoveItem();
@@ -22,7 +22,7 @@ export default function CartItem({ product }: TProps) {
           </section>
         </Link>
         <section className="flex justify-between items-center gap-6 pt-2">
-          <ChangeCountButton
+          <ChangeCounButton
             product={product}
             stock={stock}
             setStock={setStock}

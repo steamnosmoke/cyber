@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useAuthStore } from "store/authStore";
-import { TInputs } from "../../types";
+import { Inputs } from "../../types";
 
 export default function RegisterInputs() {
 const email = useAuthStore((state) => state.email);
@@ -11,7 +11,7 @@ const setEmail = useAuthStore((state) => state.setEmail);
 const setPassword = useAuthStore((state) => state.setPassword);
 const setConfirm = useAuthStore((state) => state.setConfirm);
 
-  const inputs = useMemo<TInputs[]>(
+  const inputs = useMemo<Inputs[]>(
     () => [
       {
         type: "email",

@@ -1,6 +1,6 @@
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
-export default function minusItem(product: TCartItem): TCartItem {
+export default function minusItem(product: CartItem): CartItem {
   const updatedCount = product.count - 1;
   const total = updatedCount * product.totalPrice;
   const totalDiscount = updatedCount * product.discount;

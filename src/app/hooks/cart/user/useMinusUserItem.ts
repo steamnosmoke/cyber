@@ -3,20 +3,20 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import DB_URL from "constants/DB_URL";
 
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
 import minusItem from "utils/cart/minusItem";
 
-async function minusUserItem(product: TCartItem, userId: string): Promise<TCartItem> {
+async function minusUserItem(product: CartItem, userId: string): Promise<CartItem> {
   if (product.count > 1) {
     const updatedItem = minusItem(product);
-    await axios.patch<Record<string, TCartItem>>(
+    await axios.patch<Record<string, CartItem>>(
       `${DB_URL}users/${userId}/cart/${product.id}.json`,
       updatedItem
     );
     return updatedItem;
   } else {
-    await axios.delete<Record<string, TCartItem>>(
+    await axios.delete<Record<string, CartItem>>(
       `${DB_URL}users/${userId}/cart/${product.id}.json`
     );
     return { ...product, count: 0 };
@@ -26,7 +26,7 @@ async function minusUserItem(product: TCartItem, userId: string): Promise<TCartI
 export default function useMinusUserItem(userId: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (product: TCartItem)=>minusUserItem(product, userId),
+    mutationFn: (product: CartItem)=>minusUserItem(product, userId),
     mutationKey: ["cart", userId],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart", userId] });

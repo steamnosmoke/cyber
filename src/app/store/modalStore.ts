@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
-import { TAuthModalStore } from "types/ModalTypes";
+import { AuthModalStore } from "types/ModalTypes";
 
-export const useModalStore = create<TAuthModalStore>()((set) => ({
+export const useModalStore = create<AuthModalStore>()((set) => ({
   isAuthModalOpen: false,
   isRegisterModalOpen: false,
 

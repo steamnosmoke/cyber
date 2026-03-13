@@ -11,7 +11,7 @@ import arrow from "../images/arrow.svg";
 export default function CatalogHeader() {
   const category = useProductStore((state) => state.category);
   const isFilterOpened = useFilterStore((state) => state.isFilterOpened);
-  const setFilterOpened = useFilterStore((state) => state.setFilterOpened);
+  const seFilterOpened = useFilterStore((state) => state.seFilterOpened);
 
   const filteredProducts = useFilterStore((state) => state.filteredProducts);
 
@@ -47,7 +47,7 @@ export default function CatalogHeader() {
         <div className="bottom flex justify-between">
           <div
             className="filter flex gap-2 items-center cursor-pointer"
-            onClick={() => setFilterOpened()}
+            onClick={() => seFilterOpened()}
           >
             <h2 className="title text-xl">Filters</h2>
             <img

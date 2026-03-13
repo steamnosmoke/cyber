@@ -1,9 +1,9 @@
-import { TCartItem } from "types/CartTypes";
+import { CartItem } from "types/CartTypes";
 
 export default function changeCount(
   setAnimating: (val: boolean) => void,
-  func: (product: TCartItem) => void,
-  product: TCartItem,
+  func: (product: CartItem) => void,
+  product: CartItem,
   timerRef: React.RefObject<ReturnType<typeof setTimeout> | null>
 ) {
   if (timerRef.current) clearTimeout(timerRef.current);
