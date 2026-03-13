@@ -31,6 +31,9 @@ const openRouter = new OpenRouter({
 });
 
 const MODELS = [
+  "google/gemini-2.5-flash-preview",
+  "meta-llama/llama-3.1-70b-instruct",
+  "mistral-nemo",
   "xiaomi/mimo-v2-flash:free",
   "tngtech/deepseek-r1t2-chimera:free",
   "tngtech/deepseek-r1t-chimera:free",
