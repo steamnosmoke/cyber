@@ -3,7 +3,7 @@ import usePlusItem from "hooks/cart/usePlusItem";
 
 import { AddToCarProps } from "../types";
 
-export default function ChangeCounButton({
+export default function ChangeCountButton({
   product,
   setStock,
   stock,

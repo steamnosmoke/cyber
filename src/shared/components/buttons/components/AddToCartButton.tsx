@@ -9,9 +9,9 @@ import convertToCartItem from "utils/convertToCartItem";
 
 import changeCount from "buttons/utils/changeCount";
 import BlackButton from "buttons/components/BlackButton";
-import ChangeCounButton from "buttons/components/ChangeCounButton";
+import ChangeCountButton from "buttons/components/ChangeCountButton";
 
-export default function AddToCarButton({
+export default function AddToCartButton({
   product,
   className,
 }: {
@@ -84,7 +84,7 @@ export default function AddToCarButton({
             : "opacity-0 translate-y-4 pointer-events-none"
         }`}
       >
-        <ChangeCounButton
+        <ChangeCountButton
           product={{ ...currentItem, count: currentCount }}
           stock={localStock}
           setStock={setLocalStock}

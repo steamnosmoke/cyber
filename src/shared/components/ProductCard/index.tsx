@@ -8,7 +8,7 @@ import { Product } from "types/ProductTypes";
 
 import Wishlist from "../../assets/images/components/Wishlist";
 import WishlistAdded from "../../assets/images/components/WishlistAdded";
-import AddToCarButton from "../buttons/components/AddToCarButton";
+import AddToCartButton from "../buttons/components/AddToCartButton";
 import CardByCategory from "./components/CardByCategory";
 
 export default function Card({ product }: { product: Product }) {
@@ -34,7 +34,7 @@ export default function Card({ product }: { product: Product }) {
           {isLiked ? <WishlistAdded /> : <Wishlist />}
         </button>
         <CardByCategory product={product} onClickCard={onClickCard} />
-        <AddToCarButton product={product} className="px-4 mx-auto" />
+        <AddToCartButton product={product} className="px-4 mx-auto" />
       </section>
     </>
   );
