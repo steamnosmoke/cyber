@@ -12,13 +12,13 @@ const ChoosingCategories = lazy(() => import("pages/ChoosingCategories"));
 const Profile = lazy(() => import("pages/Profile"));
 const Cart = lazy(() => import("pages/Cart"));
 const Wishlist = lazy(() => import("pages/Wishlist"));
+const ConfirmOrder = lazy(() => import("pages/ConfirmOrder"));
 
 export default function RoutesComponent() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/catalog" element={<ChoosingCategories />} />
-      {/* {/* <Route path='/contacts' element={<Contacts />} /> */}
       <Route path="/assistant" element={<ChatAssistant />} />
       <Route path="/catalog/:category" element={<Catalog />} />
       <Route
@@ -38,6 +38,8 @@ export default function RoutesComponent() {
           </Suspense>
         }
       />
+      <Route path="/cart/confirm_order" element={<ConfirmOrder />} />
+      <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/wishlist" element={<Wishlist />} />
     </Routes>
   );
