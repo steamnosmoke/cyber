@@ -27,7 +27,10 @@ export default function Banner() {
                 Smarter. Faster. More Pro than ever
               </p>
               <Link to={"/catalog/Phones/iPhone_17_Pro_Cosmic_Orange_2048GB"}>
-                <WhiteLineButton children={"View"} twclass="!px-15 !py-3 text-lg mt-5" />
+                <WhiteLineButton
+                  children={"View"}
+                  twclass="!px-15 !py-3 text-lg mt-5"
+                />
               </Link>
             </div>
 
