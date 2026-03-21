@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
 
 import { useAuthStore } from "store/authStore";
-import useMakeOrder from "hooks/useMakeOrder";
+// import useMakeOrder from "hooks/useMakeOrder";
 import useGetCart from "hooks/cart/useGetCart";
 
 import useClearCart from "../hooks/useClearCart";
-import useUpdateStock from "../hooks/useUpdateStock";
-import useGeNumbers from "../hooks/useGeNumbers";
+// import useUpdateStock from "../hooks/useUpdateStock";
+import useGetNumbers from "../hooks/useGetNumbers";
 
 import BlackButton from "buttons/components/BlackButton";
 import BlackLineButton from "buttons/components/BlackLineButton";
@@ -17,21 +17,21 @@ export default function Summary() {
   const navigate = useNavigate();
   const { cart: products } = useGetCart(userId);
 
-  const { mutate: makeOrder } = useMakeOrder(userId);
+  // const { mutate: makeOrder } = useMakeOrder(userId);
   const { mutate: clearCart } = useClearCart(userId);
-  const { mutate: updateStock } = useUpdateStock();
-
+  // const { mutate: updateStock } = useUpdateStock();
 
   const onMakeOrder = () => {
     if (!products || products.length === 0) return;
 
-    updateStock(products);
-    clearCart();
-    makeOrder(products);
-    navigate("/profile");
+    // updateStock(products);
+    // clearCart();
+    // makeOrder(products);
+    // navigate("/profile");
+    navigate("/cart/confirm_order");
   };
 
-  const numbers = useGeNumbers();
+  const numbers = useGetNumbers();
 
   return (
     <section className="right border-2 border-stone-200 py-10 px-12 w-[40%] flex flex-col items-start justify-center gap-10 sticky top-42 rounded-3xl ">
