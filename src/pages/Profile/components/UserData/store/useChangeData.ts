@@ -11,26 +11,24 @@ export const useChangeData = create<DataStore>()(
         name: "",
         phone: "",
         birthday: "",
-        addresses: [],
       },
 
-      defaulAddress: undefined,
+      defaulAddress: null,
 
-      seUser: (user) =>
+      setUser: (user) =>
         set({
           user: {
             email: user?.email,
             name: user?.name,
             phone: user?.phone,
             birthday: user?.birthday,
-            addresses: user?.addresses,
           },
         }),
 
       clearData: () =>
         set({
           user: {},
-          defaulAddress: undefined,
+          defaulAddress: null,
         }),
 
       setEmail: (email) => set((state) => ({ user: { ...state.user, email } })),
@@ -38,25 +36,7 @@ export const useChangeData = create<DataStore>()(
       setPhone: (phone) => set((state) => ({ user: { ...state.user, phone } })),
       setBirthday: (birthday) =>
         set((state) => ({ user: { ...state.user, birthday } })),
-      setDefaulAddress: (defaulAddress) => set({ defaulAddress }),
-      seAddresses: (address) =>
-        set((state) => ({
-          user: {
-            ...state.user,
-            addresses: [...state.user.addresses, address],
-          },
-        })),
-      removeAddress: (address) =>
-        set((state) => ({
-          user: {
-            ...state.user,
-            addresses: state.user.addresses.filter(
-              (el) => el.id === address.id
-            ),
-          },
-          defaulAddress: undefined,
-        })),
-    }),
+      setDefaultAddress: (defaulAddress) => set({ defaulAddress }),}),
     {
       name: "userData-storage",
       partialize: (state) => ({

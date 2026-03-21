@@ -18,14 +18,12 @@ export interface AddressData {
 export interface DataStore {
   user: User;
   defaulAddress: Address | undefined;
-  seUser: (user: User) => void;
+  setUser: (user: User) => void;
   setEmail: (email: string) => void;
   setName: (name: string) => void;
   setPhone: (phone: string) => void;
   setBirthday: (birthday: string) => void;
-  setDefaulAddress: (defaulAddress: Address | undefined) => void;
-  seAddresses: (address: Address) => void;
-  removeAddress: (address: Address) => void;
+  setDefaultAddress: (defaulAddress: Address | undefined) => void;
   clearData: () => void;
 }
 
