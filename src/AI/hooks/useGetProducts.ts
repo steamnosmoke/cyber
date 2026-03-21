@@ -23,7 +23,7 @@ async function geProducts(): Promise<ChatProduct[]> {
   return products;
 }
 
-export default function useGeProducts() {
+export default function useGetProducts() {
   const { data, status, error } = useQuery<ChatProduct[]>({
     queryKey: ["chaProducts"],
     queryFn: () => geProducts(),

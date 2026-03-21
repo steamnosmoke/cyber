@@ -1,8 +1,8 @@
 
-import useGeProducts from "hooks/useGeProducts";
+import useGetProducts from "hooks/useGetProducts";
 
-export function useGeProductById(objectId: string) {
-  const {products} = useGeProducts("")
+export function useGetProductById(objectId: string) {
+  const {products} = useGetProducts("")
   const product = products.find((p) => p.objectId === objectId);
   return { product };
 }

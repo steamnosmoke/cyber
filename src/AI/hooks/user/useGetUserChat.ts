@@ -18,7 +18,7 @@ export async function geUserChat(id: string): Promise<ChatMessage[]> {
   return chatData;
 }
 
-export default function useGeUserChat(id: string) {
+export default function useGetUserChat(id: string) {
   return useQuery<ChatMessage[]>({
     queryFn: () => geUserChat(id),
     queryKey: ["AIChat", id],

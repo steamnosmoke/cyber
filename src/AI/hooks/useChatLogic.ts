@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useState } from "react";
 import { sendChatMessage } from "../utils/sendChatMessage";
-import useGeProducts from "./useGeProducts";
+import useGetProducts from "./useGetProducts";
 import { useChatStore } from "../store/chatStore";
 import { ChatMessage } from "../types/chatTypes";
 import { getLoadingMessages } from "../config/loadingMessages";
@@ -15,7 +15,7 @@ export const useChatLogic = (id: string) => {
   const setInput = useChatStore((state) => state.setInput);
   const setGuestHistory = useChatStore((state) => state.setHistory);
   const loadingMessages = getLoadingMessages();
-  const { products } = useGeProducts();
+  const { products } = useGetProducts();
 
   const { mutate: seUserHistory } = useUpdateUserAIChat(id);
   const { chatData } = useGetAIChat(id);

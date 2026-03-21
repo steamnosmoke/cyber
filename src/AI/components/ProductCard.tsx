@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useGeProductById } from "../hooks/useGeProductById";
+import { useGetProductById } from "../hooks/useGetProductById";
 import getParams from "components/ProductCard/config/params";
 import getLink from "components/ProductCard/utils/getLink";
 import { useCallback } from "react";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ProductCard({ objectId }: Props) {
-  const { product } = useGeProductById(objectId);
+  const { product } = useGetProductById(objectId);
   const seProduct = useProductStore((state) => state.seProduct);
 
   const onClickCard = useCallback(() => {
