@@ -17,13 +17,13 @@ export interface AddressData {
 
 export interface DataStore {
   user: User;
-  defaulAddress: Address | undefined;
+  defaultAddress: Address | undefined;
   setUser: (user: User) => void;
   setEmail: (email: string) => void;
   setName: (name: string) => void;
   setPhone: (phone: string) => void;
   setBirthday: (birthday: string) => void;
-  setDefaultAddress: (defaulAddress: Address | undefined) => void;
+  setDefaultAddress: (defaultAddress: Address | undefined) => void;
   clearData: () => void;
 }
 

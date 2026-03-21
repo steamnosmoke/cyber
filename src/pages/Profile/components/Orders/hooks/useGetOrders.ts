@@ -15,7 +15,7 @@ async function geOrders(userId: string): Promise<Order[]> {
   return orders;
 }
 
-export default function useGeOrders(userId: string) {
+export default function useGetOrders(userId: string) {
   return useQuery({
     queryKey: ["orders", userId],
     queryFn: () => geOrders(userId),

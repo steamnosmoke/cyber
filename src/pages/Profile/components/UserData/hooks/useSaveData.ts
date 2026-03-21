@@ -1,24 +1,24 @@
 import { useAuthStore } from "store/authStore";
 import { User } from "types/AuthTypes";
-import useGeUserById from "hooks/useGeUserById";
+import useGetUserById from "hooks/useGetUserById";
 
 import { useSaveUserData } from "./query/useSaveUserData";
-import { useGeAddresses } from "./query/useGeAddresses";
+import { useGetAddresses } from "./query/useGetAddresses";
 
-import { useChangeData } from "../store/useChageData";
+import { useChangeData } from "../store/useChangeData";
 
 export function useSaveData() {
   const firebaseId = useAuthStore((state) => state.firebaseId);
-  const { data: user } = useGeUserById(firebaseId);
+  const { data: user } = useGetUserById(firebaseId);
 
-  const { mutate: saveData } = useSaveUserData({...user, firebaseId});
+  const { mutate: saveData } = useSaveUserData(firebaseId);
 
-  const { data: addresses } = useGeAddresses(firebaseId);
+  const { data: addresses } = useGetAddresses(firebaseId);
 
-  const seUserData = useChangeData((state) => state.seUser);
+  const setUserData = useChangeData((state) => state.setUser);
 
   const userData = useChangeData((state) => state.user) || {};
-  const defaulAddress = useChangeData((state) => state.defaulAddress);
+  const defaultAddress = useChangeData((state) => state.defaultAddress);
 
   const { email, name, phone, birthday } = userData;
 
@@ -32,6 +32,6 @@ export function useSaveData() {
       addresses: addresses,
     };
     saveData(updatedUser);
-    seUserData({ ...updatedUser, defaulAddress });
+    setUserData({ ...updatedUser, defaultAddress });
   };
 }

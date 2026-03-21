@@ -1,8 +1,8 @@
 import { Address } from "types/AuthTypes";
 
-import { geAddresses } from "./useGeAddresses";
+import { geAddresses } from "./useGetAddresses";
 
-export default async function getDefaulAddress(
+export default async function getdefaultAddress(
   userId: string
 ): Promise<Address | undefined> {
   const addresses = await geAddresses(userId);

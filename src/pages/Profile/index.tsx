@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { useAuthStore } from "store/authStore";
-import useGeUserById from "hooks/useGeUserById";
+import useGetUserById from "hooks/useGetUserById";
 
 import Orders from "./components/Orders";
 import UserData from "./components/UserData";
-import { useChangeData } from "./components/UserData/store/useChageData";
+import { useChangeData } from "./components/UserData/store/useChangeData";
 import BlackButton from "buttons/components/BlackButton";
 import BlackLineButton from "buttons/components/BlackLineButton";
 
@@ -16,9 +16,9 @@ export default function Profile() {
   const userId = useAuthStore((state) => state.firebaseId);
   const logOut = useAuthStore((state) => state.logOut);
   const clearData = useChangeData((state) => state.clearData);
-  const seUser = useChangeData((state) => state.seUser);
+  const setUser = useChangeData((state) => state.setUser);
 
-  const { data: user } = useGeUserById(userId);
+  const { data: user } = useGetUserById(userId);
 
   const onLogOut = () => {
     logOut();
@@ -27,7 +27,7 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    seUser(user);
+    setUser(user);
   }, [user]);
 
   if (userId !== "guest")

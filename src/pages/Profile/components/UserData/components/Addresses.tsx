@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
 
-import { useChangeData } from "../store/useChageData";
+import { useChangeData } from "../store/useChangeData";
 import { useAddress } from "../store/useAddress";
-import { useInitDefaulAddress } from "../hooks/useInitDefaulAddress";
+import { useInitDefaultAddress } from "../hooks/useInitDefaultAddress";
 
-import formaAddress from "../utils/formaAddress";
+import formatAddress from "../utils/formatAddress";
 
 import NewAddress from "./NewAddress";
 import AddressesList from "./AddressesList";
 
 export default function Addresses() {
-  useInitDefaulAddress();
-  const defaulAddress = useChangeData((state) => state.defaulAddress);
+  useInitDefaultAddress();
+  const defaultAddress = useChangeData((state) => state.defaultAddress);
   const isAddressesOpened = useAddress((state) => state.isAddressesOpened);
   const isNewAddressOpened = useAddress((state) => state.isNewAddressOpened);
   const setIsAddressesOpened = useAddress(
@@ -43,8 +43,8 @@ export default function Addresses() {
         <p className="text-[14px] absolute left-4 top-2 capitalize">
           Default address
         </p>
-        <p className={!defaulAddress ? "text-stone-500" : ""}>
-          {defaulAddress ? formaAddress(defaulAddress) : "Add new address"}
+        <p className={!defaultAddress ? "text-stone-500" : ""}>
+          {defaultAddress ? formatAddress(defaultAddress) : "Add new address"}
         </p>
       </div>
 

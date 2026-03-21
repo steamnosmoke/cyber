@@ -4,12 +4,12 @@ import { useAuthStore } from "store/authStore";
 import { useAddAddress } from "../hooks/query/useAddAddress";
 import useAddressData from "../hooks/useAddressData";
 import { useAddress } from "../store/useAddress";
-import { useChangeData } from "../store/useChageData";
+import { useChangeData } from "../store/useChangeData";
 
 import BlackButton from "buttons/components/BlackButton";
 import close from "images/clear.svg";
 
-export default function NewAddress() {
+export default function NewAddress(twclass: { twclass?: string }) {
   const userId = useAuthStore((state) => state.firebaseId);
   const city = useAddress((state) => state.city);
   const country = useAddress((state) => state.country);
@@ -17,11 +17,10 @@ export default function NewAddress() {
   const zip = useAddress((state) => state.zip);
   const clearAll = useAddress((state) => state.clearAll);
 
-  const seAddresses = useChangeData((state) => state.seAddresses);
-  const setDefaulAddress = useChangeData((state) => state.setDefaulAddress);
+  const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
 
   const setIsNewAddressOpened = useAddress(
-    (state) => state.setIsNewAddressOpened
+    (state) => state.setIsNewAddressOpened,
   );
 
   const { mutate: addNewAddress } = useAddAddress(userId);
@@ -38,8 +37,7 @@ export default function NewAddress() {
     };
 
     addNewAddress(newAddress);
-    seAddresses(newAddress);
-    setDefaulAddress(newAddress);
+    setDefaultAddress(newAddress);
     clearAll();
     setIsNewAddressOpened(false);
   };
@@ -51,7 +49,9 @@ export default function NewAddress() {
 
   return (
     <>
-      <section className="userdata mx-auto justify-items-center w-full border-1 border-stone-300 py-8 z-1000 absolute top-[-370px] bg-white px-12 rounded-2xl">
+      <section
+        className={`userdata mx-auto justify-items-center w-150 border-1 border-stone-300 py-8 z-1000 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-2xl ${twclass}`}
+      >
         <div className="close absolute right-8 top-8" onClick={onCloseModal}>
           <img
             className="w-3 h-3 cursor-pointer transition-all duration-100 hover:opacity-60"

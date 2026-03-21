@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useProductStore } from "store/productsStore";
 import { useNavigationStore } from "store/navigationStroe";
-import useGeProducts from "hooks/useGeProducts";
+import useGetProducts from "hooks/useGetProducts";
 import { useFilterStore } from "./store/filter";
 
 import Products from "components/Products";
@@ -23,7 +23,7 @@ export default function Catalog() {
     (state) => state.seFilteredProducts
   );
 
-  const { products, status } = useGeProducts(category);
+  const { products, status } = useGetProducts(category);
 
   useEffect(() => {
     seFilteredProducts(products);

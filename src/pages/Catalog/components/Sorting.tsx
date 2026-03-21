@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useFilterStore } from "../store/filter";
 import { SortingParams } from "types/CategoryTypes";
-import sorOptions from "../config/sorOptions";
+import sortOptions from "../config/sortOptions";
 
 export default function Sorting() {
   const [opened, setOpened] = useState(false);
@@ -43,7 +43,7 @@ export default function Sorting() {
           opened ? "opacity-100 z-1 mt-[10px]" : "opacity-0 mt-[-20px]"
         }`}
       >
-        {sorOptions.map(({ label, param, mod }) => (
+        {sortOptions.map(({ label, param, mod }) => (
           <li
             key={label}
             className="item w-full py-2 px-10  text-center transition-all duration-200 ease hover:bg-stone-100"

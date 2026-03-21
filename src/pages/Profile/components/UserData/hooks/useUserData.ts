@@ -1,5 +1,5 @@
 
-import { useChangeData } from "../store/useChageData";
+import { useChangeData } from "../store/useChangeData";
 import { UserData } from "../types";
 
 export default function useUserData(): UserData[] {

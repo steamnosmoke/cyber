@@ -31,7 +31,7 @@ export interface User {
   addresses?: Address[];
   firebaseId?: string;
   birthday?: string;
-  defaulAddress?: Address;
+  defaultAddress?: Address;
   AIchatHistory?: ChatMessage[];
 };
 

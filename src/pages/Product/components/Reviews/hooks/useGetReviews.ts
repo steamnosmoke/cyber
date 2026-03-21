@@ -27,7 +27,7 @@ async function geReviews(productId: string) {
   return { reviews, rates };
 }
 
-export default function useGeReviews(productId: string) {
+export default function useGetReviews(productId: string) {
   const { data, status, error } = useQuery({
     queryKey: ["reviews", Number(productId) - 1],
     queryFn: () => geReviews(productId),

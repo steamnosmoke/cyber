@@ -13,7 +13,7 @@ export const useChangeData = create<DataStore>()(
         birthday: "",
       },
 
-      defaulAddress: null,
+      defaultAddress: null,
 
       setUser: (user) =>
         set({
@@ -28,7 +28,7 @@ export const useChangeData = create<DataStore>()(
       clearData: () =>
         set({
           user: {},
-          defaulAddress: null,
+          defaultAddress: null,
         }),
 
       setEmail: (email) => set((state) => ({ user: { ...state.user, email } })),
@@ -36,12 +36,12 @@ export const useChangeData = create<DataStore>()(
       setPhone: (phone) => set((state) => ({ user: { ...state.user, phone } })),
       setBirthday: (birthday) =>
         set((state) => ({ user: { ...state.user, birthday } })),
-      setDefaultAddress: (defaulAddress) => set({ defaulAddress }),}),
+      setDefaultAddress: (defaultAddress) => set({ defaultAddress }),}),
     {
       name: "userData-storage",
       partialize: (state) => ({
         user: state.user,
-        defaulAddress: state.defaulAddress,
+        defaultAddress: state.defaultAddress,
       }),
     }
   )

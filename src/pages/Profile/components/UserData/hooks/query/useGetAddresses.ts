@@ -18,7 +18,7 @@ export async function geAddresses(userId: string): Promise<Address[]> {
     : [];
 }
 
-export function useGeAddresses(userId: string) {
+export function useGetAddresses(userId: string) {
   return useQuery<Address[]>({
     queryFn: () => geAddresses(userId),
     queryKey: ["user", "addresses", userId],

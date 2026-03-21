@@ -2,7 +2,7 @@ import { Review } from "types/ProductTypes";
 import usePostComment from "./usePostComment";
 import { useReviewStore } from "../store/useReviewStore";
 import { useProductStore } from "store/productsStore";
-import useGeUserById from "hooks/useGeUserById";
+import useGetUserById from "hooks/useGetUserById";
 
 export default function useSendComment(
   e: React.FormEvent<HTMLFormElement>,
@@ -13,7 +13,7 @@ export default function useSendComment(
   const comment = useReviewStore((state) => state.comment);
   const product = useProductStore((state) => state.product);
 
-  const { data: user } = useGeUserById(userId);
+  const { data: user } = useGetUserById(userId);
 
   return () => {
     e.preventDefault();

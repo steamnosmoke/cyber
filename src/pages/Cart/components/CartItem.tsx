@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 import { Props } from "../types";
 import useRemoveItem from "../hooks/useRemoveItem";
-import ChangeCounButton from "buttons/components/ChangeCounButton";
+import ChangeCountButton from "buttons/components/ChangeCountButton";
 
 export default function CartItem({ product }: Props) {
   const [stock, setStock] = useState(product.stock);
@@ -22,7 +22,7 @@ export default function CartItem({ product }: Props) {
           </section>
         </Link>
         <section className="flex justify-between items-center gap-6 pt-2">
-          <ChangeCounButton
+          <ChangeCountButton
             product={product}
             stock={stock}
             setStock={setStock}

@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import { useChangeData } from "../store/useChageData";
+import { useChangeData } from "../store/useChangeData";
 import { useAuthStore } from "store/authStore";
-import { geAddresses } from "../hooks/query/useGeAddresses";
+import { geAddresses } from "../hooks/query/useGetAddresses";
 
-export function useInitDefaulAddress() {
+export function useInitDefaultAddress() {
   const userId = useAuthStore((s) => s.firebaseId);
-  const setDefaulAddress = useChangeData((s) => s.setDefaulAddress);
+  const setDefaultAddress = useChangeData((s) => s.setDefaultAddress);
 
   useEffect(() => {
     if (!userId) return;
     (async () => {
       const addresses = await geAddresses(userId);
       const def = addresses.find((a) => a.isDefault);
-      if (def) setDefaulAddress(def);
+      if (def) setDefaultAddress(def);
     })();
-  }, [userId, setDefaulAddress]);
+  }, [userId, setDefaultAddress]);
 }
