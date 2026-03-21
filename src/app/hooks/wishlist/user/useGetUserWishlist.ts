@@ -18,7 +18,7 @@ export async function geUserWishlist(userId: string): Promise<Product[]> {
   return wishlist;
 }
 
-export default function useGeUserCart(userId: string) {
+export default function useGetUserCart(userId: string) {
 
   return useQuery<Product[]>({
     queryFn: () => geUserWishlist(userId),

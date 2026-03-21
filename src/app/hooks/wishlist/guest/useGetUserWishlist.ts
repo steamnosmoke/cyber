@@ -19,7 +19,7 @@ export async function geUserWishlist(userId: string): Promise<Product[]> {
   return wishlist;
 }
 
-export default function useGeUserWishlist(userId: string) {
+export default function useGetUserWishlist(userId: string) {
   return useQuery({
     queryKey: ["wishlist", userId],
     queryFn: () => geUserWishlist(userId),

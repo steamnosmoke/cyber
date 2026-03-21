@@ -1,12 +1,12 @@
 import { useGuestStore } from "store/guestStore";
 import { Product } from "types/ProductTypes";
-import useGeUserWishlist from "./guest/useGeUserWishlist";
+import useGetUserWishlist from "./guest/useGetUserWishlist";
 
 export default function useGetWishlist(userId: string): {
   wishlist: Product[];
   status: "success" | "error" | "pending";
 } {
-  const { data: userWishlist, status } = useGeUserWishlist(userId);
+  const { data: userWishlist, status } = useGetUserWishlist(userId);
   const guestWishlist = useGuestStore((state) => state.wishlist);
   if (userId === "guest") {
     return { wishlist: guestWishlist, status: "success" };

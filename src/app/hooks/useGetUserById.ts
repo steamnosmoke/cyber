@@ -11,7 +11,7 @@ async function geUser(firebaseId: string): Promise<User> {
   return data;
 }
 
-export default function useGeUserById(firebaseId: string) {
+export default function useGetUserById(firebaseId: string) {
   return useQuery({
     queryFn: () => geUser(firebaseId),
     queryKey: ["user", firebaseId],

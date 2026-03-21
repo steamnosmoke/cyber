@@ -18,7 +18,7 @@ export async function geUserCart(userId: string): Promise<CartItem[]> {
   return cartData;
 }
 
-export default function useGeUserCart(userId: string) {
+export default function useGetUserCart(userId: string) {
 
   return useQuery<CartItem[]>({
     queryFn: () => geUserCart(userId),

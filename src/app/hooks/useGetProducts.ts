@@ -29,7 +29,7 @@ async function geProducts(category: string): Promise<Product[]> {
   return products;
 }
 
-export default function useGeProducts(category: string) {
+export default function useGetProducts(category: string) {
   const { data, status, error } = useQuery<Product[]>({
     queryKey: ["products", category],
     queryFn: () => geProducts(category),

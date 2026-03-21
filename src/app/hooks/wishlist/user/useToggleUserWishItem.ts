@@ -3,7 +3,7 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import {geUserWishlist} from "../guest/useGeUserWishlist";
+import {geUserWishlist} from "../guest/useGetUserWishlist";
 import { Product } from "types/ProductTypes";
 
 const toggleUserItem = async (

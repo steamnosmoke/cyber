@@ -3,7 +3,7 @@ import axios from "axios";
 
 import DB_URL from "constants/DB_URL";
 
-import { geUserCart } from "hooks/cart/user/useGeUserCart";
+import { geUserCart } from "hooks/cart/user/useGetUserCart";
 import { CartItem } from "types/CartTypes";
 
 import updateItem from "utils/cart/updateItem";
@@ -42,9 +42,9 @@ export default function useAddToUserCart(userId: string) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (product: CartItem) => addToUserCart(product, userId),
-    mutationKey: ["cart"],
+    mutationKey: ["cart", userId],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
+      queryClient.invalidateQueries({ queryKey: ["cart", userId] });
     },
   });
 }
