@@ -11,7 +11,7 @@ export default function useSendComment(
 ) {
   const { mutate: postComment } = usePostComment();
   const comment = useReviewStore((state) => state.comment);
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const { data: user } = useGetUserById(userId);
 

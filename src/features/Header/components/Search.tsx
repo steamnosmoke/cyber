@@ -1,7 +1,7 @@
 
 import { useMemo } from "react";
 
-import { useSearchStore } from "../store/searchStore";
+import { useSearchStore } from "store/searchStore";
 import useGetProducts from "hooks/useGetProducts";
 import search from "../utils/fuse";
 
@@ -52,13 +52,13 @@ export default function Search() {
           }
           hover:w-100 hover:border-stone-500 hover:placeholder:text-stone-700`}
           type="text"
-          placeholder="Search"
+          placeholder="Поиск"
           value={inputValue}
           onChange={(e) => handleSearch(e)}
           onClick={() => onSearch()}
         />
         <button
-          className={`search-clear-button w-5 h-5 absolute top-3.5 right-4 cursor-pointer opacity-70 hover:opacity-100 transition-all duration-150 ${
+          className={`search-clear-button w-5 h-5 absolute top-4 right-4 cursor-pointer opacity-70 hover:opacity-100 transition-all duration-150 ${
             !inputValue && "hidden"
           }`}
           onClick={() => onClear()}

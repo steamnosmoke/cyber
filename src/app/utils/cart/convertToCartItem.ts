@@ -9,7 +9,7 @@ export default function convertToCartItem(
   memory: string
 ): CartItem {
 
-  const seProduct = useProductStore.getState().seProduct;
+  const setProduct = useProductStore .getState().setProduct ;
   const currenVariant = product.variants.find(
     (item) => item.color === color && item.memory === memory
   );
@@ -28,6 +28,6 @@ export default function convertToCartItem(
     objectId,
     variantId
   };
-  seProduct(item);
+  setProduct (item);
   return item;
 }

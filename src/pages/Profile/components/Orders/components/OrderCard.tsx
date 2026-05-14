@@ -5,9 +5,9 @@ import { Product } from "types/ProductTypes";
 import { OrderCardProps } from "../types";
 
 export default function OrderCard({ product }: OrderCardProps) {
-  const seProduct = useProductStore((state) => state.seProduct);
+  const setProduct = useProductStore ((state) => state.setProduct );
   const onClickCard = (product: Product) => {
-    seProduct(product);
+    setProduct (product);
     window.scrollTo(0, 0);
   };
 

@@ -10,7 +10,7 @@ export const useFilterStore = create<FilterStore>()(
       filters: [],
       confirmedFilters: [],
       filteredProducts: [],
-      sortingParams: { param: "price", mod: "desc" },
+      sortingParams: { label: "цене ↓", param: "price", mod: "desc" },
 
       seFilters: ({ title, value }) => {
         set((state) => {
@@ -110,7 +110,7 @@ export const useFilterStore = create<FilterStore>()(
         set({ filteredProducts });
       },
 
-      seSortingParams: (params) => set({ sortingParams: params }),
+      setSortingParams: (params) => set({ sortingParams: params }),
     }),
     {
       name: "product-storage",
@@ -119,6 +119,6 @@ export const useFilterStore = create<FilterStore>()(
         confirmedFilters: state.confirmedFilters,
         filteredProducts: state.filteredProducts,
       }),
-    }
-  )
+    },
+  ),
 );

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 import { useModalStore } from "store/modalStore";
+import { useSearchStore } from "store/searchStore";
 import RoutesComponent from "./app/router";
 
-import { useSearchStore } from "./features/Header/store/searchStore";
 
 import Header from "./features/Header";
 import Footer from "./features/Footer";

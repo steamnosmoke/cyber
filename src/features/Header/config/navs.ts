@@ -1,8 +1,7 @@
 import { Navigate } from "../types";
 
 export const navs: Navigate[] = [
-  { path: "/", label: "Home" },
-  { path: "/catalog", label: "Catalog" },
-  // { path: "/contacts", label: "Contact Us" },
-  { path: "/assistant", label: "AI-Assistant" },
+  { path: "/", label: "Главная" },
+  { path: "/catalog", label: "Каталог" },
+  { path: "/assistant", label: "ИИ-ассистент" },
 ];

@@ -1,9 +1,4 @@
-export interface Service {
+export interface Navigate {
+  path: string;
   label: string;
-  link: string;
-}
-export interface Social {
-  icon: string;
-  alt: string;
-  link: string;
 }

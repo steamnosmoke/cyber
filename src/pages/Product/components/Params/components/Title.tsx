@@ -1,7 +1,7 @@
 import { useProductStore } from "store/productsStore";
 
 export default function Title() {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   return (
     <>

@@ -9,7 +9,7 @@ import CommentText from "./CommentText";
 
 export default function Comment() {
   const userId = useAuthStore((state) => state.firebaseId);
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const comment = useReviewStore((state) => state.comment);
   const setComment = useReviewStore((state) => state.setComment);

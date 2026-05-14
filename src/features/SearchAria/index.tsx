@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useSearchStore } from "features/Header/store/searchStore";
+import { useSearchStore } from "store/searchStore";
 
 import SearchCard from "./components/SearchCard";
 

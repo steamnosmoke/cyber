@@ -1,7 +1,5 @@
 import Logo from "./components/Logo";
-import Services from "./components/Services";
-import Assistances from "./components/Assistances";
-import Socials from "./components/Socials";
+import Navigation from "./components/Navigation";
 
 export default function Footer() {
   return (
@@ -10,13 +8,8 @@ export default function Footer() {
         <div className="container">
           <div className="footer-inner flex justify-between items-start text-stone-300">
             <Logo />
-
-            <Services />
-
-            <Assistances />
+            <Navigation />
           </div>
-
-          <Socials />
         </div>
       </footer>
     </>

@@ -11,13 +11,13 @@ interface Props {
 
 export default function ProductCard({ objectId }: Props) {
   const { product } = useGetProductById(objectId);
-  const seProduct = useProductStore((state) => state.seProduct);
+  const setProduct = useProductStore ((state) => state.setProduct );
 
   const onClickCard = useCallback(() => {
-    seProduct(product);
+    setProduct (product);
 
     window.scrollTo(0, 0);
-  }, [seProduct, product]);
+  }, [setProduct , product]);
 
   if (!product) {
     return null;

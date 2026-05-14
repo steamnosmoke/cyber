@@ -3,7 +3,7 @@ import { useProductStore } from "store/productsStore";
 import getCharacters from "../utils/getCharacters";
 
 export default function Characters() {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const characters = getCharacters(product);
 

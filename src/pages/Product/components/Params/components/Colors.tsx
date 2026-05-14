@@ -8,7 +8,7 @@ import colorHexs from "../config/colorHexs";
 import colors from "../config/colors";
 
 export default function Colors() {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const memoizedColors = useMemo(() => colors(product), [product]);
   const memoizedColorHexs = useMemo(() => colorHexs(product), [product]);

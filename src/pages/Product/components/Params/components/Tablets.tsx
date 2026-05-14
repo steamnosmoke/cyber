@@ -3,7 +3,7 @@ import { useProductStore } from "store/productsStore";
 import getTablets from "../utils/getTablets";
 
 export default function Tablets() {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const tablets = getTablets(product);
   return (

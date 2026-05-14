@@ -1,0 +1,34 @@
+import { NavLink } from "react-router";
+import { navs } from "../config/navs";
+import { useNavigationStore } from "store/navigationStroe";
+import { useNavigateActions } from "hooks/useNavigateActions";
+
+export default function Navigation() {
+  const isActive = useNavigationStore((state) => state.activePage);
+
+  const { onClickNav } = useNavigateActions();
+
+  return (
+    <ul className="navigate-list flex items-center justify-between gap-10 ">
+      {navs.map((nav, navId) => (
+        <li
+          className="navigate-point min-w-30 text-center"
+          onClick={() => onClickNav(navId)}
+          key={navId}
+        >
+          <NavLink
+            to={nav.path}
+            className={` cursor-pointer transition-colors duration-200 ease-in-out 
+              ${
+                isActive === navId+1
+                  ? "text-white font-bold"
+                  : "text-white/70 hover:text-white hover:font-bold"
+              }`}
+          >
+            {nav.label}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  );
+}

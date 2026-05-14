@@ -11,7 +11,7 @@ import AddToCartButton from "buttons/components/AddToCartButton";
 export default function Buttons() {
   const userId = useAuthStore((state) => state.firebaseId);
   const { wishlist } = useGetWishlist(userId);
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
   const addToWishlist = useAddToWishlist(userId);
 
   const isLiked = wishlist?.some((item) => item.objectId === product.objectId);

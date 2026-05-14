@@ -73,7 +73,7 @@ export default function AddToCartButton({
           }`}
           disabled={isOutOfStock}
         >
-          {isOutOfStock ? "Out of stock" : "Add to Cart"}
+          {isOutOfStock ? "Закончился" : "В корзину"}
         </BlackButton>
       </div>
 

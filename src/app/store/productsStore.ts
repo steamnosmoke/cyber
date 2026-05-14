@@ -10,9 +10,9 @@ export const useProductStore = create<ProductStore>()(
       product: null,
       filteredProducts: [],
 
-      seProduct: (product) => set({ product }),
+      setProduct: (product) => set({ product }),
 
-      seCategory: (category) =>
+      setCategory: (category) =>
         set({
           category: category.charAt(0).toUpperCase() + category.slice(1),
         }),

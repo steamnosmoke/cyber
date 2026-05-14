@@ -6,14 +6,14 @@ import sortOptions from "../config/sortOptions";
 
 export default function Sorting() {
   const [opened, setOpened] = useState(false);
+  const [sort, setSort] = useState(sortOptions[0]);
   const ref = useRef<HTMLDivElement>(null);
+  const setSortingParams = useFilterStore((state) => state.setSortingParams);
 
-  const param = useFilterStore((state) => state.sortingParams.param);
-  const mod = useFilterStore((state) => state.sortingParams.mod);
-  const seSortingParams = useFilterStore((state) => state.seSortingParams);
-
-  const handleSetParams = ({ param, mod }: SortingParams) =>
-    seSortingParams({ param, mod });
+  const handleSetParams = ({ label, param, mod }: SortingParams) => {
+    setSortingParams({ param, mod });
+    setSort({ label, param, mod });
+  };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -35,8 +35,7 @@ export default function Sorting() {
       onClick={() => setOpened(!opened)}
     >
       <h3 className="title text-lg transition-all duration-150 ease-in-out hover:text-stone-700">
-        <span className="text-stone-500 text-base">Sort by</span> {param}{" "}
-        {mod === "desc" ? "↓" : "↑"}
+        <span className="text-stone-500 text-base">Сортировка по</span> {sort.label}
       </h3>
       <ul
         className={`list opacity-0 z-[-1] absolute bg-white min-w-32 rounded-md flex flex-col items-center justify-center shadow-[0_7px_20px_-5px_rgb(130,130,130)] transition-all duration-300 ease ${
@@ -47,7 +46,7 @@ export default function Sorting() {
           <li
             key={label}
             className="item w-full py-2 px-10  text-center transition-all duration-200 ease hover:bg-stone-100"
-            onClick={() => handleSetParams({ param, mod })}
+            onClick={() => handleSetParams({ label, param, mod })}
           >
             {label}
           </li>

@@ -3,7 +3,7 @@ import Stars from "../images/components/Stars";
 import { Props } from "../types";
 
 export default function Rates({ data }: Props) {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const marks = ["Poor", "Below Average", "Average", "Good", "Excellent"];
   

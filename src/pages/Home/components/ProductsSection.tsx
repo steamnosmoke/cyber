@@ -4,7 +4,7 @@ import { useProductStore } from "store/productsStore";
 import Products from "components/Products";
 
 export default function ProductsSection() {
-  const category = useProductStore((state) => state.category);
+  const category = useProductStore ((state) => state.category);
   const { products, status } = useGetProducts(category);
   return (
     <section className="products">

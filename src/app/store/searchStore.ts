@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 import { Product } from "types/ProductTypes";
 
-import { SearchStore } from "../types";
+import { SearchStore } from "types/SearchTypes";
 
 export const useSearchStore = create<SearchStore>((set) => ({
   value: "",

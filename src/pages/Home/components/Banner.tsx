@@ -18,17 +18,17 @@ export default function Banner() {
           <div className="banner-inner flex items-center justify-center h-full">
             <div className="banner-info flex flex-col items-start justify-start gap-1 w-140 text-stone-300">
               <p className="banner-description text-2xl font-semibold ">
-                Pro.Beyond.
+                Pro. Новый уровень.
               </p>
               <h1 className="banner-title text-7xl font-[100] text-white">
                 IPhone 17 <span className="font-semibold">Pro</span>
               </h1>
               <p className="banner-description text-xl font-semibold">
-                Smarter. Faster. More Pro than ever
+                Больше возможностей. Больше Pro.
               </p>
               <Link to={"/catalog/Phones/iPhone_17_Pro_Cosmic_Orange_2048GB"}>
                 <WhiteLineButton
-                  children={"View"}
+                  children={"Посмотреть"}
                   twclass="!px-15 !py-3 text-lg mt-5"
                 />
               </Link>

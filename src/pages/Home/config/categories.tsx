@@ -9,17 +9,17 @@ import { Category } from "../types";
 
 const categories: Category[] = [
   {
-    label: "All",
+    label: "Все",
     category: "",
     img: <All />,
   },
-  { label: "Phones", category: "Phones", img: <Phones /> },
-  { label: "Smartwatches", category: "Smartwatches", img: <Watches /> },
-  { label: "Accessories", category: "Accessories", img: <Accessories /> },
-  { label: "Headphones", category: "Headphones", img: <Headphones /> },
-  { label: "Computers", category: "Computers", img: <Computers /> },
+  { label: "Смартфоны", category: "Phones", img: <Phones /> },
+  { label: "Смартчасы", category: "Smartwatches", img: <Watches /> },
+  { label: "Акссесуары", category: "Accessories", img: <Accessories /> },
+  { label: "Наушники", category: "Headphones", img: <Headphones /> },
+  { label: "Компьютеры", category: "Computers", img: <Computers /> },
   {
-    label: "Gaming",
+    label: "Игры",
     category: "Gaming Consoles",
     img: <Gaming />,
   },

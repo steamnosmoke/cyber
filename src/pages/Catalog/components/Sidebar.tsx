@@ -9,7 +9,7 @@ import BlackButton from "buttons/components/BlackButton";
 import Filter from "./Filter";
 
 export default function CatalogAside() {
-  const category = useProductStore((state) => state.category);
+  const category = useProductStore ((state) => state.category);
   const [isOpened, setIsOpened] = useState(false);
   const isFilterOpened = useFilterStore((state) => state.isFilterOpened);
   const setConfirmedFilters = useFilterStore(
@@ -58,12 +58,12 @@ export default function CatalogAside() {
           >
             <BlackButton
               twclass={`${isFilterOpened ? "!px-2 !w-30" : "!p-0"}`}
-              children={"Confirm"}
+              children={"Применить"}
               onClick={setConfirmedFilters}
             />
             <BlackButton
               twclass={`${isFilterOpened ? "!w-30 !px-2" : "!p-0"}`}
-              children={"Clear"}
+              children={"Очистить"}
               onClick={clearFilters}
             />
           </div>

@@ -7,7 +7,7 @@ import Comment from "./components/Comment";
 import ReviewList from "./components/ReviewList";
 
 export default function Reviews() {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
   const { data: reviewsData, status } = useGetReviews(product.productId);
 
   if (!reviewsData || status === "pending") return <h1>Loading reviews...</h1>;

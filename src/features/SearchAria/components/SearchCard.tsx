@@ -5,16 +5,16 @@ import { Link } from "react-router";
 import { useProductStore } from "store/productsStore";
 import { Product } from "types/ProductTypes";
 
-import { useSearchStore } from "../../Header/store/searchStore";
+import { useSearchStore } from "store/searchStore";
 
 export default function SearchCard({ product }: { product: Product }) {
-  const seProduct = useProductStore((state) => state.seProduct);
+  const setProduct = useProductStore ((state) => state.setProduct);
   const setAriaOpened = useSearchStore((state) => state.setAriaOpened);
   const onClickCard = useCallback(() => {
-    seProduct(product);
+    setProduct(product);
     setAriaOpened(false);
     window.scrollTo(0, 0);
-  }, [seProduct, product]);
+  }, [setProduct, product]);
   return (
     <li className="card w-80 h-35 rounded-xl transition-all duration-200 ease-in hover:translate-y-[-2px] hover:shadow-[0_6px_12px_-1px_rgb(223,223,223)]">
       <Link

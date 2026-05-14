@@ -113,7 +113,7 @@ export interface Specs {
 
 export interface ProductStore {
   product?: Product | null;
-  category?: string;
+  category: string;
   filters?: Filter[];
   confirmedFilters?: Filter[];
   filteredProducts?: Product[];
@@ -121,13 +121,13 @@ export interface ProductStore {
   comment?: string;
   sortingParams?: SortingParams;
 
-  seProduct?: (product?: Product) => void;
+  setProduct: (product: Product) => void;
   setComment?: (comment?: string) => void;
   seFilters?: (filter?: { title?: string; value?: string }) => void;
   clearFilters?: () => void;
   setConfirmedFilters?: () => void;
   seFilterOpened?: () => void;
-  seCategory?: (category?: string) => void;
+  setCategory?: (category: string) => void;
   seFilteredProducts?: (products?: Product[]) => void;
-  seSortingParams?: (params?: SortingParams) => void;
+  setSortingParams?: (params?: SortingParams) => void;
 };

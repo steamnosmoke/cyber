@@ -4,7 +4,7 @@ import Specs from "./components/Specs";
 import MoreButton from "../MoreButton";
 
 export default function Details() {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const isDetailsOpened = useDetailsStore((state) => state.isDetailsOpened);
   const setDetailsOpened = useDetailsStore((state) => state.setDetailsOpened);

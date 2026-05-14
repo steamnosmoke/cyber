@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function ProductGallery() {
   const sliderRef = useRef(null);
-  const images = useProductStore.getState().product.images;
+  const images = useProductStore .getState().product.images;
   const settings = {
     customPaging: function (i: number) {
       return (

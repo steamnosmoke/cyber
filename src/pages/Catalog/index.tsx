@@ -10,7 +10,7 @@ import CatalogAside from "./components/Sidebar";
 import CatalogHeader from "./components/Header";
 
 export default function Catalog() {
-  const category = useProductStore((state) => state.category);
+  const category = useProductStore ((state) => state.category);
 
   const setActivePage = useNavigationStore((state) => state.setActivePage);
 
@@ -47,7 +47,7 @@ export default function Catalog() {
             </div>
           </>
         ) : (
-          <h1 className="empty text-5xl text-center w-full">No products</h1>
+          <h1 className="empty text-5xl text-center w-full">Ничего не найдено</h1>
         )}
       </section>
     </main>

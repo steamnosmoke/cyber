@@ -12,17 +12,17 @@ import AddToCartButton from "../buttons/components/AddToCartButton";
 import CardByCategory from "./components/CardByCategory";
 
 export default function Card({ product }: { product: Product }) {
-  const seProduct = useProductStore((state) => state.seProduct);
+  const setProduct = useProductStore ((state) => state.setProduct );
   const userId = useAuthStore((state) => state.firebaseId);
   const { wishlist: products } = useGetWishlist(userId);
   const isLiked = products?.some((item) => item.objectId === product.objectId);
   const addToWishlist = useAddToWishlist(userId);
 
   const onClickCard = useCallback(() => {
-    seProduct(product);
+    setProduct (product);
 
     window.scrollTo(0, 0);
-  }, [seProduct, product]);
+  }, [setProduct , product]);
 
   return (
     <>

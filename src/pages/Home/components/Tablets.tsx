@@ -26,8 +26,8 @@ export default function Tablets() {
                   Playstation 5
                 </h2>
                 <p className="text-stone-700 text-[14px] mt-2">
-                  Incredibly powerful CPUs, GPUs, and an SSD with integrated I/O
-                  will redefine your PlayStation experience.
+                  Максимальная мощность, молниеносная скорость и новый уровень
+                  погружения в мир PlayStation.
                 </p>
               </div>
             </Link>
@@ -46,7 +46,7 @@ export default function Tablets() {
                   <br /> <span className="font-semibold">Max</span>
                 </h2>
                 <p className="text-stone-700 text-[14px] mt-2">
-                  Computational audio. Listen, it's powerfulf
+                  Интеллектуальное аудио. Звучание, которое впечатляет.
                 </p>
               </div>
             </Link>
@@ -61,11 +61,13 @@ export default function Tablets() {
               ></div>
               <div className="vision-info w-[50%] gap-2">
                 <h2 className="text-black text-2xl font-light">
-                  Apple
-                  Vision <span className="font-semibold"><br /> Pro</span>
+                  Apple Vision{" "}
+                  <span className="font-semibold">
+                    <br /> Pro
+                  </span>
                 </h2>
                 <p className="text-stone-700 text-[14px] mt-2">
-                  An immersive way to experience entertainment
+                  Погрузись в развлечения по-новому.
                 </p>
               </div>
             </Link>
@@ -80,8 +82,8 @@ export default function Tablets() {
                 Macbook <span className="font-semibold">Pro</span>
               </h2>
               <p className="text-stone-700 text-[14px]">
-                The new 16‑inch MacBook Pro makes room for more of what you love
-                with a spacious Liquid Retina XDR display
+                Новый 16-дюймовый MacBook Pro открывает больше пространства для
+                любимых задач благодаря большому дисплею Liquid Retina XDR.
               </p>
             </div>
             <div

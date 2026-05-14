@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 import { useAuthStore } from "store/authStore";
 
-import { useNavigateActions } from "../hooks/useNavigateActions";
+import { useNavigateActions } from "hooks/useNavigateActions";
 import { Button } from "../types";
 
 import WishlistIcon from "../images/components/WishlistIcon";

@@ -20,5 +20,5 @@ export interface FilterStore {
   setConfirmedFilters: () => void;
   seFilterOpened: () => void;
   seFilteredProducts: (products: Product[]) => void;
-  seSortingParams: (params: SortingParams) => void;
+  setSortingParams: (params: SortingParams) => void;
 };

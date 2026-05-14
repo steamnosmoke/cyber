@@ -6,7 +6,7 @@ import setItem from "utils/cart/convertToCartItem";
 import memories from "../config/memories";
 
 export default function Memory() {
-  const product = useProductStore((state) => state.product);
+  const product = useProductStore ((state) => state.product);
 
   const memoizedMemories = useMemo(() => memories(product), [product]);
   return (

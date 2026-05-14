@@ -20,7 +20,7 @@ export default function Products({ products, status, grid }: Props) {
                 products.map((el) => <Card key={el.objectId} product={el} />)
               ) : (
                 <h1 className="text-2xl text-center font-semibold mt-3">
-                  No Products Found
+                  Ничего не найдено
                 </h1>
               );
 
@@ -33,7 +33,7 @@ export default function Products({ products, status, grid }: Props) {
             default:
               return (
                 <h2 className="text-2xl text-center font-semibold mt-3">
-                  Something Went Wrong
+                  Что-то пошло не так
                 </h2>
               );
           }
