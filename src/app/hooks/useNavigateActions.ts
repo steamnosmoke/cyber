@@ -5,7 +5,7 @@ import { useAuthStore } from "store/authStore";
 import { useModalStore } from "store/modalStore";
 import { useNavigationStore } from "store/navigationStroe";
 import { useProductStore } from "store/productsStore";
-import { useSearchStore } from "../store/searchStore";
+import { useSearchStore } from "store/searchStore";
 
 export function useNavigateActions() {
   const navigate = useNavigate();
