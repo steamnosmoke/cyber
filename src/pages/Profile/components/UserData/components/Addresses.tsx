@@ -44,7 +44,7 @@ export default function Addresses() {
           Default address
         </p>
         <p className={!defaultAddress ? "text-stone-500" : ""}>
-          {defaultAddress ? formatAddress(defaultAddress) : "Add new address"}
+          {defaultAddress ? formatAddress(defaultAddress) : "Добавить адресс"}
         </p>
       </div>
 

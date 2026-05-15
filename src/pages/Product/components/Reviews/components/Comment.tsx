@@ -36,7 +36,7 @@ export default function Comment() {
                 twclass={"submit absolute bottom-0 right-0 hover:scale-100 text-[16px] !px-10 !py-3"}
                 type={"submit"}
                 disabled={!comment && !rating}
-                children={"Send Comment"}
+                children={"Отправить"}
               />
             </>
           )}

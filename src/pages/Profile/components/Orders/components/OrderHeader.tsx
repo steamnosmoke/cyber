@@ -5,10 +5,10 @@ export default function OrderHeader({ order }: OrderProps) {
     <div className="header pb-2 border-b-1 border-stone-300 w-full flex justify-between">
       <h3 className="relative pl-1 mx-8 flex gap-3 items-center justify-start text-xl group cursor-pointer *:transition-all *:duration-200 ">
         <span className="relative z-10 group-hover:text-stone-600">
-          Order "{order.id.slice(order.id.length - 4, order.id.length)}"
+          Заказ №{order.id.slice(order.id.length - 4, order.id.length)}
         </span>
 
-        <span className="text-stone-600">by {order?.date}</span>
+        <span className="text-stone-600">от {order?.date}</span>
 
         <span className="absolute bg-stone-500 bottom-1 left-0 h-[2px] w-0  group-hover:w-70"></span>
 

@@ -36,15 +36,15 @@ export default function Profile() {
         <div className="container min-h-[calc(100vh-120px)]">
           <div className="flex items-center justify-between py-8 px-0 ">
             <h1 className="hello text-2xl leading-9">
-              Hello, {user?.name ? user?.name : user?.email}!
+              Привет, {user?.name ? user?.name : user?.email}!
             </h1>
             <div className="buttons flex items-center gap-6">
               <BlackLineButton
-                children="Change your profile"
+                children="Изменить профиль"
                 twclass="!px-8 !py-3 !text-base"
                 onClick={() => setIsData(!isData)}
               />
-              <BlackButton children="Log out" onClick={onLogOut} />
+              <BlackButton children="Выйти" onClick={onLogOut} />
             </div>
           </div>
           <UserData flag={isData} />

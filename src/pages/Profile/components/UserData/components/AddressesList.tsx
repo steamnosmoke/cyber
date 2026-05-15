@@ -80,7 +80,7 @@ export default function AddressesList() {
         ))}
       <li className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200">
         <p className="w-full" onClick={openAdding}>
-          + Add new address
+          + Добавить адресс
         </p>
       </li>
     </ul>

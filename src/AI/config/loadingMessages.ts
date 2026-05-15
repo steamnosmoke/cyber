@@ -1,15 +1,15 @@
 export const getLoadingMessages = () => {
   const loadingMessages = [
-    "I'm thinking...",
-    "Analyzing the market...",
-    "Checking product information...",
-    "Processing your request...",
-    "Searching for the best options...",
-    "Reviewing available products...",
-    "Generating recommendations...",
-    "Comparing products...",
-    "Gathering information...",
-    "Formulating the best response...",
+    "Подбираю лучшие предложения...",
+    "Ищу подходящую технику...",
+    "Сравниваю характеристики...",
+    "Анализирую ваш запрос...",
+    "Готовлю рекомендации...",
+    "Почти готово...",
+    "Нахожу оптимальные варианты...",
+    "Изучаю доступные товары...",
+    "Собираю информацию...",
+    "Формирую ответ...",
   ];
 
   return loadingMessages;

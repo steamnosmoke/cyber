@@ -8,14 +8,14 @@ export default function useGetNumbers(): Num[] {
   const count = useCartStore((state) => state.count);
 
   return [
-    { label: "Subtotal", value: `$${subtotal.toFixed(2)}` },
-    { label: "Estimated Tax", value: `$50.00` },
-    { label: "Estimated shipping & Handling", value: `$29.00` },
-    { label: "Discount", value: `$${discount.toFixed(2)}` },
-    { label: "Total", value: `$${(total + 79).toFixed(2)}` },
+    { label: "Сумма", value: `$${subtotal.toFixed(2)}` },
+    { label: "Сервисный сбор", value: `$10.00` },
+    { label: "Доставка", value: `$19.00` },
+    { label: "Скидка", value: `$${discount.toFixed(2)}` },
+    { label: "Итоговая сумма", value: `$${(total + 29).toFixed(2)}` },
     {
-      label: "Number of products",
-      value: `${count} unit${count !== 1 ? "s" : ""}`,
+      label: "Количество товаров",
+      value: `${count}`,
     },
   ];
 }

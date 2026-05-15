@@ -21,9 +21,7 @@ export default function ChatAssistant() {
         <div className="w-6 h-6 bg-gradient-to-r from-gray-800 to-gray-600 rounded-full flex items-center justify-center">
           <span className="text-white font-bold text-[12px]">AI</span>
         </div>
-        <h2 className="text-xl font-bold text-gray-800">
-          Cyber's AI Assistant
-        </h2>
+        <h2 className="text-xl font-bold text-gray-800">Cyber ИИ-Ассистент</h2>
       </div>
 
       <div
@@ -77,7 +75,7 @@ export default function ChatAssistant() {
           value={input}
           onChange={setInput}
           onSend={handleSend}
-          placeholder="Ask me about products, recommendations, or anything else..."
+          placeholder="Нужна рекомендация? Просто задайте вопрос..."
         />
       </div>
     </div>

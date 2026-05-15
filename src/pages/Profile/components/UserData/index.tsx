@@ -31,12 +31,12 @@ export default function UserData({ flag }: { flag: boolean }) {
       }`}
     >
       <h2 className="title text-2xl mb-4 text-center">
-        Change your personal data
+        Изменить персональные данные
       </h2>
       <PersonalData />
 
       <BlackButton
-        children="Save changes"
+        children="Сохранить изменения"
         twclass="!mt-10 !max-w-150 !w-full !z-0"
         onClick={saveData}
       />

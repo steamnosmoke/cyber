@@ -9,17 +9,17 @@ import Guaranteed from "../images/Guaranteed.svg";
 export default function getTablets(product: Product): TTablet[] {
   return [
     {
-      label: "Delivery",
+      label: "Доставка",
       img: Delivery,
-      value: "1-2 days",
+      value: "1-2 дня",
     },
     {
-      label: "in Stock",
+      label: "В наличии",
       img: Stock,
-      value: product.stock > 0 ? "Today" : "For order",
+      value: product.stock > 0 ? "Сегодня" : "Под заказ",
     },
     {
-      label: "Guaranteed",
+      label: "Гарантия",
       img: Guaranteed,
       value:
         product.specs.guarantee.split(" ")[0] +

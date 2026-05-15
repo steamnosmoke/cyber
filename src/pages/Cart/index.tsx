@@ -25,7 +25,7 @@ export default function Cart() {
     <section className="cart py-4 px-0 flex-grow">
       <div className="container min-h-[calc(100vh-120px)]">
         <h1 className="mb-8 text-3xl text-center font-medium">
-          Shopping Cart
+          Корзина
         </h1>
         {status === "success" ? (
           count ? (
@@ -44,7 +44,7 @@ export default function Cart() {
           )
         ) : status === "error" ? (
           <h2 className="text-4xl text-center font-semibold mt-[10%]">
-            Error. Repeat later
+            Ошибка. Попробуйте больше
           </h2>
         ) : (
           <Loader />

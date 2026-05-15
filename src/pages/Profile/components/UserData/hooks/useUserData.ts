@@ -9,9 +9,9 @@ export default function useUserData(): UserData[] {
   return [
     {
       type: "text",
-      label: "first name",
+      label: "Имя",
       value: user?.name || "",
-      placeholder: "Donald",
+      placeholder: "Иван",
       func: setName,
     },
     {
@@ -23,16 +23,16 @@ export default function useUserData(): UserData[] {
     },
     {
       type: "phone",
-      label: "phone",
+      label: "Телефон",
       value: user?.phone || "",
-      placeholder: "+1 234 567 89 00",
+      placeholder: "+7 999 999 99 99",
       func: setPhone,
     },
     {
       type: "text",
-      label: "birthday",
+      label: "Дата рождения",
       value: user?.birthday || "",
-      placeholder: "01-01-2000",
+      placeholder: "2000.01.01",
       func: setBirthday,
     },
   ];

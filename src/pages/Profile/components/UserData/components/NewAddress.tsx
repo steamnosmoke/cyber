@@ -59,7 +59,7 @@ export default function NewAddress(twclass: { twclass?: string }) {
             alt="close"
           />
         </div>
-        <h2 className="title text-2xl my-4 text-center">Adding new address</h2>
+        <h2 className="title text-2xl my-4 text-center">Добавление адресса</h2>
         <ul className="list flex flex-col gap-5 max-w-150 w-full">
           {addressData.map((el) => (
             <li key={el.label} className="relative">
@@ -82,7 +82,7 @@ export default function NewAddress(twclass: { twclass?: string }) {
           ))}
         </ul>
         <BlackButton
-          children="Add address"
+          children="Добавить адресс"
           twclass="mt-8 !max-w-150 !w-full"
           onClick={onClickAdd}
         />

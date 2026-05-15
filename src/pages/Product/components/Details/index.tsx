@@ -13,7 +13,7 @@ export default function Details() {
     <>
       <section className="details py-16">
         <div className="details-inner flex flex-col gap-4">
-          <h2 className="title text-2xl">Details</h2>
+          <h2 className="title text-2xl">Характеристики</h2>
 
           <p className="description text-[14px] text-[#9d9d9d] mb-8">
             {product.specs.description}

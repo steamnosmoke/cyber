@@ -1,11 +1,11 @@
 // hooks/useChatSuggestions.ts
 export const getSuggestions = () => {
   const suggestions = [
-    "What are the best products in your catalog?",
-    "Can you recommend something for gaming?",
-    "Show me the latest products",
-    "Compare different brands",
-    "What's on sale right now?",
+    "Подбери устройство для игр",
+    "Какие товары сейчас в топе?",
+    "Покажи последние новинки",
+    "Помоги выбрать между брендами",
+    "Что можно купить со скидкой?",
   ];
 
   return { suggestions };

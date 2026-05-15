@@ -7,7 +7,7 @@ export default function OrderInfo({ order }: OrderProps) {
 
   return (
     <div className="info  flex flex-col items-center ">
-      <h2 className="title text-xl leading-12 pb-3 pt-0 px-0">Order Summary</h2>
+      <h2 className="title text-xl leading-12 pb-3 pt-0 px-0">Детали заказа</h2>
       <ul className="numbers flex flex-col gap-3 items-start justify-center">
         {numbers.map((number, index) => (
           <li

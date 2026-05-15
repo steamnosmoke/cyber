@@ -3,7 +3,6 @@ import { ChatMessage } from "../types/chatTypes";
 const welcomeMessage: ChatMessage = {
   role: "assistant",
   content:
-    "Hello! I'm your AI shopping assistant. I can help you:\n\n• Find products based on your needs\n• Compare different items\n• Provide product recommendations\n• Answer questions about brands and categories\n• Help you make informed purchasing decisions\n\nWhat would you like to know about our products?",
+    "Привет! Я ИИ-консультант магазина Cyber.\n\n• Помогу подобрать технику\n• Сравню товары и бренды\n• Найду лучшие варианты под ваш бюджет\n• Подскажу актуальные новинки\n• Отвечу на вопросы о товарах\n\nЧто хотите найти?",
 };
-
 export default welcomeMessage;

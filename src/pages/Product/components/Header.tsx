@@ -17,14 +17,14 @@ export default function Header() {
         className="transition-all duration-200 hover:font-semibold w-14"
         onClick={() => setActivePage(0)}
       >
-        Home
+        Главная
       </Link>
       <p className="cursor-default">{`>`}</p>
       <Link
         to={"/catalog"}
         className="transition-all duration-200 hover:font-semibold w-14"
       >
-        Catalog
+        Каталог
       </Link>
       <p className="cursor-default">{`>`}</p>
       <Link

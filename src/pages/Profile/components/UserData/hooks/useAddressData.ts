@@ -6,25 +6,25 @@ export default function useAddressData(): AddressData[] {
     useAddress();
   return [
     {
-      label: "city",
+      label: "Город",
       value: city,
-      placeholder: "New York",
+      placeholder: "Казань",
       func: setCity,
     },
     {
-      label: "country",
+      label: "Страна",
       value: country,
-      placeholder: "USA",
+      placeholder: "Россия",
       func: setCountry,
     },
     {
-      label: "street",
+      label: "Улица",
       value: street,
-      placeholder: "Brooklin st",
+      placeholder: "ул. Пушкина",
       func: setStreet,
     },
     {
-      label: "zip",
+      label: "Индекс",
       value: zip,
       placeholder: "123456",
       func: setZip,

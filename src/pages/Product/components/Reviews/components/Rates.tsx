@@ -5,14 +5,14 @@ import { Props } from "../types";
 export default function Rates({ data }: Props) {
   const product = useProductStore ((state) => state.product);
 
-  const marks = ["Poor", "Below Average", "Average", "Good", "Excellent"];
+  const marks = ["Очень плохо", "Плохо", "Нормально", "Хорошо", "Превосходно"];
   
   return (
     <div className="rating py-8 px-0 flex items-center justify-between">
       <div className="left p-6 bg-stone-100 max-w-46 flex flex-col gap-4 items-center w-45 h-45">
         <p className="number text-4xl  text-center">{product.rating}</p>
         <p className="count_review text-base leading-4 text-center text-black opacity-30">
-          of {data.reviews.length} reviews
+           {data.reviews.length} отзывов
         </p>
         <Stars rating={product.rating} />
       </div>

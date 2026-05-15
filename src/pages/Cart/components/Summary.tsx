@@ -35,7 +35,7 @@ export default function Summary() {
 
   return (
     <section className="right border-2 border-stone-200 py-10 px-12 w-[40%] flex flex-col items-start justify-center gap-10 sticky top-42 rounded-3xl ">
-      <h2 className="text-[20px] font-bold">Order Summary</h2>
+      <h2 className="text-[20px] font-bold">Детали заказа</h2>
       <ul className="numbers flex flex-col gap-4 items-start justify-center w-full">
         {numbers.map((number, index) => (
           <li
@@ -59,7 +59,7 @@ export default function Summary() {
       </ul>
       <div className="w-full flex gap-6 items-center justify-between">
         <BlackButton
-          children={"Checkout"}
+          children={"Оформить"}
           onClick={onMakeOrder}
           twclass={"!w-80 !px-30 !py-6"}
           textclass=" !text-lg"

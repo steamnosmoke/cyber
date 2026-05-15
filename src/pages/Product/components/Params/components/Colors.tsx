@@ -20,7 +20,7 @@ export default function Colors() {
   return (
     <div className="select_color flex gap-6 items-center">
       <p className="color_label color-[#212121] text-base font-normal leading-6">
-        Select color:
+        Цвет:
       </p>
       <ul className="color_list flex justify-between gap-4">
         {memoizedColors.map((col, colIndex) => (

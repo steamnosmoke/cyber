@@ -3,10 +3,10 @@ import { Number } from "../types";
 
 export default function geNumbers(order: Order): Number[] {
   const numbers: Number[] = [
-    { label: "Subtotal", value: `$${order?.totalPriceWithoutDiscount}` },
-    { label: "Discount", value: `$${order?.totalDiscount}` },
-    { label: "Total", value: `$${order?.totalPriceWithDiscount + 79}` },
-    { label: "Number of products", value: `${order?.value}` },
+    { label: "Сумма", value: `$${order?.totalPriceWithoutDiscount}` },
+    { label: "Скидка", value: `$${order?.totalDiscount}` },
+    { label: "Итоговая сумма", value: `$${order?.totalPriceWithDiscount + 79}` },
+    { label: "Количество товаров", value: `${order?.value}` },
   ];
 
   return numbers;

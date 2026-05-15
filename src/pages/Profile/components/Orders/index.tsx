@@ -13,7 +13,7 @@ export default function Orders() {
   return (
     <>
       <h2 className="text-2xl font-medium leading-12 text-center pt-8">
-        Order List
+        Список заказов
       </h2>
       <section className="orders flex flex-col flex-wrap items-start justify-between pt-5 gap-8">
         {(() => {
@@ -24,22 +24,22 @@ export default function Orders() {
               ) : (
                 <div className="flex flex-col items-center justify-center gap-8 w-full">
                   <h3 className="text-3xl text-center">
-                    No Orders Found
+                    Заказов нет
                   </h3>
-                  <BlackButton children={"+ Make Order"} onClick={()=>navigate("/")}/>
+                  <BlackButton children={"+ Оформить заказ"} onClick={()=>navigate("/")}/>
                 </div>
               );
 
             case "pending":
               return (
-                <h3 className="text-3xl text-center w-full">Loading...</h3>
+                <h3 className="text-3xl text-center w-full">Загрузка...</h3>
               );
 
             case "error":
             default:
               return (
                 <h3 className="text-3xl text-center w-full">
-                  Something Went Wrong
+                  Что-то пошло не так
                 </h3>
               );
           }
