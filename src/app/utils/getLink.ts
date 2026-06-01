@@ -1,5 +1,5 @@
 import { Product } from "types/ProductTypes";
-import getParams from "../config/params";
+import getParams from "utils/getParam";
 
 export default function getLink(product: Product) {
   const param = getParams(product);

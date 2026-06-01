@@ -4,15 +4,19 @@ import { Link } from "react-router";
 import { Props } from "../types";
 import useRemoveItem from "../hooks/useRemoveItem";
 import ChangeCountButton from "buttons/components/ChangeCountButton";
+import getLink from "utils/getLink";
+import { useProductStore } from "store/productsStore";
 
 export default function CartItem({ product }: Props) {
   const [stock, setStock] = useState(product.stock);
+  const setProduct = useProductStore((state) => state.setProduct);
+  const link = getLink(product);
 
   const removeItem = useRemoveItem();
   return (
-    <section className="cartItem w-full min-h-35 h-full py-4 px-12  border-2 border-stone-200 rounded-3xl ">
+    <section className="cartItem w-full min-h-35 h-full py-4 px-12  border-2 border-stone-200 rounded-3xl">
       <div className="flex justify-between items-center">
-        <Link to={`/catalog/${product.category}/${product.productId}`}>
+        <Link to={link} onClick={() => setProduct(product)}>
           <section className="flex justify-between items-center">
             <img src={product.images[0]} alt="" className="w-20 mr-4" />
             <h3 className="text-lg leading-7">

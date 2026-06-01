@@ -4,8 +4,16 @@ import mac from "../images/MacBook.png";
 import ps from "../images/ps5.png";
 import ap from "../images/ap-max.png";
 import vision from "../images/vis.png";
+import { useProductStore } from "store/productsStore";
+import useGetProducts from "hooks/useGetProducts";
 
 export default function Tablets() {
+  const setProduct = useProductStore((state) => state.setProduct);
+  const { products } = useGetProducts("Phones");
+  const pslink = products.find((el) => el.objectId === "");
+  const maclink = products.find((el) => el.objectId === "");
+  const aplink = products.find((el) => el.objectId === "");
+  const visionlink = products.find((el) => el.objectId === "");
   return (
     <>
       <section className="tablets w-full pt-12 z-10 relative bg-white">

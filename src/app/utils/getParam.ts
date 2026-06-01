@@ -5,7 +5,7 @@ export default function getParams(product: Product) {
   return category === "Phones"
     ? `${product.memory}${Number(product.memory) === 1 || Number(product.memory) === 2 ? "TB" : "GB"}`
     : category === "Computers"
-      ? `${product.storage}/${product.ram}`
+      ? `${product.storage}_${product.ram}`
       : category === "Smartwatches"
         ? `${product.size}`
         : category === "Gaming Consoles" && `${product.storage}`;

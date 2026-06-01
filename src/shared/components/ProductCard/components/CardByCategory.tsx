@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import getLink from "../utils/getLink";
-import getParams from "../config/params";
+import getLink from "utils/getLink";
+import getParams from "utils/getParam";
 import { Categoryprops } from "../types";
 
 export default function CardByCategory({

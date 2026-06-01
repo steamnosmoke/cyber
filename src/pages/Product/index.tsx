@@ -13,7 +13,7 @@ export default function Product() {
 
   useEffect(() => {
     setActivePage(1);
-  }, [setActivePage]);
+  }, []);
 
   return (
     <>

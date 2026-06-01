@@ -21,10 +21,11 @@ export default function getTablets(product: Product): TTablet[] {
     {
       label: "Гарантия",
       img: Guaranteed,
-      value:
-        product.specs.guarantee.split(" ")[0] +
-        " " +
-        product.specs.guarantee.split(" ")[1],
+      value: product.specs?.guarantee
+        ? product.specs?.guarantee.split(" ")[0] +
+          " " +
+          product.specs?.guarantee.split(" ")[1]
+        : "-",
     },
   ];
 }

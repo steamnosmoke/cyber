@@ -5,8 +5,13 @@ import white from "../images/2.png";
 import orange from "../images/3.png";
 import WhiteLineButton from "buttons/components/WhiteLineButton";
 import { useEffect, useState } from "react";
+import { useProductStore } from "store/productsStore";
+import useGetProducts from "hooks/useGetProducts";
 
 export default function Banner() {
+  const setProduct = useProductStore((state) => state.setProduct);
+  const { products } = useGetProducts("Phones");
+  const product = products.find((el) => el.objectId === "5x11");
   const [animate, setAnimate] = useState(false);
   useEffect(() => {
     setAnimate(true);
@@ -18,7 +23,7 @@ export default function Banner() {
           <div className="banner-inner flex items-center justify-center h-full">
             <div className="banner-info flex flex-col items-start justify-start gap-1 w-140 text-stone-300">
               <p className="banner-description text-2xl font-semibold ">
-                Pro. Новый уровень.
+                Представляем вам
               </p>
               <h1 className="banner-title text-7xl font-[100] text-white">
                 IPhone 17 <span className="font-semibold">Pro</span>
@@ -26,7 +31,10 @@ export default function Banner() {
               <p className="banner-description text-xl font-semibold">
                 Больше возможностей. Больше Pro.
               </p>
-              <Link to={"/catalog/Phones/iPhone_17_Pro_Cosmic_Orange_2048GB"}>
+              <Link
+                to={"/catalog/Phones/iPhone_17_Pro_Cosmic_Orange_2048GB"}
+                onClick={() => setProduct(product)}
+              >
                 <WhiteLineButton
                   children={"Посмотреть"}
                   twclass="!px-15 !py-3 text-lg mt-5"

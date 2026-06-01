@@ -22,7 +22,7 @@ export default function Memory() {
           onClick={() => setItem(product, product.color, mem)}
         >
           {mem}
-          {Number(mem) !== 1 ? "GB" : "TB"}
+          {Number(mem) > 2 ? "GB" : "TB"}
         </li>
       ))}
     </ul>

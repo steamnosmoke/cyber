@@ -11,7 +11,7 @@ import MyLoader from "./components/Loader";
 
 export default function ProductParams() {
   const product = useProductStore ((state) => state.product);
-  
+  const hasMemory = !!product?.memory 
 
   if (!product) return <MyLoader />;
 
@@ -23,7 +23,7 @@ export default function ProductParams() {
         <div className="params_block flex flex-col gap-6 items-start max-w-134">
           <Title />
           <Colors />
-          <Memory />
+          {hasMemory && <Memory />}
           <Characters />
           <Buttons />
           <Tablets />

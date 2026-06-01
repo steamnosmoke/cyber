@@ -16,7 +16,7 @@ export default function Categories() {
       <section className="categories py-8 bg-stone-100 my-12">
         <div className="container">
           <div className="categories-inner">
-            <h3 className="categories-title text-2xl mb-6 font-semibold">
+            <h3 className="categories-title text-3xl mb-6 font-bold">
               Выбор категории
             </h3>
             <ul className="categories-list flex items-center justify-between">
