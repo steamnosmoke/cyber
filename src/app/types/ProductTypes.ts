@@ -29,7 +29,7 @@ export interface Product {
   variant?: Variant;
   size?: string;
   storage?: string;
-};
+}
 
 export interface Review {
   comment: string;
@@ -38,7 +38,7 @@ export interface Review {
   userId: string;
   productId: number;
   userName?: string;
-};
+}
 
 export interface Variant {
   price: number;
@@ -48,7 +48,7 @@ export interface Variant {
   colorHex?: string;
   memory?: string;
   discount?: number;
-};
+}
 
 export interface Specs {
   description?: string;
@@ -109,7 +109,7 @@ export interface Specs {
   os?: string;
   launchYear?: number;
   guarantee?: string;
-};
+}
 
 export interface ProductStore {
   product?: Product | null;
@@ -127,7 +127,7 @@ export interface ProductStore {
   clearFilters?: () => void;
   setConfirmedFilters?: () => void;
   seFilterOpened?: () => void;
-  setCategory?: (category: string) => void;
+  setCategory: (category: string) => void;
   seFilteredProducts?: (products?: Product[]) => void;
   setSortingParams?: (params?: SortingParams) => void;
-};
+}

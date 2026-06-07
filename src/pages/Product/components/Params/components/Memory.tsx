@@ -1,14 +1,28 @@
 import { useMemo } from "react";
+import { useNavigate } from "react-router";
 
 import { useProductStore } from "store/productsStore";
 
 import setItem from "utils/cart/convertToCartItem";
+import getLink from "utils/getLink";
+
 import memories from "../config/memories";
 
 export default function Memory() {
-  const product = useProductStore ((state) => state.product);
+  const product = useProductStore((state) => state.product);
 
   const memoizedMemories = useMemo(() => memories(product), [product]);
+
+  const navigate = useNavigate();
+
+  const onChangeMemory = (mem: string) => {
+    const item = setItem(product, product.color, mem);
+
+    navigate(getLink(item), {
+      replace: true,
+    });
+  };
+
   return (
     <ul className="memory_list flex items-center justify-start gap-4 w-full">
       {memoizedMemories.map((mem, memIndex) => (
@@ -19,7 +33,7 @@ export default function Memory() {
               : "border-gray-400 text-gray-400"
           }`}
           key={memIndex}
-          onClick={() => setItem(product, product.color, mem)}
+          onClick={() => onChangeMemory(mem)}
         >
           {mem}
           {Number(mem) > 2 ? "GB" : "TB"}

@@ -1,21 +1,28 @@
 import { useMemo } from "react";
+import { useNavigate } from "react-router";
 
 import { useProductStore } from "store/productsStore";
 
 import setItem from "utils/cart/convertToCartItem";
+import getLink from "utils/getLink";
 
 import colorHexs from "../config/colorHexs";
 import colors from "../config/colors";
 
 export default function Colors() {
-  const product = useProductStore ((state) => state.product);
+  const product = useProductStore((state) => state.product);
 
   const memoizedColors = useMemo(() => colors(product), [product]);
   const memoizedColorHexs = useMemo(() => colorHexs(product), [product]);
 
+  const navigate = useNavigate();
+
   const onChangeColor = (col: string, memory: string) => {
-    setItem(product, col, memory);
-    
+    const item = setItem(product, col, memory);
+
+    navigate(getLink(item), {
+      replace: true,
+    });
   };
   return (
     <div className="select_color flex gap-6 items-center">

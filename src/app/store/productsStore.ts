@@ -23,6 +23,6 @@ export const useProductStore = create<ProductStore>()(
         product: state.product,
         category: state.category,
       }),
-    }
-  )
+    },
+  ),
 );

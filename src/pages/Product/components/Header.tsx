@@ -6,9 +6,9 @@ import { useProductStore } from "store/productsStore";
 export default function Header() {
   const { id } = useParams();
   const setActivePage = useNavigationStore((state) => state.setActivePage);
-  const product = useProductStore ((state) => state.product);
-  const category = useProductStore ((state) => state.category);
-  const setCategory = useProductStore ((state) => state.setCategory);
+  const product = useProductStore((state) => state.product);
+  const category = useProductStore((state) => state.category);
+  const setCategory = useProductStore((state) => state.setCategory);
 
   return (
     <header className="py-8 flex gap-3">
@@ -29,7 +29,7 @@ export default function Header() {
       <p className="cursor-default">{`>`}</p>
       <Link
         to={`/catalog/${category}`}
-        className="transition-all duration-200 hover:font-semibold w-14"
+        className="transition-all duration-200 hover:font-semibold min-w-14"
         onClick={() => setCategory(category)}
       >
         {category}
@@ -39,7 +39,7 @@ export default function Header() {
         to={`/catalog/${id}`}
         className="transition-all duration-200 hover:font-semibold"
       >
-        {product.name}
+        {product?.name}
       </Link>
     </header>
   );
