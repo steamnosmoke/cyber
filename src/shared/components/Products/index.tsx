@@ -8,9 +8,9 @@ export default function Products({ products, status, grid }: Props) {
     <>
       <div
         className={
-          status === "success" && products.length > 0
-            ? `grid gap-x-20 gap-y-6  justify-center content-center ${grid ? "place-items-start" : "place-items-center"} grid-cols-[repeat(auto-fit,minmax(200px,1fr))] transition-all duration-300`
-            : "mt-50"
+          status === "error"
+            ? `mt-50`
+            : `grid gap-x-20 gap-y-6  justify-center content-center ${grid ? "place-items-start" : "place-items-center"} grid-cols-[repeat(auto-fit,minmax(200px,1fr))] transition-all duration-300`
         }
       >
         {(() => {
