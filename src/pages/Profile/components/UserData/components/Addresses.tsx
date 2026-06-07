@@ -15,7 +15,7 @@ export default function Addresses() {
   const isAddressesOpened = useAddress((state) => state.isAddressesOpened);
   const isNewAddressOpened = useAddress((state) => state.isNewAddressOpened);
   const setIsAddressesOpened = useAddress(
-    (state) => state.setIsAddressesOpened
+    (state) => state.setIsAddressesOpened,
   );
 
   const ref = useRef(null);
@@ -44,7 +44,7 @@ export default function Addresses() {
           Default address
         </p>
         <p className={!defaultAddress ? "text-stone-500" : ""}>
-          {defaultAddress ? formatAddress(defaultAddress) : "Добавить адресс"}
+          {defaultAddress ? formatAddress(defaultAddress) : "Добавить адрес"}
         </p>
       </div>
 

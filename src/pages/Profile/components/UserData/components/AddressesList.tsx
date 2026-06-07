@@ -21,12 +21,11 @@ export default function AddressesList() {
 
   const isAddressesOpened = useAddress((state) => state.isAddressesOpened);
   const setIsAddressesOpened = useAddress(
-    (state) => state.setIsAddressesOpened
+    (state) => state.setIsAddressesOpened,
   );
   const setIsNewAddressOpened = useAddress(
-    (state) => state.setIsNewAddressOpened
+    (state) => state.setIsNewAddressOpened,
   );
-
 
   const setDefaultAddress = useChangeData((state) => state.setDefaultAddress);
 
@@ -44,7 +43,7 @@ export default function AddressesList() {
 
   const onRemoveAddress = (address: Address) => {
     removeAddress(address);
-    setDefaultAddress(null)
+    setDefaultAddress(null);
     setIsAddressesOpened(false);
   };
 
@@ -80,7 +79,7 @@ export default function AddressesList() {
         ))}
       <li className="cursor-pointer px-4 py-2 hover:bg-stone-100 transition-colors duration-200">
         <p className="w-full" onClick={openAdding}>
-          + Добавить адресс
+          + Добавить адрес
         </p>
       </li>
     </ul>

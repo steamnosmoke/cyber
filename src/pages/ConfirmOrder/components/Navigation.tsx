@@ -1,15 +1,14 @@
-import { useMemo } from "react";
 import points from "../config/navigatePoints";
 import useConfirmOrder from "../store/useConfirmOrder";
+
 export default function Navigation() {
-  const navPoints = useMemo(() => points, []);
   const activePage = useConfirmOrder((state) => state.activePage);
   const setActivePage = useConfirmOrder((state) => state.setActivePage);
   return (
     <div>
       <div className="container">
         <ul className="py-12 flex justify-around items-center">
-          {navPoints.map((el, key) => (
+          {points.map((el, key) => (
             <li
               key={key}
               className={`cursor-pointer ${activePage === key ? "opacity-100" : "opacity-60"}`}

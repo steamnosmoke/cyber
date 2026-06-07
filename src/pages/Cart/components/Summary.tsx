@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router";
 
 import { useAuthStore } from "store/authStore";
-// import useMakeOrder from "hooks/useMakeOrder";
+import { useModalStore } from "store/modalStore";
 import useGetCart from "hooks/cart/useGetCart";
 
 import useClearCart from "../hooks/useClearCart";
-// import useUpdateStock from "../hooks/useUpdateStock";
 import useGetNumbers from "../hooks/useGetNumbers";
 
 import BlackButton from "buttons/components/BlackButton";
@@ -16,19 +15,15 @@ export default function Summary() {
   const userId = useAuthStore((state) => state.firebaseId);
   const navigate = useNavigate();
   const { cart: products } = useGetCart(userId);
+  const openRegisterModal = useModalStore((s) => s.openRegisterModal);
 
-  // const { mutate: makeOrder } = useMakeOrder(userId);
   const { mutate: clearCart } = useClearCart(userId);
-  // const { mutate: updateStock } = useUpdateStock();
 
   const onMakeOrder = () => {
     if (!products || products.length === 0) return;
-
-    // updateStock(products);
-    // clearCart();
-    // makeOrder(products);
-    // navigate("/profile");
-    navigate("/cart/confirm_order");
+    if (userId === "guest") {
+      openRegisterModal();
+    } else navigate("/cart/confirm_order");
   };
 
   const numbers = useGetNumbers();
