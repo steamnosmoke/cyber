@@ -4,7 +4,7 @@ import axios from "axios";
 import DB_URL from "constants/DB_URL";
 import { Product } from "types/ProductTypes";
 
-async function geProducts(category: string): Promise<Product[]> {
+async function getProducts(category: string): Promise<Product[]> {
   const url = `${DB_URL}products.json${
     category ? `?orderBy="category"&equalTo="${category}"` : ""
   }`;
@@ -32,7 +32,7 @@ async function geProducts(category: string): Promise<Product[]> {
 export default function useGetProducts(category: string) {
   const { data, status, error } = useQuery<Product[]>({
     queryKey: ["products", category],
-    queryFn: () => geProducts(category),
+    queryFn: () => getProducts(category),
     placeholderData: (prev) => prev,
   });
 
