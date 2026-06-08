@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json({ limit: "2mb" }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://cyber-ai-shop.vercel.app",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   }),
@@ -165,5 +165,5 @@ ${JSON.stringify(products, null, 2)}
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on ${PORT}`);
 });
