@@ -181,38 +181,34 @@ ${currentDate}
 ${JSON.stringify(products, null, 2)}
 `.trim();
 
-    ```
-const messages = [
-  {
-    role: "system",
-    content: systemMessage,
-  },
-  {
-    role: "user",
-    content: userMessage,
-  },
-];
+    const messages = [
+      {
+        role: "system",
+        content: systemMessage,
+      },
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ];
 
-const result = await sendAIMessage(messages);
+    const result = await sendAIMessage(messages);
 
-if (!result.success) {
-  return res.status(503).json({
-    error: result.text,
-  });
-}
+    if (!result.success) {
+      return res.status(503).json({
+        error: result.text,
+      });
+    }
 
-return res.json({
-  reply: result.text,
-});
-```;
+    return res.json({
+      reply: result.text,
+    });
   } catch (error) {
     console.error(error);
 
-    ```
-return res.status(500).json({
-  error: "Internal server error",
-});
-```;
+    return res.status(500).json({
+      error: "Internal server error",
+    });
   }
 });
 
