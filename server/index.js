@@ -56,17 +56,14 @@ const openRouter = new OpenRouter({
 });
 
 const MODELS = [
-  "google/gemini-2.5-flash-preview",
-  "meta-llama/llama-3.1-70b-instruct",
-  "mistral-nemo",
-  "xiaomi/mimo-v2-flash:free",
-  "tngtech/deepseek-r1t2-chimera:free",
-  "tngtech/deepseek-r1t-chimera:free",
-  "deepseek/deepseek-r1-0528:free",
-  "google/gemma-3-27b-it:free",
   "meta-llama/llama-3.3-70b-instruct:free",
+  "meta-llama/llama-3.2-3b-instruct:free",
+  "google/gemma-4-26b-a4b-it:free",
+  "google/gemma-4-26b-a4b-it:free",
+  "liquid/lfm-2.5-1.2b-thinking:free",
   "openai/gpt-oss-120b:free",
-  "nvidia/nemotron-3-nano-30b-a3b:free",
+  "openai/gpt-oss-20b:free",
+  "nousresearch/hermes-3-llama-3.1-405b:free",
 ];
 
 async function sendAIMessage(messages) {
