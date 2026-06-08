@@ -8,20 +8,45 @@ dotenv.config();
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.use(express.json({ limit: "2mb" }));
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://cyber-ai-shop.vercel.app",
+  "https://www.cyber-ai-shop.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://cyber-ai-shop.vercel.app",
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS policy violation"));
+      }
+    },
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   }),
 );
 
+app.get("/", (_, res) => {
+  res.json({
+    status: "ok",
+    service: "Cyber AI",
+  });
+});
+
 const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 минута
-  max: 5, // максимум 5 запросов в минуту с одного IP
+  windowMs: 60 * 1000,
+  max: 5,
   standardHeaders: true,
   legacyHeaders: false,
+  message: {
+    error: "Too many requests. Try again in a minute.",
+  },
 });
 
 app.use("/api/chat", limiter);
@@ -55,10 +80,18 @@ async function sendAIMessage(messages) {
           messages,
         });
 
-        const text = response?.choices?.[0]?.message?.content ?? "";
-        return { success: true, text };
-      } catch (e) {
-        const message = String(e);
+        const text = response?.choices?.[0]?.message?.content?.trim() ?? "";
+
+        if (text) {
+          return {
+            success: true,
+            text,
+          };
+        }
+      } catch (error) {
+        const message = String(error);
+
+        console.error(`[${model}]`, message);
 
         if (
           message.includes("429") ||
@@ -74,7 +107,7 @@ async function sendAIMessage(messages) {
           message.includes("timeout")
         ) {
           if (attempt < MAX_RETRIES) {
-            await new Promise((r) => setTimeout(r, attempt * 1000));
+            await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
             continue;
           }
 
@@ -94,76 +127,97 @@ async function sendAIMessage(messages) {
 }
 
 app.post("/api/chat", async (req, res) => {
-  const { userMessage = "", products = [] } = req.body;
+  try {
+    const { userMessage = "", products = [] } = req.body;
 
-  const currentDate = new Date().toLocaleDateString("ru-RU", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+    if (!userMessage.trim()) {
+      return res.status(400).json({
+        error: "Message is required",
+      });
+    }
 
-  const systemMessage = `
-ТЕКУЩАЯ ДАТА (ФАКТ):
+    const currentDate = new Date().toLocaleDateString("ru-RU", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const systemMessage = `
+
+ТЕКУЩАЯ ДАТА:
 ${currentDate}
 
-Считай, что сейчас именно эта дата.
-Запрещено использовать устаревшие формулировки.
+Ты — ИИ-консультант интернет-магазина электроники.
 
-Ты — ИИ ассистент интернет-магазина электроники.
+Твои задачи:
 
-Ты должен помогать клиентам с выбором гаджетов, отвечать на их вопросы, которые касаются техники. Если клиент справшивает про гаджет который не продается в магазине, ты должен рассказать про него и предложить схожее устройство из БД магазина. ИСпользуй интернет если можешь для поиска информации об устройствах. 
+* помогать с выбором техники;
+* отвечать на вопросы о гаджетах;
+* сравнивать устройства;
+* рекомендовать аналоги из ассортимента магазина.
 
-КРИТИЧЕСКИ ВАЖНО:
-Ты можешь возвращать товары ТОЛЬКО из ассортимента ниже.
+ВАЖНО:
+Ты можешь рекомендовать товары ТОЛЬКО из списка ниже.
 
-ПРАВИЛА:
-- при сравнении или подборе всегда предлагай аналоги
-- если есть рекомендация — товарный блок ОБЯЗАТЕЛЕН
+Если рекомендуешь товар — обязательно добавляй товарный блок.
 
-ФОРМАТ ОТВЕТА:
-
-ЧАСТЬ 1 — ТЕКСТ
-
-ЧАСТЬ 2 — ТОВАРНЫЙ БЛОК
-В КОНЦЕ ответа:
+Формат ответа:
 
 ===PRODUCTS_START===
-[ JSON массив ]
+[JSON массив]
 ===PRODUCTS_END===
 
 Формат товара:
 {
-  "objectId": string,
-  "name": string,
-  "brand": string,
-  "category": string,
-  "price": number
+"objectId": string,
+"name": string,
+"brand": string,
+"category": string,
+"price": number
 }
 
-Ответ НЕВЕРЕН, если:
-- нет PRODUCTS_START / PRODUCTS_END
-- JSON невалидный
-- возвращён товар не из ассортимента
+Ассортимент магазина:
 
-АССОРТИМЕНТ (JSON):
 ${JSON.stringify(products, null, 2)}
 `.trim();
 
-  const messages = [
-    { role: "system", content: systemMessage },
-    { role: "user", content: userMessage },
-  ];
+    ```
+const messages = [
+  {
+    role: "system",
+    content: systemMessage,
+  },
+  {
+    role: "user",
+    content: userMessage,
+  },
+];
 
-  const result = await sendAIMessage(messages);
+const result = await sendAIMessage(messages);
 
-  if (!result.success) {
-    return res.status(503).json({ error: result.text });
+if (!result.success) {
+  return res.status(503).json({
+    error: result.text,
+  });
+}
+
+return res.json({
+  reply: result.text,
+});
+```;
+  } catch (error) {
+    console.error(error);
+
+    ```
+return res.status(500).json({
+  error: "Internal server error",
+});
+```;
   }
-
-  return res.json({ reply: result.text });
 });
 
 const PORT = process.env.PORT || 4000;
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on ${PORT}`);
 });
